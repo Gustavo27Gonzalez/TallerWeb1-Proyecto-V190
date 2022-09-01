@@ -1,6 +1,4 @@
-package ar.edu.unlam.tallerweb1.domain.usuarios;
-
-import ar.edu.unlam.tallerweb1.domain.usuarios.Usuario;
+package ar.edu.unlam.tallerweb1.service;
 
 // Interface que define los metodos del Repositorio de Usuarios.
 public interface RepositorioUsuario {
