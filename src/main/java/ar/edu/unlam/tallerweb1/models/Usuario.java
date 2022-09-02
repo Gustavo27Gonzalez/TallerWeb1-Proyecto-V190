@@ -1,14 +1,12 @@
-package ar.edu.unlam.tallerweb1.service;
+package ar.edu.unlam.tallerweb1.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en el
 @Entity
+@Table(name = "usuario")
 public class Usuario {
 
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
@@ -19,8 +17,7 @@ public class Usuario {
 	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
 	private String email;
 	private String password;
-	private String rol;
-	private Boolean activo = false;
+	private Boolean administrador = false;
 	
 	public Long getId() {
 		return id;
@@ -40,24 +37,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRol() {
-		return rol;
-	}
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
-	public Boolean getActivo() {
-		return activo;
-	}
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
+
+	public Boolean getAdministrador() {
+		return administrador;
 	}
 
-	public boolean activo() {
-		return activo;
-    }
-
-    public void activar() {
-		activo = true;
-    }
+	public void setAdministrador(Boolean administrador) {
+		this.administrador = administrador;
+	}
 }

@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.repository;
 
-import ar.edu.unlam.tallerweb1.service.RepositorioUsuario;
-import ar.edu.unlam.tallerweb1.service.Usuario;
+import ar.edu.unlam.tallerweb1.models.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.controller;
 
-import ar.edu.unlam.tallerweb1.service.Usuario;
+import ar.edu.unlam.tallerweb1.models.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

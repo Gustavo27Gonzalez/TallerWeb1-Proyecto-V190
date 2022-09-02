@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.service;
+package ar.edu.unlam.tallerweb1.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
