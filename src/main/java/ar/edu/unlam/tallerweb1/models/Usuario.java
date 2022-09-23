@@ -1,48 +1,83 @@
 package ar.edu.unlam.tallerweb1.models;
 
 import javax.persistence.*;
+import java.util.Map;
 
-// Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
-// el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
-// busque entities en el
 @Entity
 @Table(name = "usuario")
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idUsuario;
+    private String mail;
+    private String userName;
+    private String password;
+    private Map<String,Sorteo> sorteosAdministrados;
+    private Map<String,Sorteo> sorteoParticipando;
+    private Map<String,Sorteo> sorteosGanados;
+    private Map<String,Sorteo> referidos;
 
-	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	// para el resto de los atributo no se usan anotaciones entonces se usa el default de hibernate: la columna se llama igual que
-	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
-	private String email;
-	private String password;
-	private Boolean administrador = false;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
 
-	public Boolean getAdministrador() {
-		return administrador;
-	}
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-	public void setAdministrador(Boolean administrador) {
-		this.administrador = administrador;
-	}
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Map<String, Sorteo> getSorteosAdministrados() {
+        return sorteosAdministrados;
+    }
+
+    public void setSorteosAdministrados(Map<String, Sorteo> sorteosAdministrados) {
+        this.sorteosAdministrados = sorteosAdministrados;
+    }
+
+    public Map<String, Sorteo> getSorteoParticipando() {
+        return sorteoParticipando;
+    }
+
+    public void setSorteoParticipando(Map<String, Sorteo> sorteoParticipando) {
+        this.sorteoParticipando = sorteoParticipando;
+    }
+
+    public Map<String, Sorteo> getSorteosGanados() {
+        return sorteosGanados;
+    }
+
+    public void setSorteosGanados(Map<String, Sorteo> sorteosGanados) {
+        this.sorteosGanados = sorteosGanados;
+    }
+
+    public Map<String, Sorteo> getReferidos() {
+        return referidos;
+    }
+
+    public void setReferidos(Map<String, Sorteo> referidos) {
+        this.referidos = referidos;
+    }
 }

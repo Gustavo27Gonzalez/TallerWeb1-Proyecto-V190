@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.repository;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
-import ar.edu.unlam.tallerweb1.models.Usuario;
+import ar.edu.unlam.tallerweb1.models.UsuarioDos;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class ConexionBaseDeDatosTest extends SpringTest{
     @Test
     @Transactional @Rollback
     public void crearUsuario(){
-        Usuario usuario = new Usuario();
+        UsuarioDos usuario = new UsuarioDos();
         usuario.setEmail("seba@gmail.com");
         usuario.setPassword("1234");
         session().save(usuario);

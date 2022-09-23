@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.repository;
 
-import ar.edu.unlam.tallerweb1.models.Usuario;
+import ar.edu.unlam.tallerweb1.models.UsuarioDos;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -23,32 +23,32 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	}
 
 	@Override
-	public Usuario buscarUsuario(String email, String password) {
+	public UsuarioDos buscarUsuario(String email, String password) {
 
 		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
 		// de busqueda de Usuario donde el email y password sean iguales a los del objeto recibido como parametro
 		// uniqueResult da error si se encuentran mas de un resultado en la busqueda.
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
+		return (UsuarioDos) session.createCriteria(UsuarioDos.class)
 				.add(Restrictions.eq("email", email))
 				.add(Restrictions.eq("password", password))
 				.uniqueResult();
 	}
 
 	@Override
-	public void guardar(Usuario usuario) {
+	public void guardar(UsuarioDos usuario) {
 		sessionFactory.getCurrentSession().save(usuario);
 	}
 
 	@Override
-	public Usuario buscar(String email) {
-		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+	public UsuarioDos buscar(String email) {
+		return (UsuarioDos) sessionFactory.getCurrentSession().createCriteria(UsuarioDos.class)
 				.add(Restrictions.eq("email", email))
 				.uniqueResult();
 	}
 
 	@Override
-	public void modificar(Usuario usuario) {
+	public void modificar(UsuarioDos usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
 	}
 
