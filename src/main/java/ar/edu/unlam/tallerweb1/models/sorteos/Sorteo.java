@@ -1,14 +1,14 @@
-package ar.edu.unlam.tallerweb1.domain.sorteos;
+package ar.edu.unlam.tallerweb1.models.sorteos;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import ar.edu.unlam.tallerweb1.domain.rifas.Rifa;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+
 
 @Entity
 public class Sorteo {

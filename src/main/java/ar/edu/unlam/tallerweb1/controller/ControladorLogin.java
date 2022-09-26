@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.controller;
 
-import ar.edu.unlam.tallerweb1.models.UsuarioDos;
-import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +7,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import ar.edu.unlam.tallerweb1.models.DatosLogin;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.service.ServicioLogin;
+import ar.edu.unlam.tallerweb1.service.ServicioRegistrarUsuario;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +24,9 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
+	
+	@Autowired
+	private ServicioRegistrarUsuario servicioRegistrarUsuario;
 
 	@Autowired
 	public ControladorLogin(ServicioLogin servicioLogin){
@@ -49,9 +55,10 @@ public class ControladorLogin {
 
 		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
 		// hace una llamada a otro action a traves de la URL correspondiente a esta
-		UsuarioDos usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
 		if (usuarioBuscado != null) {
-			//request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
+			
 			return new ModelAndView("redirect:/home");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
@@ -70,5 +77,41 @@ public class ControladorLogin {
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
+	}
+	
+	
+	@RequestMapping(path = "/registrar-usuario")
+	public ModelAndView registrarUsuario() {
+		ModelMap modelo = new ModelMap();
+		// Se agrega al modelo un objeto con key 'datosLogin' para que el mismo sea asociado
+		// al model attribute del form que esta definido en la vista 'login'
+		modelo.put("datosLogin", new DatosLogin());
+		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
+		// y se envian los datos a la misma  dentro del modelo
+		return new ModelAndView("registro-usuario", modelo);
+	}
+	
+	@RequestMapping(path = "/validar-registrar-usuario", method = RequestMethod.POST)
+	public ModelAndView validarRegistrarUsuario(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+
+		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
+		// hace una llamada a otro action a traves de la URL correspondiente a esta
+		servicioRegistrarUsuario.registrarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+		if (usuarioBuscado != null) {
+			//servicioRegistrarUsuario.registrarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+			
+			return new ModelAndView("redirect:/saludo");
+		} else {
+			// si el usuario no existe agrega un mensaje de error en el modelo.
+			model.put("error", "El usuario y/o contraseña ya se encuentran registrados, ingrese otros datos");
+		}
+		return new ModelAndView("registro-usuario", model);
+	}
+	
+	@RequestMapping(path = "/saludo", method = RequestMethod.GET)
+	public ModelAndView irASaludo() {
+		return new ModelAndView("saludo");
 	}
 }

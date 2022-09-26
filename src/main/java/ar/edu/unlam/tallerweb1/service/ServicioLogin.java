@@ -1,9 +1,9 @@
 package ar.edu.unlam.tallerweb1.service;
 
-import ar.edu.unlam.tallerweb1.models.UsuarioDos;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
 // Interface que define los metodos del Servicio de Usuarios.
 public interface ServicioLogin {
 
-	UsuarioDos consultarUsuario(String email, String password);
+	Usuario consultarUsuario(String email, String password);
 }

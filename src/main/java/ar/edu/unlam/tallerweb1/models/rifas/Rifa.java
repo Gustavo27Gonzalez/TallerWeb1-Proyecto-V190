@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.domain.rifas;
+package ar.edu.unlam.tallerweb1.models.rifas;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

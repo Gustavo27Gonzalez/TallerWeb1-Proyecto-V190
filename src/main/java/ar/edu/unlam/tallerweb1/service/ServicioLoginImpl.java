@@ -1,10 +1,11 @@
 package ar.edu.unlam.tallerweb1.service;
 
-import ar.edu.unlam.tallerweb1.models.UsuarioDos;
-import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 
 // Implelemtacion del Servicio de usuarios, la anotacion @Service indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.servicios
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ServicioLoginImpl implements ServicioLogin {
 
+	@Autowired
 	private RepositorioUsuario servicioLoginDao;
 
 	@Autowired
@@ -24,7 +26,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
-	public UsuarioDos consultarUsuario (String email, String password) {
+	public Usuario consultarUsuario (String email, String password) {
 		return servicioLoginDao.buscarUsuario(email, password);
 	}
 

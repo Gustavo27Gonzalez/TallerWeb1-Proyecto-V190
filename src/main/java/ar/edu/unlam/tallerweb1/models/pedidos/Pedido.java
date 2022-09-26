@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.models;
+package ar.edu.unlam.tallerweb1.models.pedidos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

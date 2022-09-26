@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.domain.usuarios;
+package ar.edu.unlam.tallerweb1.models.usuarios;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import ar.edu.unlam.tallerweb1.domain.referidos.Referido;
-import ar.edu.unlam.tallerweb1.domain.rifas.Rifa;
-import ar.edu.unlam.tallerweb1.domain.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.referidos.Referido;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+
+
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate

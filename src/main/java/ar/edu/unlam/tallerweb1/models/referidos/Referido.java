@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.domain.referidos;
+package ar.edu.unlam.tallerweb1.models.referidos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
