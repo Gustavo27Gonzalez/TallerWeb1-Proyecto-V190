@@ -1,3 +1,4 @@
+/*
 CREATE DATABASE sorteo;
 -- USE SORTEO;
 -- DROP DATABASE SORTEO;
@@ -49,3 +50,4 @@ ADD FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
 
 ALTER TABLE premio
 ADD FOREIGN KEY (id_sorteo) REFERENCES sorteo(id_sorteo);
+*/

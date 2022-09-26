@@ -1,13 +1,11 @@
-package ar.edu.unlam.tallerweb1.models;
+package ar.edu.unlam.tallerweb1.models.usuarios;
 
+public class DatosRegistro {
 
-
-public class DatosLogin {
-	
     private String email;
     private String password;
 
-	public String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -22,5 +20,13 @@ public class DatosLogin {
     public void setPassword(String password) {
         this.password = password;
     }
+
     
+
+    public DatosRegistro(){}
+
+    public DatosRegistro(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.models.DatosLogin;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
-import ar.edu.unlam.tallerweb1.service.ServicioRegistrarUsuario;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,9 +24,8 @@ public class ControladorLogin {
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
 	
-	@Autowired
-	private ServicioRegistrarUsuario servicioRegistrarUsuario;
-
+	private HttpServletRequest request;
+	
 	@Autowired
 	public ControladorLogin(ServicioLogin servicioLogin){
 		this.servicioLogin = servicioLogin;
@@ -50,22 +48,34 @@ public class ControladorLogin {
 	// El metodo recibe un objeto Usuario el que tiene los datos ingresados en el form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
-		ModelMap model = new ModelMap();
+    public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
+        ModelMap model = new ModelMap();
 
-		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
-		// hace una llamada a otro action a traves de la URL correspondiente a esta
-		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		if (usuarioBuscado != null) {
-			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
-			
-			return new ModelAndView("redirect:/home");
-		} else {
-			// si el usuario no existe agrega un mensaje de error en el modelo.
-			model.put("error", "Usuario o clave incorrecta");
-		}
-		return new ModelAndView("login", model);
-	}
+        Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+        if (usuarioBuscado == null) {
+            model.put("error", "Usuario o clave incorrecta");
+        }
+        if (usuarioBuscado != null) {
+            model.put("usuario", usuarioBuscado);
+            if (usuarioBuscado.getIsAdmin() == true) {
+                request.getSession().setAttribute("Rol", "Admin");
+                request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+                return new ModelAndView("redirect:/saludo");
+            } else if (usuarioBuscado.getIsAdmin() == false) {
+                request.getSession().setAttribute("Rol", "UsuarioEstandar");
+                request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+                return new ModelAndView("redirect:/home");
+            }
+        }
+        return new ModelAndView("login", model);
+    }
+	
+	public boolean esAdmin() {
+        if (request.getSession().getAttribute("Rol") == "Admin") {
+            return true;
+        }
+        return false;
+    }
 
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
@@ -79,36 +89,6 @@ public class ControladorLogin {
 		return new ModelAndView("redirect:/login");
 	}
 	
-	
-	@RequestMapping(path = "/registrar-usuario")
-	public ModelAndView registrarUsuario() {
-		ModelMap modelo = new ModelMap();
-		// Se agrega al modelo un objeto con key 'datosLogin' para que el mismo sea asociado
-		// al model attribute del form que esta definido en la vista 'login'
-		modelo.put("datosLogin", new DatosLogin());
-		// Se va a la vista login (el nombre completo de la lista se resuelve utilizando el view resolver definido en el archivo spring-servlet.xml)
-		// y se envian los datos a la misma  dentro del modelo
-		return new ModelAndView("registro-usuario", modelo);
-	}
-	
-	@RequestMapping(path = "/validar-registrar-usuario", method = RequestMethod.POST)
-	public ModelAndView validarRegistrarUsuario(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
-		ModelMap model = new ModelMap();
-
-		// invoca el metodo consultarUsuario del servicio y hace un redirect a la URL /home, esto es, en lugar de enviar a una vista
-		// hace una llamada a otro action a traves de la URL correspondiente a esta
-		servicioRegistrarUsuario.registrarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		if (usuarioBuscado != null) {
-			//servicioRegistrarUsuario.registrarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-			
-			return new ModelAndView("redirect:/saludo");
-		} else {
-			// si el usuario no existe agrega un mensaje de error en el modelo.
-			model.put("error", "El usuario y/o contraseña ya se encuentran registrados, ingrese otros datos");
-		}
-		return new ModelAndView("registro-usuario", model);
-	}
 	
 	@RequestMapping(path = "/saludo", method = RequestMethod.GET)
 	public ModelAndView irASaludo() {

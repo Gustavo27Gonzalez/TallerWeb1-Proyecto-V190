@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 
-@Entity
+@Entity (name="sorteo")
 public class Sorteo {
 
     @Id

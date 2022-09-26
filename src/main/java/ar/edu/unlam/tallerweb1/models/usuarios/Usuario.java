@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +25,15 @@ public class Usuario {
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name="id_usuario")
 	private Long id;
 	// para el resto de los atributo no se usan anotaciones entonces se usa el default de hibernate: la columna se llama igual que
 	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
 	private String nombre;
 	private Integer dni;
 	private String email;
-	private String rol;
 	private String password;
+	private Boolean isAdmin = false;
 	private Boolean cuentaEliminada = false;
 	private Integer totalRifasCompradas;
 	private ArrayList<Sorteo> sorteosOrganizados;
@@ -65,17 +67,17 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getRol() {
-		return rol;
-	}
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 	public Boolean getCuentaEliminada() {
 		return cuentaEliminada;
@@ -118,6 +120,21 @@ public class Usuario {
 	}
 	public void setReferidos(HashSet<Referido> referidos) {
 		this.referidos = referidos;
+	}
+	
+	public Usuario(DatosRegistro datosRegistro) {
+		super();
+	}
+	
+	public Usuario() {
+		super();
+	}
+	public Usuario(String email, String password) {
+		super();
+		
+		this.email = email;
+		this.password = password;
+		
 	}
 	
 	
