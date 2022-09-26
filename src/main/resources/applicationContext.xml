@@ -23,10 +23,10 @@
 
 	<!--Se indican que paquetes debe escanear Spring al levantar el contexto para encontrar componentes, -->
 	<!--esto es clases anotadas como @Controller, @Service o @Repository-->
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.delivery" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.infrastructure" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.domain" />
-	
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.controller" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.models" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.repository" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.service" />
 
 </beans>
 
