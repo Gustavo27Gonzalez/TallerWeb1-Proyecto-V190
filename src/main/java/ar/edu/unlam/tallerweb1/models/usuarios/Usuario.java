@@ -133,17 +133,17 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(String email, String password, String direccion){
-		this.email=email;
-		this.password=password;
-		this.estado="Activo";
-		
+	public Usuario(String email, String password){
+		setEmail(email);
+		setPassword(password);
+		setEstado("Activo");
 	}
 	
 	public Usuario(DatosRegistro datosRegistro) {
-		this.email = datosRegistro.getEmail();
-		this.password = datosRegistro.getPassword();
-		
+		setNombre(datosRegistro.getNombre());
+		setDni(datosRegistro.getDni());
+		setEmail(datosRegistro.getEmail());
+		setPassword(datosRegistro.getPassword());
 	}
 	
 }

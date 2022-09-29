@@ -3,10 +3,14 @@ package ar.edu.unlam.tallerweb1.models.sorteos;
 import java.util.LinkedList;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 
@@ -21,6 +25,9 @@ public class Sorteo {
     private Double precioRifa;
     private Integer cantidadRifas;
     private LinkedList<Rifa> rifas;
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "premio_sorteo")*/
+    //private Premio premio;
     
     
 	public Long getId() {
@@ -59,7 +66,14 @@ public class Sorteo {
 	public void setRifas(LinkedList<Rifa> rifas) {
 		this.rifas = rifas;
 	}
-	
+	/*
+	public Premio getPremio() {
+		return premio;
+	}
+	public void setPremio(Premio premio) {
+		this.premio = premio;
+	}
+	*/
     
     
     

@@ -107,7 +107,7 @@ public class ControladorLogin {
 
 			request.getSession().setAttribute("Estado", "Activo");
 			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
-			return new ModelAndView("redirect:/saludo");
+			return new ModelAndView("redirect:/usuarioInicio");
 		}
 		return new ModelAndView("login", model);
 	}
@@ -120,6 +120,11 @@ public class ControladorLogin {
 
 	@RequestMapping(path = "/saludo", method = RequestMethod.GET)
 	public ModelAndView irASaludo() {
-		return new ModelAndView("saludo");
+		return new ModelAndView("usuarioInicio");
+	}
+	
+	@RequestMapping(path = "/usuarioInicio", method = RequestMethod.GET)
+	public ModelAndView usuarioInicio() {
+		return new ModelAndView("usuarioInicio");
 	}
 }
