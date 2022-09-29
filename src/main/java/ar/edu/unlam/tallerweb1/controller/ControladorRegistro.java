@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.models.DatosLogin;
-import ar.edu.unlam.tallerweb1.models.usuarios.DatosRegistro;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
@@ -19,10 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorRegistro {
 	
-	private HttpServletRequest request;
+	@Autowired
+	HttpServletRequest request;
 	
-
-    private ServicioUsuario servicioUsuario;
+	@Autowired
+    ServicioUsuario servicioUsuario;
 
     @Autowired
     public ControladorRegistro(ServicioUsuario servicioUsuario){

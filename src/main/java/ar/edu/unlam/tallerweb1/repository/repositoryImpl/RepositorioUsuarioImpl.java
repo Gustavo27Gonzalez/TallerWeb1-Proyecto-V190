@@ -1,6 +1,9 @@
-package ar.edu.unlam.tallerweb1.repository;
+package ar.edu.unlam.tallerweb1.repository.repositoryImpl;
 
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -53,10 +57,20 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public void modificar(Usuario usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
 	}
-
+	
 	@Override
-	public void guardarNuevoUsuario(String email, String password) {
-		sessionFactory.getCurrentSession().save(email,password);
+	public Usuario buscarId(Long id) {
+		return(Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+	
+	@Override
+	public List<Usuario> buscarTodos() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
 	}
 
 	

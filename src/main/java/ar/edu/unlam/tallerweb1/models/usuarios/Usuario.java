@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import ar.edu.unlam.tallerweb1.models.referidos.Referido;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 
 
 
@@ -25,23 +29,26 @@ public class Usuario {
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name="id_usuario")
 	private Long id;
-	// para el resto de los atributo no se usan anotaciones entonces se usa el default de hibernate: la columna se llama igual que
-	// el atributo, la misma admite nulos, y el tipo de dato se deduce del tipo de dato de java.
 	private String nombre;
 	private Integer dni;
 	private String email;
 	private String password;
-	private Boolean isAdmin = false;
+	private String estado;
 	private Boolean cuentaEliminada = false;
 	private Integer totalRifasCompradas;
+	/*@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(name = "sorteosOrganizados",
+			joinColumns = @JoinColumn(name = "Usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = "sorteo_id"))*/
 	private ArrayList<Sorteo> sorteosOrganizados;
     private ArrayList<Sorteo> sorteosGanados;
     private ArrayList<Sorteo> sorteosParticipando;
     private LinkedHashSet<Rifa> rifasCompradas;
     private HashSet<Referido> referidos;
-    
     
 	public Long getId() {
 		return id;
@@ -73,11 +80,11 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Boolean getIsAdmin() {
-		return isAdmin;
+	public String getEstado() {
+		return estado;
 	}
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	public Boolean getCuentaEliminada() {
 		return cuentaEliminada;
@@ -122,23 +129,21 @@ public class Usuario {
 		this.referidos = referidos;
 	}
 	
-	public Usuario(DatosRegistro datosRegistro) {
-		super();
-	}
-	
 	public Usuario() {
 		super();
 	}
-	public Usuario(String email, String password) {
-		super();
-		
-		this.email = email;
-		this.password = password;
+	
+	public Usuario(String email, String password, String direccion){
+		this.email=email;
+		this.password=password;
+		this.estado="Activo";
 		
 	}
 	
-	
-    
-    
+	public Usuario(DatosRegistro datosRegistro) {
+		this.email = datosRegistro.getEmail();
+		this.password = datosRegistro.getPassword();
+		
+	}
 	
 }
