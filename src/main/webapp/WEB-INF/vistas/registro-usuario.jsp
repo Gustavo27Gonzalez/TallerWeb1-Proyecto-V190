@@ -25,11 +25,15 @@
 						class="form-control" />
 				</div>
 				
+				</br>
+				
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="dni" path="dni">DNI</form:label>
 					<form:input path="dni" type="dni" id="dni" placeholder="Ingrese su DNI..."
 						class="form-control" />
 				</div>
+				
+				</br>
 				
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="email" path="email">Email</form:label>
@@ -37,24 +41,34 @@
 						class="form-control" />
 				</div>
 				
+				</br>
+				
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="password" path="password">Contraseña</form:label>
 					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..."
 						class="form-control" />
 				</div>
 				
+				</br>
+				
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="repitePassword" path="repitePassword">Repita su Contraseña</form:label>
 					<form:input path="repitePassword" type="password" id="repitePassword" placeholder="Ingrese Nuevamente su Contraseña..."
 						class="form-control" />
 				</div>
-
+				
+				</br>
+				
 				<button class="btn btn-lg btn-primary btn-block add-margin-b2"
 					type="Submit">Registrarme</button>
 					
 				</br>
 					
 			</form:form>
+			
+			<a href="login"	>¿Ya posee una cuenta? <strong style="color: black;">Ingrese con sus datos</strong></a>
+			
+			
 			<%--Bloque que es visible si el elemento error no esta vacio	--%>
 			<c:if test="${not empty error}">
 				<h4>

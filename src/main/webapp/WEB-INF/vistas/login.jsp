@@ -15,16 +15,34 @@
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
 				<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
-			    	<h3 class="form-signin-heading text-center add-margin-b2">App Sorteos</h3>
-					<hr class="colorgraph"><br>
-
-					<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-					<form:input path="email" id="email" type="email" class="form-control add-margin-b2" />
-					<form:input path="password" type="password" id="password" class="form-control add-margin-b2"/>     		  
+			    	
+			    	<div class="form-outline mb-4">
+					<form:label class="form-label" for="email" path="email">Email</form:label>
+					<form:input path="email" type="email" id="email" placeholder="Ingrese su Email..."
+						class="form-control" />
+				</div>
+				
+				</br>
+				
+				<div class="form-outline mb-4">
+					<form:label class="form-label" for="password" path="password">Contraseña</form:label>
+					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..."
+						class="form-control" />
+				</div>
+				
+				</br>
 					
 					<button class="btn btn-lg btn-primary btn-block add-margin-b2" Type="Submit"/>Login</button>
 				</form:form>
-				<a href="registrar-usuario"	>Registrarme</a>
+				
+				</br>
+				
+				<div class="d-flex justify-content-between">
+					<a href="registrar-usuario"	>Registrarme</a>
+					<a href="registrar-usuario"	>Olvidé mi Contraseña</a><!-- Agregar Funcionalidad -->
+				</div>
+				
+				</br>
 				<%--Bloque que es visible si el elemento error no esta vacio	--%>
 				<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>
