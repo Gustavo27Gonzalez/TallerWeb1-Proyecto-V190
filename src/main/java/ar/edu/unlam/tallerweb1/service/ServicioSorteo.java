@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
 public interface ServicioSorteo {
 	
-	Sorteo registrar(DatosSorteo datosSorteo);
+	void registrar(DatosSorteo datosSorteo);
     Sorteo buscarPorId(Long id);
     List<Sorteo> listarSorteos();
 

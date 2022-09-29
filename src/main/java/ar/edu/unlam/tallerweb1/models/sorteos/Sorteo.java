@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
@@ -74,7 +76,15 @@ public class Sorteo {
 		this.premio = premio;
 	}
 	*/
+	
+	public Sorteo() {}
     
+	public Sorteo(DatosSorteo datosSorteo) {
+		setNombre(datosSorteo.getNombre());
+		setDescripcion(datosSorteo.getDescripcion());
+		setPrecioRifa(datosSorteo.getPrecioRifa());
+		setCantidadRifas(datosSorteo.getCantidadRifas());
+	}
     
     
 }
