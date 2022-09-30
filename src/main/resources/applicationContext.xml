@@ -17,12 +17,16 @@
 
 	<mvc:annotation-driven />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.controller" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.service" />
-	<context:component-scan base-package="ar.edu.unlam.tallerweb1.repository" />
-	
+	<context:component-scan
+		base-package="ar.edu.unlam.tallerweb1.controller" />
+	<context:component-scan
+		base-package="ar.edu.unlam.tallerweb1.service" />
+	<context:component-scan
+		base-package="ar.edu.unlam.tallerweb1.repository" />
+
 
 </beans>
 
