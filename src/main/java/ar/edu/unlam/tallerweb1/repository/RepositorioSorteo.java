@@ -9,7 +9,7 @@ public interface RepositorioSorteo {
 	void crear(Sorteo sorteo);
 	void modificar(Sorteo sorteo);
     Sorteo buscarSorteoPorId(Long id);
-	List <Sorteo> buscarSorteos();
+	List <Sorteo> listarSorteos();
 	List <Sorteo> buscarSorteosPorPremio(String premio);
 	List <Sorteo> buscarSorteosPorPrecioRifa(Double precio);
 	List <Sorteo> buscarSorteosConRifasDisponibles();

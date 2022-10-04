@@ -62,6 +62,7 @@ public class Sorteo {
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
 	}
+	
 	public LinkedList<Rifa> getRifas() {
 		return rifas;
 	}

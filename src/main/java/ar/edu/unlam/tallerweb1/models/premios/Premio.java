@@ -50,4 +50,8 @@ public class Premio {
 	public Premio (TipoPremio tipoPremio) {
 		setTipoPremio(tipoPremio);
 	}
+	
+	public Premio() {
+		
+	}
 }

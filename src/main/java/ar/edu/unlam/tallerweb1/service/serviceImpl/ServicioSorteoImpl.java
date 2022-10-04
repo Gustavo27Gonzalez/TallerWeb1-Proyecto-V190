@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.service.serviceImpl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -39,8 +40,11 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
 	public List<Sorteo> listarSorteos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sorteo> sorteos = new LinkedList<Sorteo>();
+		for (int i = 0; i < 5; i++) {
+			sorteos.add(new Sorteo());
+		}
+		return sorteos;
 	}
 
 }

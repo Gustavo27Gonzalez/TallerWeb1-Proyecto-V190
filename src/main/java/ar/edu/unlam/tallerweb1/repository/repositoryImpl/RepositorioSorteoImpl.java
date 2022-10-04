@@ -44,7 +44,7 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	}
 
 	@Override
-	public List<Sorteo> buscarSorteos() {
+	public List<Sorteo> listarSorteos() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Sorteo.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
