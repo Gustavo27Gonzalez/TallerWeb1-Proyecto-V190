@@ -1,7 +1,11 @@
 package ar.edu.unlam.tallerweb1.controller;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
+import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,12 +25,20 @@ public class ControladorUsuario {
     ServicioSorteo servicioSorteo;
 	
 	@Autowired
+    ServicioUsuario servicioUsuario;
+	
+	@Autowired
     HttpServletRequest request;
     
     @Autowired
     public ControladorUsuario(ServicioSorteo servicioSorteo, HttpServletRequest request) {
         this.servicioSorteo = servicioSorteo;
         this.request = request;
+    }
+    
+    @Autowired
+    public ControladorUsuario(ServicioUsuario servicioUsuario) {
+        this.servicioUsuario = servicioUsuario;
     }
     
     
@@ -60,6 +74,14 @@ public class ControladorUsuario {
         return new ModelAndView("sorteoCreado", model);
     }
 	
+    @RequestMapping(path="/usuarios")
+	public ModelAndView listarUsuarios() {
+		ModelMap model = new ModelMap();
+		List<Usuario> usuarios = this.servicioUsuario.listarUsuarios();
+		model.put("usuarios", usuarios);
+		ModelAndView mav = new ModelAndView("lista-usuarios", model);
+		return mav;
+	}
 
 
 }

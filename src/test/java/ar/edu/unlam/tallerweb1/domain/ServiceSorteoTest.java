@@ -51,14 +51,12 @@ public class ServiceSorteoTest extends SpringTest {
 	    private void dadoQueExistenSorteos(int cantidadSorteos) {
 //	        this.servicioSorteo = new ServicioSorteoImpl();
 	    	
-	    	//TODO: Crear y guardar sorteos para testear persistencia
 	        List<Sorteo> sorteos = new LinkedList<>();
 	        for(int i = 0; i<5; i++) {
 	        	sorteos.add(new Sorteo());
 	        	this.repositorioSorteo.crear(new Sorteo());
 	        }
 	            
-
 	        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
 	    }
 
