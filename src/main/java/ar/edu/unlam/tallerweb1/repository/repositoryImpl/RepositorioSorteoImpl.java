@@ -11,15 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.SorteoRepository;
+import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 
 @Repository("sorteoRepository")
-public class SorteoRepositoryImpl implements SorteoRepository {
+public class RepositorioSorteoImpl implements RepositorioSorteo {
 
 	SessionFactory sessionFactory;
 
     @Autowired
-	public SorteoRepositoryImpl(SessionFactory sessionFactory){
+	public RepositorioSorteoImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
     

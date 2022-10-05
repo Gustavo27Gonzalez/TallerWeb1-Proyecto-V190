@@ -41,6 +41,7 @@ public class Usuario {
 	private String password;
 	private String estado;
 	private Boolean cuentaEliminada = false;
+	private Boolean ganoUnSorteoYa = false;
 	private Integer totalRifasCompradas;
 	/*@ManyToMany(cascade = {
 			CascadeType.PERSIST,
@@ -100,6 +101,12 @@ public class Usuario {
 	public void setCuentaEliminada(Boolean cuentaEliminada) {
 		this.cuentaEliminada = cuentaEliminada;
 	}
+	public Boolean getGanoUnSorteoYa() {
+		return ganoUnSorteoYa;
+	}
+	public void setGanoUnSorteoYa(Boolean ganoUnSorteoYa) {
+		this.ganoUnSorteoYa = ganoUnSorteoYa;
+	}
 	public Integer getTotalRifasCompradas() {
 		return totalRifasCompradas;
 	}
@@ -137,8 +144,6 @@ public class Usuario {
 		this.referidos = referidos;
 	}
 	
-	
-	
 	public Usuario(String email, String password){
 		setEmail(email);
 		setPassword(password);
@@ -152,4 +157,20 @@ public class Usuario {
 		setPassword(datosRegistro.getPassword());
 	}
 	
+	// Constructor para probar algoritmo
+    public Usuario(String nombre, Integer totalRifasCompradas, ArrayList<Sorteo> sorteosOrganizados, ArrayList<Sorteo> sorteosGanados, LinkedHashSet<Rifa> rifasCompradas, HashSet<Referido> referidos){
+        setNombre(nombre);
+        setTotalRifasCompradas(totalRifasCompradas);
+        setSorteosOrganizados(sorteosOrganizados);
+        setSorteosGanados(sorteosGanados);
+        setRifasCompradas(rifasCompradas);
+        setReferidos(referidos);
+    }
+
+    public Usuario(String nombre, Integer totalRifasCompradas, Boolean ganoUnSorteoYa){
+        setNombre(nombre);
+        setTotalRifasCompradas(totalRifasCompradas);
+        setGanoUnSorteoYa(ganoUnSorteoYa);
+    }
+
 }

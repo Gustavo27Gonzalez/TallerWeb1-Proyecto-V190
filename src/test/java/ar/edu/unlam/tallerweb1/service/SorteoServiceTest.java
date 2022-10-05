@@ -11,20 +11,20 @@ import org.junit.Test;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
-import ar.edu.unlam.tallerweb1.repository.SorteoRepository;
-import ar.edu.unlam.tallerweb1.service.serviceImpl.SorteoServiceImpl;
+import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
 	
 	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo(859, "Mock","Mock-Service", 150.00, 10);
 	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO);
-	private SorteoRepository sorteoRepository; /*= mock(SorteoRepository.class);*/
-	private SorteoService sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
+	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
+	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
 	
 	@Before
 	public void init() {
-		this.sorteoRepository = mock(SorteoRepository.class);
-        this.sorteoService = new SorteoServiceImpl(this.sorteoRepository);
+		this.sorteoRepository = mock(RepositorioSorteo.class);
+        this.sorteoService = new ServicioSorteoImpl(this.sorteoRepository);
 	}
 
 	@Test

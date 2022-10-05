@@ -4,7 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
-public interface SorteoRepository {
+public interface RepositorioSorteo {
 	void crear(Sorteo sorteo);
 	Sorteo buscarPorId(Integer idSorteo);
 	void modificar(Sorteo sorteo);

@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.SorteoRepository;
-import ar.edu.unlam.tallerweb1.service.SorteoService;
+import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
 @Service("servicioSorteo")
 @Transactional
-public class SorteoServiceImpl implements SorteoService {
+public class ServicioSorteoImpl implements ServicioSorteo {
 
-    SorteoRepository sorteoRepository;
+    RepositorioSorteo sorteoRepository;
     
     @Autowired
-    public SorteoServiceImpl(SorteoRepository sorteoRepository){
+    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository){
         this.sorteoRepository = sorteoRepository;
     }
 	
@@ -42,7 +42,7 @@ public class SorteoServiceImpl implements SorteoService {
 	}
 
 	@Override
-	public List<Sorteo> getSorteos() {
+	public List<Sorteo> listarSorteos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
