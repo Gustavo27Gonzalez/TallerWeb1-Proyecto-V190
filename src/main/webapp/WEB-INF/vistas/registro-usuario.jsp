@@ -21,7 +21,7 @@
 				<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="nombre" path="nombre">Nombre</form:label>
-					<form:input path="nombre" type="nombre" id="nombre" placeholder="Ingrese su Nombre..."
+					<form:input path="nombre" type="text" id="nombre" placeholder="Ingrese su Nombre..."
 						class="form-control" />
 				</div>
 				
@@ -29,7 +29,7 @@
 				
 				<div class="form-outline mb-4">
 					<form:label class="form-label" for="dni" path="dni">DNI</form:label>
-					<form:input path="dni" type="dni" id="dni" placeholder="Ingrese su DNI..."
+					<form:input path="dni" type="text" id="dni" placeholder="Ingrese su DNI..."
 						class="form-control" />
 				</div>
 				

@@ -55,5 +55,6 @@ public class ControladorRegistro {
         model.put("error", mensaje);
         return new ModelAndView("registrar-usuario", model);
     }
+    
 
 }

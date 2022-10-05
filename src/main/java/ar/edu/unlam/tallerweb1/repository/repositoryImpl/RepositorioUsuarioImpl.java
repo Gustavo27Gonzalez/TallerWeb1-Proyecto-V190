@@ -18,7 +18,6 @@ import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 // para encontrar esta clase.
 @Repository("repositorioUsuario")
 public class RepositorioUsuarioImpl implements RepositorioUsuario {
-
 	// Maneja acciones de persistencia, normalmente estara inyectado el session factory de hibernate
 	// el mismo esta difinido en el archivo hibernateContext.xml
 	private SessionFactory sessionFactory;
