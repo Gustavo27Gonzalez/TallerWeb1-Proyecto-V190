@@ -172,5 +172,4 @@ public class Usuario {
         setTotalRifasCompradas(totalRifasCompradas);
         setGanoUnSorteoYa(ganoUnSorteoYa);
     }
-
 }
