@@ -16,7 +16,7 @@ import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
 	
-	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo(859, "Mock","Mock-Service", 150.00, 10);
+	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
 	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO);
 	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
 	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
@@ -35,10 +35,10 @@ public class SorteoServiceTest extends SpringTest{
 	}
 
 	private void dadoQueExisteUnSorteo(Sorteo nuevo) {
-		when(sorteoRepository.buscarPorId(nuevo.getId())).thenReturn(nuevo);
+		when(sorteoRepository.buscarSorteoPorId(nuevo.getId())).thenReturn(nuevo);
 	}
 
-	private Sorteo cuandoBuscoElSorteoPorSuId(Integer id) {
+	private Sorteo cuandoBuscoElSorteoPorSuId(Long id) {
 		return this.sorteoService.buscarPorId(id);
 	}
 

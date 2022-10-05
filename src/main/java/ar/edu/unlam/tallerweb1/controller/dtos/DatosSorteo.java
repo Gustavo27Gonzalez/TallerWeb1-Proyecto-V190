@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.controller.dtos;
 
 public class DatosSorteo {
-	private Integer idSorteo;
+	private Long idSorteo;
     private String nombre;
     private String descripcion;
     private Double precioRifa;
@@ -10,7 +10,7 @@ public class DatosSorteo {
    public DatosSorteo(){
     };
     
-    public DatosSorteo(Integer idSorteo, String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
+    public DatosSorteo(Long idSorteo, String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
     	this.idSorteo = idSorteo;
     	this.nombre = nombre; 
     	this.descripcion = descripcion;
@@ -18,11 +18,11 @@ public class DatosSorteo {
     	this.cantidadRifas = cantidadRifas;
     }
     
-	public Integer getIdSorteo() {
+	public Long getIdSorteo() {
 		return idSorteo;
 	}
 
-	public void setIdSorteo(Integer idSorteo) {
+	public void setIdSorteo(Long idSorteo) {
 		this.idSorteo = idSorteo;
 	}
 

@@ -35,19 +35,19 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	}
 
 	@Override
-	public Sorteo buscarPorId(Integer id) {
+	public Sorteo buscarSorteoPorId(Long id) {
 		return (Sorteo) sessionFactory.getCurrentSession().createCriteria(Sorteo.class)
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 
 	@Override
-	public List<Sorteo> listarSorteos() {
-		return sessionFactory.getCurrentSession()
-				.createCriteria(Sorteo.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-				.list();
-	}
+    public List<Sorteo> listarSorteos() {
+        return sessionFactory.getCurrentSession()
+                .createCriteria(Sorteo.class)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .list();
+    }
 
 	@Override
 	public List<Sorteo> buscarSorteosPorPremio(String premio) {

@@ -23,7 +23,7 @@ public class Sorteo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_sorteo")
-    private Integer id;
+    private Long id;
     
     @Column(name = "nombre_sorteo")
     private String nombre;
@@ -42,10 +42,10 @@ public class Sorteo {
     @JoinColumn(name = "premio_sorteo")*/
     //private Premio premio;
     
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombre() {

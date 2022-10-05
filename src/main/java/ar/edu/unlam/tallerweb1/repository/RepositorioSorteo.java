@@ -6,11 +6,12 @@ import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
 public interface RepositorioSorteo {
 	void crear(Sorteo sorteo);
-	Sorteo buscarPorId(Integer idSorteo);
 	void modificar(Sorteo sorteo);
+	Sorteo buscarSorteoPorId(Long idSorteo);
 	List <Sorteo> listarSorteos();
 	List <Sorteo> buscarSorteosPorPremio(String premio);
 	List <Sorteo> buscarSorteosPorPrecioRifa(Double precio);
 	List <Sorteo> buscarSorteosConRifasDisponibles();
 	// Pensar Qu� otros m�todos implementar
+
 }
