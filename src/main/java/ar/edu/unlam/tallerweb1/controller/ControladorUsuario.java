@@ -1,7 +1,7 @@
 package ar.edu.unlam.tallerweb1.controller;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
+import ar.edu.unlam.tallerweb1.service.SorteoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 public class ControladorUsuario {
 	
 	@Autowired
-    ServicioSorteo servicioSorteo;
+    SorteoService servicioSorteo;
 	
 	@Autowired
     HttpServletRequest request;
     
     @Autowired
-    public ControladorUsuario(ServicioSorteo servicioSorteo, HttpServletRequest request) {
+    public ControladorUsuario(SorteoService servicioSorteo, HttpServletRequest request) {
         this.servicioSorteo = servicioSorteo;
         this.request = request;
     }
@@ -42,7 +42,7 @@ public class ControladorUsuario {
 		ModelMap model = new ModelMap();
 
 		try{
-			servicioSorteo.registrar(datosSorteo);
+			servicioSorteo.crear(datosSorteo);
         }catch(RuntimeException e){
             e.printStackTrace();
         }

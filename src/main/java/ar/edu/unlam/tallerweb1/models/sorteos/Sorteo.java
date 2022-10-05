@@ -2,40 +2,50 @@ package ar.edu.unlam.tallerweb1.models.sorteos;
 
 import java.util.LinkedList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 
 @Entity (name="sorteo")
+@Table(name = "sorteo")
 public class Sorteo {
+	
+	public Sorteo() {
+	}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_sorteo")
+    private Integer id;
+    
+    @Column(name = "nombre_sorteo")
     private String nombre;
+    
+    @Column(name = "descripcion_sorteo")
     private String descripcion;
+    
+    @Column(name = "precio_rifa")
     private Double precioRifa;
+    
+    @Column(name = "cantidad_rifas")
     private Integer cantidadRifas;
+    
     private LinkedList<Rifa> rifas;
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "premio_sorteo")*/
     //private Premio premio;
     
-    
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -76,15 +86,12 @@ public class Sorteo {
 		this.premio = premio;
 	}
 	*/
-	
-	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo) {
+		setId(datosSorteo.getIdSorteo());
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
 	}
-    
-    
 }

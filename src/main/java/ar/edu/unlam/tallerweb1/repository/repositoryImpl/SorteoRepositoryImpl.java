@@ -11,16 +11,15 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.repository.SorteoRepository;
 
-@Repository("repositorioSorteo")
-public class RepositorioSorteoImpl implements RepositorioSorteo {
+@Repository("sorteoRepository")
+public class SorteoRepositoryImpl implements SorteoRepository {
 
-	@Autowired
 	SessionFactory sessionFactory;
 
     @Autowired
-	public RepositorioSorteoImpl(SessionFactory sessionFactory){
+	public SorteoRepositoryImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
     
@@ -36,15 +35,14 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	}
 
 	@Override
-	public Sorteo buscarSorteoPorId(Long id) {
-		final Session session = sessionFactory.getCurrentSession();
-		return (Sorteo) session.createCriteria(Sorteo.class)
+	public Sorteo buscarPorId(Integer id) {
+		return (Sorteo) sessionFactory.getCurrentSession().createCriteria(Sorteo.class)
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
 
 	@Override
-	public List<Sorteo> buscarSorteos() {
+	public List<Sorteo> getSorteos() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Sorteo.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)

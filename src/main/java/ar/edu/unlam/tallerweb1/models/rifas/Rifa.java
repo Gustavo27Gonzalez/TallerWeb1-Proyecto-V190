@@ -4,9 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity (name="rifa")
+@Table(name = "rifa")
 public class Rifa {
+	public Rifa() {
+		
+	}
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +19,6 @@ public class Rifa {
 	private Long idRifa;
 	private Boolean fueVendida = false;
 	private Long idComprador;
-	
 	
 	public Long getIdSorteo() {
 		return idSorteo;
@@ -40,7 +44,5 @@ public class Rifa {
 	public void setIdComprador(Long idComprador) {
 		this.idComprador = idComprador;
 	}
-	
-	
 
 }

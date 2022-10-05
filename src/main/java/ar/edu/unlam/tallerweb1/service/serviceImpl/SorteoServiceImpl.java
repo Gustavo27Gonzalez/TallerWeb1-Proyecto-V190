@@ -10,35 +10,39 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
-import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
+import ar.edu.unlam.tallerweb1.repository.SorteoRepository;
+import ar.edu.unlam.tallerweb1.service.SorteoService;
 
 @Service("servicioSorteo")
 @Transactional
-public class ServicioSorteoImpl implements ServicioSorteo {
+public class SorteoServiceImpl implements SorteoService {
 
-	@Autowired
-    RepositorioSorteo repositorioSorteo;
+    SorteoRepository sorteoRepository;
     
     @Autowired
-    public ServicioSorteoImpl(RepositorioSorteo servicioSorteoDao){
-        this.repositorioSorteo = servicioSorteoDao;
+    public SorteoServiceImpl(SorteoRepository sorteoRepository){
+        this.sorteoRepository = sorteoRepository;
     }
 	
 	@Override
-	public void registrar(DatosSorteo datosSorteo) {
+	public void crear(DatosSorteo datosSorteo) {
 		Sorteo nuevoSorteo = new Sorteo(datosSorteo);
-        repositorioSorteo.crear(nuevoSorteo);
+		sorteoRepository.crear(nuevoSorteo);
 	}
 
 	@Override
-	public Sorteo buscarPorId(Long id) {
+	public Sorteo buscarPorId(Integer id) {
+		return this.sorteoRepository.buscarPorId(id);
+	}
+
+	@Override
+	public void modificar(Sorteo sorteo) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public List<Sorteo> listarSorteos() {
+	public List<Sorteo> getSorteos() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -12,27 +12,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import ar.edu.unlam.tallerweb1.models.referidos.Referido;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 
-
-
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en el
 @Entity (name="usuario")
+@Table(name = "usuario")
 public class Usuario {
-
+	
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "id")
 	private Long id;
+	@Column (name = "username")
 	private String nombre;
+	@Column(name = "dni")
 	private Integer dni;
+	@Column (name = "email")
 	private String email;
+	@Column (name = "pass")
 	private String password;
 	private String estado;
 	private Boolean cuentaEliminada = false;
@@ -50,6 +55,9 @@ public class Usuario {
     private LinkedHashSet<Rifa> rifasCompradas;
     private HashSet<Referido> referidos;
     
+	public Usuario() {
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -129,9 +137,7 @@ public class Usuario {
 		this.referidos = referidos;
 	}
 	
-	public Usuario() {
-		super();
-	}
+	
 	
 	public Usuario(String email, String password){
 		setEmail(email);
