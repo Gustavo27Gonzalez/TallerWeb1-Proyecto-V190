@@ -42,7 +42,10 @@
 		<!--clases persistibles-->
 		<property name="packagesToScan">
 			<list>
-				<value>ar.edu.unlam.tallerweb1.models.*</value>
+				<value>ar.edu.unlam.tallerweb1.controller</value>
+				<value>ar.edu.unlam.tallerweb1.models</value>
+				<value>ar.edu.unlam.tallerweb1.repository</value>
+				<value>ar.edu.unlam.tallerweb1.service</value>
 			</list>
 		</property>
 	</bean>

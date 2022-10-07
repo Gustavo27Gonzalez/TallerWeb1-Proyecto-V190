@@ -1,4 +1,4 @@
-package ar.edu.unlam.tallerweb1.models.premios;
+package ar.edu.unlam.tallerweb1.models.enums;
 
 public enum TipoPremio {
 	

@@ -1,7 +1,5 @@
 package ar.edu.unlam.tallerweb1.controller.dtos;
 
-
-
 public class DatosLogin {
 	
     private String email;

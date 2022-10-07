@@ -56,8 +56,9 @@ public class ControladorSorteosTest extends SpringTest {
 	        assertThat(mav.getViewName()).isEqualTo(vistaEsperada);
 	    }
 
-	    private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
-	        assertThat((List<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
+	    @SuppressWarnings("unchecked")
+		private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
+	        assertThat((ArrayList<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
 	    }
 
 	    private ModelAndView cuandoListoSorteos(){

@@ -31,10 +31,10 @@ public class SorteosTest extends SpringTest {
     	
     	assertNotNull(u);
     	assertEquals(u.getNombre(),nombre);
-    	assertEquals(u.getDni(),dni);
+    	assertEquals(u.getNroDocumento(),dni);
     	assertEquals(u.getEmail(),email);
     	assertEquals(u.getPassword(),contrasenia);
-    	assertNull(u.getTotalRifasCompradas());
+    	
     }
     
     
