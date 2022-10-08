@@ -29,9 +29,9 @@ public class ControladorUsuario {
 	@Autowired
 	ServicioUsuario servicioUsuario;
 	
-    @Autowired
-    public ControladorUsuario(ServicioSorteo servicioSorteo, HttpServletRequest request) {
+    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario,HttpServletRequest request) {
         this.servicioSorteo = servicioSorteo;
+        this.servicioUsuario = servicioUsuario;
         this.request = request;
     }
     

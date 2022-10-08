@@ -20,8 +20,8 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
     RepositorioUsuario repositorioUsuario;
     
     @Autowired
-    public ServicioUsuarioImpl(RepositorioUsuario servicioUsuarioDao){
-        this.repositorioUsuario = servicioUsuarioDao;
+    public ServicioUsuarioImpl(RepositorioUsuario repositorioUsuario){
+        this.repositorioUsuario = repositorioUsuario;
     }
 
     @Override
