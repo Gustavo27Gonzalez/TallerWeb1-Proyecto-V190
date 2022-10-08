@@ -40,7 +40,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<Compra> rifasCompradas = new ArrayList<>();
 	@OneToMany(mappedBy = "referidoPor", cascade = CascadeType.ALL)
-	//private ArrayList<Referido> referidos = new ArrayList<>();
+	private List<Referido> referidos = new ArrayList<>();
 	
 	
 	public Long getId() {
