@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.models.premios;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ public class Premio {
 	@Enumerated(value = EnumType.STRING)
 	private TipoPremio tipoPremio;
 	@OneToMany(mappedBy = "premio", cascade = CascadeType.ALL)
-	private ArrayList<Sorteo> sorteos = new ArrayList<>();
+	private List<Sorteo> sorteos = new ArrayList<>();
 		
 	public Long getId() {
 		return id;
@@ -39,7 +40,7 @@ public class Premio {
 	public void setTipoPremio(TipoPremio tipoPremio) {
 		this.tipoPremio = tipoPremio;
 	}
-	public ArrayList<Sorteo> getSorteos() {
+	public List<Sorteo> getSorteos() {
 		return sorteos;
 	}
 	public void setSorteos(ArrayList<Sorteo> sorteos) {

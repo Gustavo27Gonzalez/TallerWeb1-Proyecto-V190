@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.models.usuarios;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,9 +38,9 @@ public class Usuario {
 	private Boolean cuentaEliminada = false;
 	private Boolean ganoUnSorteoYa = false;
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private ArrayList<Compra> rifasCompradas = new ArrayList<>();
+	private List<Compra> rifasCompradas = new ArrayList<>();
 	@OneToMany(mappedBy = "referidoPor", cascade = CascadeType.ALL)
-	private ArrayList<Referido> referidos = new ArrayList<>();
+	//private ArrayList<Referido> referidos = new ArrayList<>();
 	
 	
 	public Long getId() {
@@ -122,14 +123,14 @@ public class Usuario {
 		this.ganoUnSorteoYa = ganoUnSorteoYa;
 	}
 
-	public ArrayList<Compra> getRifasCompradas() {
+	public List<Compra> getRifasCompradas() {
 		return rifasCompradas;
 	}
 
 	public void setRifasCompradas(ArrayList<Compra> rifasCompradas) {
 		this.rifasCompradas = rifasCompradas;
 	}
-
+	/*
 	public ArrayList<Referido> getReferidos() {
 		return referidos;
 	}
@@ -137,7 +138,7 @@ public class Usuario {
 	public void setReferidos(ArrayList<Referido> referidos) {
 		this.referidos = referidos;
 	}
-
+	*/
 	public Usuario() {};
 	
 	public Usuario(DatosRegistro datosRegistro) {

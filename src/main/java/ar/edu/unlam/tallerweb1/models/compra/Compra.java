@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
@@ -33,6 +34,11 @@ public class Compra {
 	public Compra(Rifa rifa, Usuario usuario) {
 		setRifa(rifa);
 		setUsuario(usuario);
+	}
+	
+	public Compra(DatosCompra datosCompra) {
+		setRifa(datosCompra.getRifa());
+		setUsuario(datosCompra.getUsuario());
 	}
 	
 	public Long getId() {

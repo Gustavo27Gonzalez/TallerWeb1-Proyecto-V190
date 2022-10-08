@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controller;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
@@ -30,16 +31,17 @@ public class ControladorUsuario {
     HttpServletRequest request;
     
     @Autowired
-    public ControladorUsuario(ServicioSorteo servicioSorteo, HttpServletRequest request) {
+    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario, HttpServletRequest request) {
         this.servicioSorteo = servicioSorteo;
+        this.servicioUsuario = servicioUsuario;
         this.request = request;
     }
-    
+    /*
     @Autowired
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
-    
+    */
     
     @RequestMapping(path="/crearSorteo", method = RequestMethod.GET)
     public ModelAndView crearSorteo() {
@@ -81,6 +83,38 @@ public class ControladorUsuario {
 		ModelAndView mav = new ModelAndView("lista-usuarios", model);
 		return mav;
 	}
+    
+    @RequestMapping(path="/comprarRifa", method = RequestMethod.GET)
+    public ModelAndView comprarRifa() {
+    	
+    	ModelMap modelo = new ModelMap();
+    	modelo.put("datosCompra", new DatosCompra());
+    	
+    	return new ModelAndView("comprarRifa", modelo);
+    }
+    
+    @RequestMapping(path = "/validar-ComprarRifa", method = RequestMethod.POST)
+	public ModelAndView validarComprarRifa(@ModelAttribute("datosCompra") DatosCompra datosCompra, HttpServletRequest request) {
+		ModelMap model = new ModelMap();
+
+		try{
+			servicioUsuario.comprar(datosCompra);
+        }catch(RuntimeException e){
+            e.printStackTrace();
+        }
+        return rifaCompradaExitosamente();
+    }
+
+    private ModelAndView rifaCompradaExitosamente(){
+        return new ModelAndView("redirect:/rifaComprada");
+    }
+    
+    @RequestMapping(path="/rifaComprada", method = RequestMethod.GET)
+    public ModelAndView rifaComprada(){
+        ModelMap model = new ModelMap();
+        
+        return new ModelAndView("rifaComprada", model);
+    }
 
 
 }

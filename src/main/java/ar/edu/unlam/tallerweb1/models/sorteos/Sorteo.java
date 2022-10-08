@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.models.sorteos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Sorteo {
     private Double precioRifa;
     private Integer cantidadRifas;
     @OneToMany(mappedBy = "sorteo", cascade = CascadeType.ALL)
-    private ArrayList<Rifa> rifas = new ArrayList<>();
+    private List<Rifa> rifas = new ArrayList<>();
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "premio_id")
 	private Premio premio;
@@ -72,12 +73,14 @@ public class Sorteo {
 	public void setPremio(Premio premio) {
 		this.premio = premio;
 	}
-	public ArrayList<Rifa> getRifas() {
+	
+	public List<Rifa> getRifas() {
 		return rifas;
 	}
 	public void setRifas(ArrayList<Rifa> rifas) {
 		this.rifas = rifas;
 	}
+	
 	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo) {

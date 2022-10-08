@@ -115,8 +115,8 @@ public class ControladorSorteosTest extends SpringTest {
 	        ganoUnSorteoYa.add(true);
 	        
 	        for(int i = 0; i < cantidadUsuarios; i++) {
-	        	
-		        Usuario u = new Usuario(nombres.get(i), totalRifasCompradas.get(i), ganoUnSorteoYa.get(i));
+	        	// INCOMPLETO
+		        Usuario u = new Usuario();
 	        	
 	        	usuarios.add(u);
 	        }

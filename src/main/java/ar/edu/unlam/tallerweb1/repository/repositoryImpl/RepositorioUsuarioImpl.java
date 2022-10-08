@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 
@@ -71,6 +72,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.createCriteria(Usuario.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
+	}
+
+	@Override
+	public void guardarCompra(Compra compra) {
+		sessionFactory.getCurrentSession().save(compra);
 	}
 
 	
