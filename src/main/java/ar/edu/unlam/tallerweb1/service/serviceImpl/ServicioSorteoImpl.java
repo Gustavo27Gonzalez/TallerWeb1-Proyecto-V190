@@ -44,11 +44,7 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
     public List<Sorteo> listarSorteos() {
-        List<Sorteo> sorteos = new LinkedList<Sorteo>();
-        for (int i = 0; i < 5; i++) {
-            sorteos.add(new Sorteo());
-        }
-        return sorteos;
+		return this.sorteoRepository.listarSorteos();
     }
 
 }

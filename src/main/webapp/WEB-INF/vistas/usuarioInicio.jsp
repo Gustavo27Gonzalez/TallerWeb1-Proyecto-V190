@@ -5,19 +5,24 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inicio</title>
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-		<h1>Bienvenido a App Sorteos ${usuario.nombre}</h1>
+		<h1 class="font-weight-bold">Bienvenido a Sortea2</h1>
 	</div>
 	
 	</br>
 	
 	<button><a href="crearSorteo">Crear Sorteo</a></button>
+	
+	<button><a href="listado-sorteos" >Ver sorteos disponibles</a></button>
 	
 	
 	
