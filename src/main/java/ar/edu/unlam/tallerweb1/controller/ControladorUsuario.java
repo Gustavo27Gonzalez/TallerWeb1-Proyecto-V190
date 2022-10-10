@@ -36,12 +36,11 @@ public class ControladorUsuario {
         this.servicioUsuario = servicioUsuario;
         this.request = request;
     }
-    /*
-    @Autowired
+    
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
-    */
+    
     
     @RequestMapping(path="/crearSorteo", method = RequestMethod.GET)
     public ModelAndView crearSorteo() {
