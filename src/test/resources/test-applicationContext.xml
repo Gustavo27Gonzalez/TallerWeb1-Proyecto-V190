@@ -12,6 +12,10 @@
 
 	<import resource="classpath:test-hibernateContext.xml" />
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.infrastructure" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.controller" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.models" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.repository" />
+	<context:component-scan base-package="ar.edu.unlam.tallerweb1.service" />
 	<tx:annotation-driven />
 
 </beans>

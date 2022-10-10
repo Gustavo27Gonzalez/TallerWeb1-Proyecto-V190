@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
-import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 
 @Repository("sorteoRepository")
@@ -42,12 +41,12 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	}
 
 	@Override
-    public List<Sorteo> listarSorteos() {
-        return sessionFactory.getCurrentSession()
-                .createCriteria(Sorteo.class)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-                .list();
-    }
+	public List<Sorteo> listarSorteos() {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Sorteo.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
+	}
 
 	@Override
 	public List<Sorteo> buscarSorteosPorPremio(String premio) {

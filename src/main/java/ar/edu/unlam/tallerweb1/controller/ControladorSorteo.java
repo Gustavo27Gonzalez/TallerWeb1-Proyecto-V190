@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
@@ -29,12 +30,15 @@ public class ControladorSorteo {
 		this.servicioSorteo = servicioSorteo;
 	}
 
-	@RequestMapping(path="/listado-sorteos", method = RequestMethod.GET)
+	@RequestMapping(path="/sorteos", method = RequestMethod.GET)
 	public ModelAndView listarSorteos() {
-		List<Sorteo> listaSorteos = this.servicioSorteo.listarSorteos();
 		ModelMap model = new ModelMap();
-		model.put("sorteos", listaSorteos);
-		return new ModelAndView("listar-sorteos", model);
+		List<Sorteo> sorteos = this.servicioSorteo.listarSorteos();
+		model.put("sorteos", sorteos);
+		ModelAndView mav = new ModelAndView("listar-sorteos", model);
+		return mav;
 	}
+	
+	
 
 }

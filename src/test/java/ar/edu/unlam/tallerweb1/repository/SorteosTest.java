@@ -1,15 +1,15 @@
 package ar.edu.unlam.tallerweb1.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
+
 
 import org.junit.Test;
 
+import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
-public class SorteosTest {
+public class SorteosTest extends SpringTest {
 
     @Test
     public void sorteo(){
@@ -31,9 +31,12 @@ public class SorteosTest {
     	
     	assertNotNull(u);
     	assertEquals(u.getNombre(),nombre);
-    	assertEquals(u.getDni(),dni);
+    	assertEquals(u.getNroDocumento(),dni);
     	assertEquals(u.getEmail(),email);
     	assertEquals(u.getPassword(),contrasenia);
-    	assertNull(u.getTotalRifasCompradas());
+    	
     }
+    
+    
+    
 }

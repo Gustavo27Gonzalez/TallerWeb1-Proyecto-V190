@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
-import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
@@ -37,9 +36,18 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void modificar(Sorteo sorteo) {
 		// TODO Auto-generated method stub
 		
+=======
+	public List<Sorteo> listarSorteos() {
+		List<Sorteo> sorteos = new LinkedList<Sorteo>();
+		for (int i = 0; i < 5; i++) {
+			sorteos.add(new Sorteo());
+		}
+		return sorteos;
+>>>>>>> mapeoEntidades
 	}
 
 	@Override

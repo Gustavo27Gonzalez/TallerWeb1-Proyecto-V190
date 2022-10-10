@@ -56,8 +56,14 @@ public class ControladorSorteosTest extends SpringTest {
 	        assertThat(mav.getViewName()).isEqualTo(vistaEsperada);
 	    }
 
+<<<<<<< HEAD
 	    private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
 	        assertThat((List<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
+=======
+	    @SuppressWarnings("unchecked")
+		private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
+	        assertThat((ArrayList<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
+>>>>>>> mapeoEntidades
 	    }
 
 	    private ModelAndView cuandoListoSorteos(){
@@ -114,8 +120,13 @@ public class ControladorSorteosTest extends SpringTest {
 	        ganoUnSorteoYa.add(true);
 	        
 	        for(int i = 0; i < cantidadUsuarios; i++) {
+<<<<<<< HEAD
 	        	
 		        Usuario u = new Usuario(nombres.get(i), totalRifasCompradas.get(i), ganoUnSorteoYa.get(i));
+=======
+	        	// INCOMPLETO
+		        Usuario u = new Usuario();
+>>>>>>> mapeoEntidades
 	        	
 	        	usuarios.add(u);
 	        }

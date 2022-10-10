@@ -1,46 +1,41 @@
 package ar.edu.unlam.tallerweb1.models.sorteos;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 
 @Entity (name="sorteo")
-@Table(name = "sorteo")
 public class Sorteo {
-	
-	public Sorteo() {
-	}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_sorteo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sorteo_id")
     private Long id;
-    
-    @Column(name = "nombre_sorteo")
     private String nombre;
-    
-    @Column(name = "descripcion_sorteo")
     private String descripcion;
-    
-    @Column(name = "precio_rifa")
     private Double precioRifa;
-    
-    @Column(name = "cantidad_rifas")
     private Integer cantidadRifas;
+    @OneToMany(mappedBy = "sorteo", cascade = CascadeType.ALL)
+    private List<Rifa> rifas = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "premio_id")
+	private Premio premio;
     
-    private LinkedList<Rifa> rifas;
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "premio_sorteo")*/
-    //private Premio premio;
     
 	public Long getId() {
 		return id;
@@ -72,26 +67,28 @@ public class Sorteo {
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
 	}
-	public LinkedList<Rifa> getRifas() {
-		return rifas;
-	}
-	public void setRifas(LinkedList<Rifa> rifas) {
-		this.rifas = rifas;
-	}
-	/*
 	public Premio getPremio() {
 		return premio;
 	}
 	public void setPremio(Premio premio) {
 		this.premio = premio;
 	}
-	*/
+	
+	public List<Rifa> getRifas() {
+		return rifas;
+	}
+	public void setRifas(ArrayList<Rifa> rifas) {
+		this.rifas = rifas;
+	}
+	
+	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo) {
-		setId(datosSorteo.getIdSorteo());
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
 	}
+    
+    
 }
