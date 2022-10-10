@@ -2,15 +2,15 @@ package ar.edu.unlam.tallerweb1.repository;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosLogin;
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
 // Interface que define los metodos del Repositorio de Usuarios.
 public interface RepositorioUsuario {
-	Usuario buscarUsuario(String email, String password);
+	Usuario buscarId(Long id);
+	Usuario buscarPorEmail(String email);
 	void guardar(Usuario usuario);
-    Usuario buscar(String email);
-    Usuario buscarId(Long id);
 	void modificar(Usuario usuario);
 	List <Usuario> listarUsuarios();
 	void guardarCompra(Compra compra);

@@ -30,7 +30,7 @@ public class ControladorSorteo {
 		this.servicioSorteo = servicioSorteo;
 	}
 
-	@RequestMapping(path="/sorteos", method = RequestMethod.GET)
+	@RequestMapping(path="/listado-sorteos", method = RequestMethod.GET)
 	public ModelAndView listarSorteos() {
 		ModelMap model = new ModelMap();
 		List<Sorteo> sorteos = this.servicioSorteo.listarSorteos();

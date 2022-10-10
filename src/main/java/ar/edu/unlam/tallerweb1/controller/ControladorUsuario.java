@@ -36,12 +36,11 @@ public class ControladorUsuario {
         this.servicioUsuario = servicioUsuario;
         this.request = request;
     }
-    /*
-    @Autowired
+    
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
         this.servicioUsuario = servicioUsuario;
     }
-    */
+    
     
     @RequestMapping(path="/crearSorteo", method = RequestMethod.GET)
     public ModelAndView crearSorteo() {
@@ -57,7 +56,7 @@ public class ControladorUsuario {
 		ModelMap model = new ModelMap();
 
 		try{
-			servicioSorteo.registrar(datosSorteo);
+			servicioSorteo.crear(datosSorteo);
         }catch(RuntimeException e){
             e.printStackTrace();
         }

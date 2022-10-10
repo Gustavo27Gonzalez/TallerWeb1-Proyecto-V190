@@ -6,16 +6,8 @@ public class DatosRegistro {
     private Integer dni;
     private String email;
     private String password;
-    
-    public DatosRegistro(){}
+    private String repitePassword;
 
-    public DatosRegistro(String nombre, Integer dni, String email, String password) {
-        this.nombre = nombre;
-        this.dni = dni;
-    	this.email = email;
-        this.password = password;
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -48,5 +40,20 @@ public class DatosRegistro {
         this.password = password;
     }
     
+    public String getRepitePassword() {
+        return repitePassword;
+    }
 
+    public void setRepitePassword(String repitePassword) {
+        this.repitePassword = repitePassword;
+    }
+
+    public DatosRegistro(){}
+
+    public DatosRegistro(String nombre, Integer dni, String email, String password) {
+        this.nombre = nombre;
+        this.dni = dni;
+    	this.email = email;
+        this.password = password;
+    }
 }

@@ -12,7 +12,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Listado de sorteos</title>
+<title>Sortea2 |  Listado de sorteos</title>
 </head>
 <body>
 

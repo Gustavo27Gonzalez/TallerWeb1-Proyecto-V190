@@ -8,6 +8,11 @@ h1{
 	color: #FFF;
 }
 
+h3{
+	text-align: center;
+	color: #FFF;
+}
+
 .tabla{
 	background-color: #8594a7;
 	color: #fff;
@@ -16,4 +21,12 @@ h1{
 .carta-sorteos{
 	border-bottom-color: black;
 	background-color: #3d4756;
+}
+
+.navegador{
+	background-color: #121212;
+}
+
+.login-box{
+	padding-top: 2em;
 }

@@ -146,7 +146,6 @@ public class Usuario {
 		setEmail(datosRegistro.getEmail());
 		setPassword(datosRegistro.getPassword());
 	}
-	
-	
+
 	
 }

@@ -44,12 +44,9 @@ public class ControladorRegistro {
         }catch(RuntimeException e){
             e.printStackTrace();
         }
-        return registroExitoso();
-    }
-
-    private ModelAndView registroExitoso(){
         return new ModelAndView("redirect:/login");
     }
+
 
     private ModelAndView registroFallido(ModelMap model, String mensaje){
         model.put("error", mensaje);

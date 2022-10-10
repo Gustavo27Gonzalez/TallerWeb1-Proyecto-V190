@@ -79,16 +79,9 @@ public class ControladorUsuariosTest extends SpringTest {
 	    	
 	    	assertNotNull(u);
 	    	assertEquals(u.getNombre(),nombre);
-<<<<<<< HEAD
-	    	assertEquals(u.getDni(),dni);
-	    	assertEquals(u.getEmail(),email);
-	    	assertEquals(u.getPassword(),contrasenia);
-	    	assertNull(u.getTotalRifasCompradas());
-=======
 	    	assertEquals(u.getNroDocumento(),dni);
 	    	assertEquals(u.getEmail(),email);
 	    	assertEquals(u.getPassword(),contrasenia);
->>>>>>> mapeoEntidades
 	    }
 
 }

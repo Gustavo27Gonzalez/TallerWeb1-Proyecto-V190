@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Inicio</title>
+<title>Sortea2 | Inicio</title>
 <!-- Bootstrap theme -->
 <!-- Bootstrap theme -->
 <link rel="stylesheet"
@@ -14,26 +14,54 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<h1 class="font-weight-bold">Bienvenido a Sortea2</h1>
+
+	<!-------------------------------------------------------------------------->
+	<div class="d-flex justify-content-end navegador">
+		<nav class="navbar ">
+			<form class="form-inline">
+				<a class="btn btn-danger" href="login" role="button">Salir</a>
+			</form>
+		</nav>
 	</div>
+	<!-------------------------------------------------------------------------->
 	
-	</br>
+	<div class="container">
+		<h1 class="font-weight-bold">Sortea2</h1>
+		<h3 class="font-weight-light">La mejor app de sorteos</h3>
+	</div>
+
+	<!-------------------------------------------------------------------------->
 	
-	<button><a href="crearSorteo">Crear Sorteo</a></button>
-	
-	<button><a href="listado-sorteos" >Ver sorteos disponibles</a></button>
-	
-	
-	
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-	</script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<div class="d-flex justify-content-center align-items-center" style="margin-top: 5rem;">
+
+		<div class="col-sm-4 mb-4 align-self-stretch ">
+
+			<div class="card shadow-lg  bg-white">
+
+				<div class="card-body border border-dark carta-sorteos">
+					<h3 class="card-title text-light"
+						style="color: #797D7F; text-align: center;">Crear Sorteo</h3>
+				</div>
+				<a class="btn btn-success" href="crearSorteo" role="button">Crear</a>
+
+			</div>
+		</div>
+
+		<div class="col-sm-4 mb-4 align-self-stretch">
+
+			<div class="card shadow-lg  bg-white">
+
+				<div class="card-body border border-dark carta-sorteos">
+					<h3 class="card-title text-light"
+						style="color: #797D7F; text-align: center;">Listar Sorteos</h3>
+				</div>
+				<a class="btn btn-success" href="listado-sorteos" role="button">Listar</a>
+
+			</div>
+		</div>
+	</div>
+	<!-------------------------------------------------------------------------->
+
+
 </body>
 </html>

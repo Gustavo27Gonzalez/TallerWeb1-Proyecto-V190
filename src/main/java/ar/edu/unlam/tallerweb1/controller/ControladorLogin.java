@@ -12,6 +12,7 @@ import ar.edu.unlam.tallerweb1.controller.dtos.DatosLogin;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
+import exceptions.UsuarioLoginException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,11 +55,10 @@ public class ControladorLogin {
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
-		if (estaLogueado() == true) {
+		if (request.getSession().getAttribute("Estado") == "Activo") {
 			ModelMap modelo = new ModelMap();
 			Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
 			Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
-
 			return new ModelAndView("home", modelo);
 		} else {
 			return new ModelAndView("redirect:/login");
@@ -95,21 +95,34 @@ public class ControladorLogin {
 	// form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request) {
+	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request){
 		ModelMap model = new ModelMap();
-
-		Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
-		if (usuarioBuscado == null) {
+		Usuario usuarioBuscado;
+		
+		if(datosLogin.getEmail() == "" || datosLogin.getPassword() == "") {
+			model.put("error", "No se ingresaron datos para realizar login");
+			return new ModelAndView("redirect:/login");
+		}
+		
+		try {
+			usuarioBuscado = servicioLogin.validarUsuario(datosLogin);
+			
+			if (usuarioBuscado != null) {
+				model.put("usuario", usuarioBuscado);
+				request.getSession().setAttribute("Estado", "Activo");
+				request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			model.put("error", "Mail inexistente");
+			return new ModelAndView("redirect:/login");
+			
+		} catch (UsuarioLoginException e) {
+			e.printStackTrace();
 			model.put("error", "Usuario o clave incorrecta");
+			return new ModelAndView("redirect:/login");
 		}
-		if (usuarioBuscado != null) {
-			model.put("usuario", usuarioBuscado);
-
-			request.getSession().setAttribute("Estado", "Activo");
-			request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
-			return new ModelAndView("redirect:/usuarioInicio");
-		}
-		return new ModelAndView("login", model);
+		return new ModelAndView("redirect:/login-index");
 	}
 
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)
@@ -123,7 +136,7 @@ public class ControladorLogin {
 		return new ModelAndView("usuarioInicio");
 	}
 	
-	@RequestMapping(path = "/usuarioInicio", method = RequestMethod.GET)
+	@RequestMapping(path = "/login-index", method = RequestMethod.GET)
 	public ModelAndView usuarioInicio() {
 		return new ModelAndView("usuarioInicio");
 	}
