@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.models.usuarios;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import ar.edu.unlam.tallerweb1.models.referidos.Referido;
@@ -43,18 +45,13 @@ public class Usuario {
 	private Boolean cuentaEliminada = false;
 	private Boolean ganoUnSorteoYa = false;
 	private Integer totalRifasCompradas;
-	/*@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(name = "sorteosOrganizados",
-			joinColumns = @JoinColumn(name = "Usuario_id"),
-			inverseJoinColumns = @JoinColumn(name = "sorteo_id"))*/
 	private ArrayList<Sorteo> sorteosOrganizados;
     private ArrayList<Sorteo> sorteosGanados;
     private ArrayList<Sorteo> sorteosParticipando;
-    private LinkedHashSet<Rifa> rifasCompradas;
-    private HashSet<Referido> referidos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Compra> rifasCompradas = new ArrayList<>();
+    @OneToMany(mappedBy = "referidoPor", cascade = CascadeType.ALL)
+	private List<Referido> referidos = new ArrayList<>();
     
 	public Usuario() {
 	}

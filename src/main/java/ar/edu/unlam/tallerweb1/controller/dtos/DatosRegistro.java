@@ -6,7 +6,6 @@ public class DatosRegistro {
     private Integer dni;
     private String email;
     private String password;
-    private String repitePassword;
     
     public DatosRegistro(){}
 
@@ -49,12 +48,5 @@ public class DatosRegistro {
         this.password = password;
     }
     
-    public String getRepitePassword() {
-        return repitePassword;
-    }
-
-    public void setRepitePassword(String repitePassword) {
-        this.repitePassword = repitePassword;
-    }
 
 }

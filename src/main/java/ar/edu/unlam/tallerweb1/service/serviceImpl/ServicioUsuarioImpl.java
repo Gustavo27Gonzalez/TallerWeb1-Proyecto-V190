@@ -26,7 +26,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public Usuario registrar(DatosRegistro datosRegistro){
-        
         Usuario nuevoUsuario = new Usuario(datosRegistro);
         repositorioUsuario.guardar(nuevoUsuario);
         return nuevoUsuario;
