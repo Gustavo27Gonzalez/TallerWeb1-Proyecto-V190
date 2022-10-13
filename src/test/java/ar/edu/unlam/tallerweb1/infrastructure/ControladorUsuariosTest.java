@@ -8,6 +8,8 @@ import static org.mockito.Mockito.when;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,18 +18,21 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 
 public class ControladorUsuariosTest extends SpringTest {
 
 	   public static final int CANTIDAD_USUARIOS = 4;
 	   private ControladorUsuario controladorUsuario;
+	   private ServicioSorteo servicioSorteo;
 	   private ServicioUsuario servicioUsuario;
+	   private HttpServletRequest request;
 
 	    @Before
 	    public void init(){
 	        this.servicioUsuario = mock(ServicioUsuario.class);
-	        this.controladorUsuario = new ControladorUsuario(this.servicioUsuario);
+	        this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario, this.request);
 	    }
 
 	    @Test
@@ -79,10 +84,9 @@ public class ControladorUsuariosTest extends SpringTest {
 	    	
 	    	assertNotNull(u);
 	    	assertEquals(u.getNombre(),nombre);
-	    	assertEquals(u.getDni(),dni);
+	    	assertEquals(u.getNroDocumento(),dni);
 	    	assertEquals(u.getEmail(),email);
 	    	assertEquals(u.getPassword(),contrasenia);
-	    	assertNull(u.getTotalRifasCompradas());
 	    }
 
 }

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.service.serviceImpl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,7 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
@@ -31,6 +35,20 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
         repositorioUsuario.guardar(nuevoUsuario);
         return nuevoUsuario;
     }
+    
+    @Override
+	public Boolean comprar(DatosCompra datosCompra) {
+    	Boolean flag = false;
+		Compra compra = new Compra(datosCompra);
+		try {
+			repositorioUsuario.guardarCompra(compra);
+			flag = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return flag;
+	}
 
     @Override
     public Usuario buscarPorId(Long id) {
@@ -39,9 +57,14 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public List<Usuario> listarUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Usuario> usuarios = new LinkedList<Usuario>();
+		for (int i = 0; i < 5; i++) {
+			usuarios.add(new Usuario());
+		}
+		return usuarios;
 	}
+
+	
 
    
 

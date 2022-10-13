@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
@@ -28,13 +30,15 @@ public class ControladorSorteo {
 		this.servicioSorteo = servicioSorteo;
 	}
 
-	@RequestMapping(path="/sorteos")
+	@RequestMapping(path="/sorteos", method = RequestMethod.GET)
 	public ModelAndView listarSorteos() {
 		ModelMap model = new ModelMap();
 		List<Sorteo> sorteos = this.servicioSorteo.listarSorteos();
 		model.put("sorteos", sorteos);
-		ModelAndView mav = new ModelAndView("lista-sorteos", model);
+		ModelAndView mav = new ModelAndView("listar-sorteos", model);
 		return mav;
 	}
+	
+	
 
 }

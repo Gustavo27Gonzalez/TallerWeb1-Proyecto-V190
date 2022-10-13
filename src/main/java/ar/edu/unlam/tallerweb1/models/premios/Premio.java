@@ -1,56 +1,57 @@
 package ar.edu.unlam.tallerweb1.models.premios;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoPremio;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
-@Entity(name = "premio")
-@Table(name = "premio")
+@Entity (name="premio")
 public class Premio {
-
-	public Premio() {
-
-	}
-
-	public Premio(TipoPremio tipoPremio) {
-		setTipoPremio(tipoPremio);
-	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="premio_id")
 	private Long id;
-	@Enumerated(EnumType.STRING)
+	@Enumerated(value = EnumType.STRING)
 	private TipoPremio tipoPremio;
-
-	// private Sorteo sorteo;
-
+	@OneToMany(mappedBy = "premio", cascade = CascadeType.ALL)
+	private List<Sorteo> sorteos = new ArrayList<>();
+		
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public TipoPremio getTipoPremio() {
 		return tipoPremio;
 	}
-
 	public void setTipoPremio(TipoPremio tipoPremio) {
 		this.tipoPremio = tipoPremio;
 	}
-	/*
-	 * public Sorteo getSorteo() { return sorteo; } public void setSorteo(Sorteo
-	 * sorteo) { this.sorteo = sorteo; } public Premio() {}
-	 * 
-	 * public Premio(TipoPremio tipoPremio, Sorteo sorteo) {
-	 * setTipoPremio(tipoPremio); setSorteo(sorteo); }
-	 */
-
+	public List<Sorteo> getSorteos() {
+		return sorteos;
+	}
+	public void setSorteos(ArrayList<Sorteo> sorteos) {
+		this.sorteos = sorteos;
+	}
+	
+	public Premio() {};
+	
+	public Premio (TipoPremio tipoPremio) {
+		setTipoPremio(tipoPremio);
+	}
+	
+	
 }

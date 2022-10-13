@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
@@ -29,13 +32,14 @@ public class ControladorSorteosTest extends SpringTest {
 	   private ControladorUsuario controladorUsuario;
 	   private ServicioSorteo servicioSorteo;
 	   private ServicioUsuario servicioUsuario;
+	   private HttpServletRequest request;
 
 	    @Before
 	    public void init(){
 	        this.servicioSorteo = mock(ServicioSorteo.class);
 	        this.controladorSorteo = new ControladorSorteo(this.servicioSorteo);
 	        this.servicioUsuario = mock(ServicioUsuario.class);
-	        this.controladorUsuario = new ControladorUsuario(this.servicioUsuario);
+	        this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario, this.request);
 	    }
 
 	    @Test
@@ -56,8 +60,9 @@ public class ControladorSorteosTest extends SpringTest {
 	        assertThat(mav.getViewName()).isEqualTo(vistaEsperada);
 	    }
 
-	    private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
-	        assertThat((List<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
+	    @SuppressWarnings("unchecked")
+		private void entoncesEncuentro(ModelAndView mav, int cantidadSorteosEsperados){
+	        assertThat((ArrayList<Sorteo>)mav.getModel().get("sorteos")).hasSize(cantidadSorteosEsperados);
 	    }
 
 	    private ModelAndView cuandoListoSorteos(){
@@ -114,8 +119,8 @@ public class ControladorSorteosTest extends SpringTest {
 	        ganoUnSorteoYa.add(true);
 	        
 	        for(int i = 0; i < cantidadUsuarios; i++) {
-	        	
-		        Usuario u = new Usuario(nombres.get(i), totalRifasCompradas.get(i), ganoUnSorteoYa.get(i));
+	        	// INCOMPLETO
+		        Usuario u = new Usuario();
 	        	
 	        	usuarios.add(u);
 	        }
