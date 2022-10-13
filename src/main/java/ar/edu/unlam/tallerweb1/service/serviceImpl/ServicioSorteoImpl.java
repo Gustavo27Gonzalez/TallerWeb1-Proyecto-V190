@@ -17,45 +17,32 @@ import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 @Transactional
 public class ServicioSorteoImpl implements ServicioSorteo {
 
-	@Autowired
-    RepositorioSorteo repositorioSorteo;
+    RepositorioSorteo sorteoRepository;
     
     @Autowired
-    public ServicioSorteoImpl(RepositorioSorteo servicioSorteoDao){
-        this.repositorioSorteo = servicioSorteoDao;
+    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository){
+        this.sorteoRepository = sorteoRepository;
     }
 	
 	@Override
-	public void registrar(DatosSorteo datosSorteo) {
+	public void crear(DatosSorteo datosSorteo) {
 		Sorteo nuevoSorteo = new Sorteo(datosSorteo);
-        repositorioSorteo.crear(nuevoSorteo);
+		sorteoRepository.crear(nuevoSorteo);
 	}
 
 	@Override
 	public Sorteo buscarPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Sorteo> listarSorteos() {
-		List<Sorteo> sorteos = new LinkedList<Sorteo>();
-		for (int i = 0; i < 5; i++) {
-			sorteos.add(new Sorteo());
-		}
-		return sorteos;
-	}
-
-	@Override
-	public void crear(DatosSorteo datosSorteo) {
-		// TODO Auto-generated method stub
-		
+		return this.sorteoRepository.buscarSorteoPorId(id);
 	}
 
 	@Override
 	public void modificar(Sorteo sorteo) {
-		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+    public List<Sorteo> listarSorteos() {
+		return this.sorteoRepository.listarSorteos();
+    }
 
 }

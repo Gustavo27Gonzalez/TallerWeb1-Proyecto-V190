@@ -10,5 +10,4 @@ public interface ServicioSorteo {
 	void modificar(Sorteo sorteo);
 	Sorteo buscarPorId(Long id);
 	List<Sorteo> listarSorteos();
-	void registrar(DatosSorteo datosSorteo);
 }

@@ -1,0 +1,32 @@
+body{
+	background-color: #121212;
+}
+
+h1{
+	padding-top: 1em;
+	text-align: center;
+	color: #FFF;
+}
+
+h3{
+	text-align: center;
+	color: #FFF;
+}
+
+.tabla{
+	background-color: #8594a7;
+	color: #fff;
+}
+
+.carta-sorteos{
+	border-bottom-color: black;
+	background-color: #3d4756;
+}
+
+.navegador{
+	background-color: #121212;
+}
+
+.login-box{
+	padding-top: 2em;
+}

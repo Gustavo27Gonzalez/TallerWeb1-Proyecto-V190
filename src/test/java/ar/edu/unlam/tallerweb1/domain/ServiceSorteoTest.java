@@ -60,4 +60,8 @@ public class ServiceSorteoTest extends SpringTest {
 	        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
 	    }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/agustin_develop2

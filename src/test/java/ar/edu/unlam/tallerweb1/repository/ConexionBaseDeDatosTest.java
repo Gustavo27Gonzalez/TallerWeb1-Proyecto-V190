@@ -21,8 +21,18 @@ public class ConexionBaseDeDatosTest extends SpringTest{
     public void crearUsuario(){
         /*DatosLogin usuario = new DatosLogin();
         usuario.setEmail("seba@gmail.com");
+<<<<<<< HEAD
+=======
+>>>>>>> mapeoEntidades
+>>>>>>> origin/agustin_develop2
         usuario.setPassword("1234");
         session().save(usuario);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        assertThat(usuario.getId()).isNotNull();
+=======
+>>>>>>> origin/agustin_develop2
         */
         //assertThat(usuario.getId()).isNotNull();
     }

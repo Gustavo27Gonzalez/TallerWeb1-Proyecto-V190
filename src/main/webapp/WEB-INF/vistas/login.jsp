@@ -1,60 +1,64 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-	<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.min.css" rel="stylesheet" >
-	    <!-- Bootstrap theme -->
-	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class = "container">
-			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 add-margin-b2">
-				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
-				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
-					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-				<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
-			    	
-			    	<div class="form-outline mb-4">
-					<form:label class="form-label" for="email" path="email">Email</form:label>
-					<form:input path="email" type="email" id="email" placeholder="Ingrese su Email..."
-						class="form-control" />
+<meta charset="ISO-8859-1">
+<!-- Bootstrap theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link href="css/styles.css" rel="stylesheet">
+<title>Sortea2 | Iniciar sesión</title>
+</head>
+<body>
+
+	<!-------------------------------------------------------------------------->
+
+	<div class="container">
+		<h1 class="font-weight-bold">Bienvenido a Sortea2</h1>
+		<h3 class="font-weight-light">La mejor app de sorteos</h3>
+	</div>
+
+	<!-------------------------------------------------------------------------->
+
+	<div class="container login-box">
+		<div>
+			<form:form action="validar-login" method="POST"
+				modelAttribute="datosLogin">
+
+				<div class="form-outline mb-3">
+					<form:label class="form-label text-light" for="email" path="email">Email</form:label>
+					<form:input path="email" type="email" id="email"
+						placeholder="Ingrese su Email..." class="form-control" />
 				</div>
-				
-				</br>
-				
+
 				<div class="form-outline mb-4">
-					<form:label class="form-label" for="password" path="password">Contraseña</form:label>
-					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..."
-						class="form-control" />
+					<form:label class="form-label text-light" for="password" path="password">Contraseña</form:label>
+					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..." class="form-control" />
 				</div>
-				
-				</br>
-					
-					<button class="btn btn-lg btn-primary btn-block add-margin-b2" Type="Submit"/>Login</button>
-				</form:form>
-				
-				</br>
-				
-				<div class="d-flex justify-content-between">
-					<a href="registrar-usuario"	>Registrarme</a>
-					<a href="registrar-usuario"	>Olvidé mi Contraseña</a><!-- Agregar Funcionalidad -->
-				</div>
-				
-				</br>
-				<%--Bloque que es visible si el elemento error no esta vacio	--%>
-				<c:if test="${not empty error}">
-			        <h4><span>${error}</span></h4>
-			        <br>
-		        </c:if>
-				${msg}
+				<button class="btn btn-lg btn-success btn-block add-margin-b2" Type="Submit" />Login</button>
+			</form:form>
+
+
+			<div class="d-flex justify-content-between pt-2">
+				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Registrarme</a>
+				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Olvidé mi Contraseña</a>
 			</div>
+
+			</br>
+			<%--Bloque que es visible si el elemento error no esta vacio	--%>
+			<c:if test="${not empty error}">
+				<h4>
+					<span class="text-danger">${error}</span>
+				</h4>
+				<br>
+			</c:if>
+			<p class="text-light">${msg}
 		</div>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ></script>
-		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	</body>
+
+	</div>
+
+
+</body>
 </html>
