@@ -19,7 +19,7 @@
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
-
+	
 	<!-- ----------------------------------------------------------------------------------- -->
 	<div class="d-flex justify-content-center">
 		<nav class="navbar navbar-expand-lg "
@@ -44,6 +44,9 @@
 	</div>
 
 	<!-- ----------------------------------------------------------------------------------- -->
+	<div>
+		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+	</div>
 
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">

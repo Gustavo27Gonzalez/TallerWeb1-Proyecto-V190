@@ -44,7 +44,6 @@ public class SorteoServiceTest extends SpringTest{
 
 	private void entoncesLoEncuentro(Sorteo sorteo) {
 		assertThat(sorteo).isEqualTo(sorteo);
-		
 	}
 
 }

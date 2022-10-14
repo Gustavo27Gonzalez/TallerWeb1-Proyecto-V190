@@ -55,11 +55,8 @@
 
 			</form:form>
 
-			<button>
-				<a href="usuarioInicio">Volver </a>
-			</button>
-
-
+			<a class="btn btn-danger mt-2" href="login-index" role="button">Volver</a>
+			
 			<%--Bloque que es visible si el elemento error no esta vacio	--%>
 			<c:if test="${not empty error}">
 				<h4>
