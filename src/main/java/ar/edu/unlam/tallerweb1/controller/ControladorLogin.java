@@ -30,20 +30,19 @@ public class ControladorLogin {
 	// paquete de los indicados en
 	// applicationContext.xml
 
-	@Autowired
+	
 	ServicioUsuario servicioUsuario;
 
-	@Autowired
+	
 	ServicioLogin servicioLogin;
 
-	@Autowired
-	HttpServletRequest request;
+	
+	
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, HttpServletRequest request) {
-		this.servicioUsuario = servicioUsuario;
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario) {
 		this.servicioLogin = servicioLogin;
-		this.request = request;
+		this.servicioUsuario = servicioUsuario;
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la
@@ -55,7 +54,7 @@ public class ControladorLogin {
 
 	// Escucha la URL /home por GET, y redirige a una vista.
 	@RequestMapping(path = "/home", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
+	public ModelAndView irAHome(HttpServletRequest request) {
 		if (request.getSession().getAttribute("Estado") == "Activo") {
 			ModelMap modelo = new ModelMap();
 			Long idUsuario = (Long) request.getSession().getAttribute("idUsuario");
@@ -66,7 +65,7 @@ public class ControladorLogin {
 		}
 	}
 
-	public boolean estaLogueado() {
+	public boolean estaLogueado(HttpServletRequest request) {
 		if (request.getSession().getAttribute("Estado") == "Activo") {
 			return true;
 		} else {
@@ -127,7 +126,7 @@ public class ControladorLogin {
 	}
 
 	@RequestMapping(path = "/logout", method = RequestMethod.GET)
-    public ModelAndView cerrarSesion(){
+    public ModelAndView cerrarSesion(HttpServletRequest request){
         request.getSession().invalidate();
         return new ModelAndView("redirect:/login");
     }

@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+
 import org.junit.Test;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
@@ -17,6 +20,8 @@ public class RepositorioSorteoTest extends SpringTest {
     private RepositorioSorteo repositorioSorteo;
 
     @Test
+    @Transactional
+    @Rollback
     public void alPedirTodosLosSorteosObtengoLaListaCompleta(){
         dadoQueExistenSorteos(CANTIDAD_SORTEOS);
         List<Sorteo> sorteos = cuandoListoSorteos();
