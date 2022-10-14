@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,7 +16,6 @@ import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 import exceptions.UsuarioLoginException;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ControladorLogin {

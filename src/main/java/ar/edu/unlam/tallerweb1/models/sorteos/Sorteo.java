@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity (name="sorteo")
@@ -28,6 +29,7 @@ public class Sorteo {
     private Long id;
     private String nombre;
     private String descripcion;
+    @NotNull
     private Double precioRifa;
     private Integer cantidadRifas;
     @OneToMany(mappedBy = "sorteo", cascade = CascadeType.ALL)
