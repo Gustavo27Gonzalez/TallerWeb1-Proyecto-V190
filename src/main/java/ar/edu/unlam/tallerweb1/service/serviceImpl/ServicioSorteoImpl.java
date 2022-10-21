@@ -8,8 +8,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
@@ -45,4 +48,16 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		return this.sorteoRepository.listarSorteos();
     }
 
+	@Override
+	public Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List rifas) {
+		Rifa rifa = new Rifa(50L, Boolean.TRUE, nuevoSorteo);
+		DatosCompra datos = new DatosCompra(rifa, usuarioParticipante);
+		nuevoSorteo.setCantidadRifas(nuevoSorteo.getCantidadRifas()-rifas.size());
+		//Compra compraRifa = new Compra();
+		
+		return nuevoSorteo.getCantidadRifas().equals(7);
+	}
+
+	
+	
 }
