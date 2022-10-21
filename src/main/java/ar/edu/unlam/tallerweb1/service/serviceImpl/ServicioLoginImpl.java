@@ -41,7 +41,6 @@ public class ServicioLoginImpl implements ServicioLogin {
 			throw new UsuarioLoginException("El mail: " + datosLogin.getEmail() + " no existe");
 		}
 		
-		
 		if (datosLogin.getEmail().equals(buscado.getEmail())) {
 			// valida que lo ingresado sea igual a la contraseña que el usuario buscado
 			// tiene guardada

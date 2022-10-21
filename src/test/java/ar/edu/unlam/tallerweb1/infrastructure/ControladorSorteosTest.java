@@ -39,7 +39,7 @@ public class ControladorSorteosTest extends SpringTest {
 	        this.servicioSorteo = mock(ServicioSorteo.class);
 	        this.controladorSorteo = new ControladorSorteo(this.servicioSorteo);
 	        this.servicioUsuario = mock(ServicioUsuario.class);
-	        this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario, this.request);
+	        //this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario);
 	    }
 
 	    @Test
@@ -53,7 +53,7 @@ public class ControladorSorteosTest extends SpringTest {
 	        // Verificacion
 	        entoncesEncuentro(mav, CANTIDAD_SORTEOS);
 	        
-	        entoncesMeLLevaALaVista(mav, "lista-sorteos");
+	        entoncesMeLLevaALaVista(mav, "listar-sorteos");
 	    }
 
 	    private void entoncesMeLLevaALaVista(ModelAndView mav, String vistaEsperada) {
@@ -70,7 +70,7 @@ public class ControladorSorteosTest extends SpringTest {
 	    }
 
 	    private void dadoQueExistenSorteos(int cantidadSorteos) {
-	        List<Sorteo> sorteos = new LinkedList<>();
+	        List<Sorteo> sorteos = new ArrayList<>();
 	        for(int i = 0; i < cantidadSorteos; i++)
 	            sorteos.add(new Sorteo());
 	        when(this.servicioSorteo.listarSorteos()).thenReturn(sorteos);

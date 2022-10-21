@@ -18,10 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorRegistro {
 	
-	@Autowired
-	HttpServletRequest request;
-	
-	@Autowired
     ServicioUsuario servicioUsuario;
 
     @Autowired

@@ -21,20 +21,19 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ControladorUsuario {
 	
-	@Autowired
+	
     ServicioSorteo servicioSorteo;
 	
-	@Autowired
+	
     ServicioUsuario servicioUsuario;
 	
-	@Autowired
+	
     HttpServletRequest request;
     
     @Autowired
-    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario, HttpServletRequest request) {
+    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario) {
         this.servicioSorteo = servicioSorteo;
         this.servicioUsuario = servicioUsuario;
-        this.request = request;
     }
     
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
