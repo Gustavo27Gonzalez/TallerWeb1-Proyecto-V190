@@ -41,7 +41,7 @@ public class ControladorLoginTest extends SpringTest{
 		DatosLogin login = new DatosLogin("email@test.com", "test123");
 		givenExisteUnUsuarioQueQuiereLoguearseSeValidaCorrectamente(login);
 		givenRealizoLaPeticionExitosaElControladorMeRedirijeALaVistaDeInicioCorrecta(login);
-		ModelAndView mav = whenInicioSesionIngresoAlIndexCorrecto(login, request);
+		ModelAndView mav = whenInicioSesionIngresoAlIndexCorrecto(login);
 		thenInicioSesionYMeRedireccionaALaVistaDeInicioCorrectaYElUsuarioSeSeteaComoLogueado(mav, "redirect:/login-index");
 	}
 
@@ -59,7 +59,7 @@ public class ControladorLoginTest extends SpringTest{
 		when(this.request.getSession()).thenReturn(this.session);
 	}
 
-	private ModelAndView whenInicioSesionIngresoAlIndexCorrecto(DatosLogin datosLogin, HttpServletRequest request) {
+	private ModelAndView whenInicioSesionIngresoAlIndexCorrecto(DatosLogin datosLogin) {
 		return this.controladorLogin.validarLogin(datosLogin, request);
 	}
 

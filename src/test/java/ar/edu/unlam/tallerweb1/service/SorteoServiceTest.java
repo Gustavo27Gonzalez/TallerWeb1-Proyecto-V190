@@ -2,8 +2,11 @@ package ar.edu.unlam.tallerweb1.service;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +31,7 @@ public class SorteoServiceTest extends SpringTest{
 	}
 
 	@Test
-	public void quieroGenerarUnSorteoYLuegoListarTodosLosQueHay() {
+	public void quieroGenerarUnSorteoYLuegoListarlo() {
 		dadoQueExisteUnSorteo(SORTEO);
 		Sorteo buscado = cuandoBuscoElSorteoPorSuId(SORTEO.getId());
 		entoncesLoEncuentro(buscado);
@@ -46,4 +49,49 @@ public class SorteoServiceTest extends SpringTest{
 		assertThat(sorteo).isEqualTo(sorteo);
 	}
 
+	@Test
+	public void quieroGenerarUnSorteoYSeGuardaCorrectamente(){
+		givenQueCreoUnSorteo(DATOS_SORTEO);
+		thenSeGuardaCorrectamente(DATOS_SORTEO);
+	}
+
+	private void thenSeGuardaCorrectamente(DatosSorteo sorteo) {
+		Sorteo nuevo = new Sorteo (sorteo);
+		verify(sorteoRepository).crear(any(Sorteo.class));
+	}
+
+	private void givenQueCreoUnSorteo(DatosSorteo sorteo) {
+		sorteoService.crear(sorteo);
+	}	
+	
+	@Test
+	public void quieroVerLaListaDeSorteosDisponibles(){
+		givenQueTengoUnaListaDeSorteosQueFueronCreados();
+		List listaSorteos = whenSolicitoLosSorteosMeLosLista();
+		thenPuedoVisualizarLosSorteos(listaSorteos);
+	}
+
+	private void thenPuedoVisualizarLosSorteos(List listaSorteos) {
+		assertThat(listaSorteos).asList();
+	}
+
+	private List whenSolicitoLosSorteosMeLosLista() {
+		return this.sorteoService.listarSorteos();
+	}
+
+	private void givenQueTengoUnaListaDeSorteosQueFueronCreados() {
+		List listaSorteos = obtenerSorteos();
+		when(this.sorteoService.listarSorteos()).thenReturn(listaSorteos);
+	}
+
+	private List obtenerSorteos() {
+		List sorteos = new ArrayList<Sorteo>();
+		sorteos.add(SORTEO);
+		sorteos.add(SORTEO);
+		sorteos.add(SORTEO);
+		return sorteos;
+	}
+	
+	
+	
 }
