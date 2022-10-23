@@ -2,8 +2,7 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.ControladorSorteo;
 import ar.edu.unlam.tallerweb1.controller.ControladorUsuario;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
@@ -136,6 +137,42 @@ public class ControladorSorteosTest extends SpringTest {
 	    private void entoncesEncuentroUsuarios(ModelAndView mav, int cantidadUsuariosEsperados){
 	        assertThat((List<Usuario>)mav.getModel().get("usuarios")).hasSize(cantidadUsuariosEsperados);
 	    }
+	    
+	    @Test
+	    public void quieroParticiparEnUnSorteo() {
+	    	givenHayUnSorteoExistenteQueQuieroParticipar();
+	    	ModelAndView model = whenGeneroLaAccionDeParticiparEnUnSorteo();
+	    	thenIngresoALaVistaParaParticiparDeEseSorteo(model, "participar");
+	    }
+
+		private void thenIngresoALaVistaParaParticiparDeEseSorteo(ModelAndView model, String vistaEsperada) {
+			assertThat(model.getViewName()).isEqualTo(vistaEsperada);
+		}
+
+		private ModelAndView whenGeneroLaAccionDeParticiparEnUnSorteo() {
+			return controladorSorteo.participar();
+		}
+
+		private void givenHayUnSorteoExistenteQueQuieroParticipar() {
+			Usuario usuarioExistente = new Usuario(2L, "Martin", "martin@gmail.com", Boolean.TRUE);
+			DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+			Sorteo nuevoSorteo = new Sorteo(datosSorteo);
+			List rifas = comprarRifas();
+			when(servicioSorteo.participar(nuevoSorteo, usuarioExistente, rifas)).thenReturn(Boolean.TRUE);			
+			//doThrow(Exception.class).when(servicioSorteo).participar(nuevoSorteo, usuarioExistente);
+		}
+
+		private List comprarRifas() {
+			List rifas = new LinkedList<Rifa>();
+			for(int i=0; i<3; i++) {
+				Rifa rifa = new Rifa(50L, Boolean.TRUE);
+				rifas.add(rifa);
+				rifa.setId(rifa.getId()+(i+20));
+			}
+			return rifas;
+		}
+	    
+	    
 	    
 	    
 	}

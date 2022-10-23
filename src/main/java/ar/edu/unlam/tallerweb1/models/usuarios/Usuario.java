@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.enums.TipoDocumento;
 import ar.edu.unlam.tallerweb1.models.referidos.Referido;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosLogin;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 
 
@@ -145,6 +146,20 @@ public class Usuario {
 		setNroDocumento(datosRegistro.getDni());
 		setEmail(datosRegistro.getEmail());
 		setPassword(datosRegistro.getPassword());
+	}
+	
+	// --> Constructor para setear los datos del login cuando se inicia sesión
+	public Usuario(DatosLogin datosLogin, Boolean estaLogueado) {
+		setEmail(datosLogin.getEmail());
+		setPassword(datosLogin.getPassword());
+		setEstaLogueado(estaLogueado);
+	}
+	// Datos de usuario que participa en sorteo
+	public Usuario(Long id, String nombre, String email, Boolean ganoUnSorteo) {
+		setId(id);
+		setNombre(nombre);
+		setEmail(email);
+		setGanoUnSorteoYa(ganoUnSorteo);
 	}
 
 	
