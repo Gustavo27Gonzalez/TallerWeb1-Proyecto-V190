@@ -11,9 +11,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
@@ -59,5 +61,7 @@ public class ServiceSorteoTest extends SpringTest {
 	            
 	        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
 	    }
+	    
+	    
 
 }

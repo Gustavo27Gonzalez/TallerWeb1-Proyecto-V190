@@ -7,8 +7,16 @@ public class DatosSorteo {
     private Double precioRifa;
     private Integer cantidadRifas;
     //private String tipoPremio;
-   public DatosSorteo(){
+   
+    public DatosSorteo(){
     };
+    
+    public DatosSorteo(String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
+    	this.nombre = nombre; 
+    	this.descripcion = descripcion;
+    	this.precioRifa = precioRifa;
+    	this.cantidadRifas = cantidadRifas;
+    }
     
     public DatosSorteo(Long idSorteo, String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
     	this.idSorteo = idSorteo;

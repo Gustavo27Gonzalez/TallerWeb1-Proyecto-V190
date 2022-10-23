@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
@@ -44,6 +45,24 @@ public class ControladorSorteo {
 		//ModelMap model = new ModelMap();
 		
 		return new ModelAndView("participar");
+	}
+	
+	@RequestMapping(path="/listado-participantes")
+	public ModelAndView listarParticipantes(Sorteo sorteo) {
+		ModelMap model = new ModelMap();
+		List<Usuario> participantes = this.servicioSorteo.listarParticipantes(sorteo);
+		model.put("participantes", participantes);
+		ModelAndView mav = new ModelAndView("listar-participantes", model);
+		return mav;
+	}
+
+	@RequestMapping(path="/ganador", method = RequestMethod.GET)
+	public ModelAndView obtenerGanador() {
+		ModelMap model = new ModelMap();
+		//Usuario ganador = this.servicioSorteo.obtenerGanador();
+		//model.put("ganador", ganador);
+		ModelAndView mav = new ModelAndView("ganador", model);
+		return mav;
 	}
 	
 	

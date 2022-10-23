@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 
 @Repository("repositorioSorteo")
@@ -66,6 +67,14 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	public List<Sorteo> buscarSorteosConRifasDisponibles() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<Usuario> listarParticipantes(Sorteo sorteo) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
 	}
 
 }

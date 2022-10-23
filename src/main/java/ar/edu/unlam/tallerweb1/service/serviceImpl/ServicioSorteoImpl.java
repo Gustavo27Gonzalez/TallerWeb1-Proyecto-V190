@@ -58,6 +58,19 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		return nuevoSorteo.getCantidadRifas().equals(7);
 	}
 
+	@Override
+	public Usuario obtenerGanador(Sorteo sorteo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Usuario> listarParticipantes(Sorteo sorteo) {
+		return this.sorteoRepository.listarParticipantes(sorteo);
+	}
+
+	
+
 	
 	
 }

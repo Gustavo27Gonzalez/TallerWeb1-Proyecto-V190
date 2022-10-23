@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
 public interface ServicioUsuario {
@@ -12,4 +13,5 @@ public interface ServicioUsuario {
     Usuario buscarPorId(Long id);
     List<Usuario> listarUsuarios();
     Boolean comprar(DatosCompra datosCompra);
+	
 }

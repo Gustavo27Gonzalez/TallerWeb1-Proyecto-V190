@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosLogin;
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 
@@ -65,6 +66,8 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public void guardarCompra(Compra compra) {
 		sessionFactory.getCurrentSession().save(compra);
 	}
+
+
 
 	
 

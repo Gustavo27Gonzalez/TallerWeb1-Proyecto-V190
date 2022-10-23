@@ -13,4 +13,6 @@ public interface ServicioSorteo {
 	Sorteo buscarPorId(Long id);
 	List<Sorteo> listarSorteos();
 	Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List<Rifa> rifas);
+	Usuario obtenerGanador(Sorteo sorteo);
+	List<Usuario> listarParticipantes(Sorteo sorteo);
 }

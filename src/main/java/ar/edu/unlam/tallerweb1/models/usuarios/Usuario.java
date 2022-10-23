@@ -141,6 +141,11 @@ public class Usuario {
 	*/
 	public Usuario() {};
 	
+	public Usuario(String nombre, String email) {
+		setNombre(nombre);
+		setEmail(email);
+	}
+	
 	public Usuario(DatosRegistro datosRegistro) {
 		setNombre(datosRegistro.getNombre());
 		setNroDocumento(datosRegistro.getDni());
