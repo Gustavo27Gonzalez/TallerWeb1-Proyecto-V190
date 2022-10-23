@@ -56,11 +56,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
 	@Override
 	public List<Usuario> listarUsuarios() {
-		List<Usuario> usuarios = new LinkedList<Usuario>();
-		for (int i = 0; i < 5; i++) {
-			usuarios.add(new Usuario());
-		}
-		return usuarios;
+		return this.repositorioUsuario.listarUsuarios();
 	}
 
 	

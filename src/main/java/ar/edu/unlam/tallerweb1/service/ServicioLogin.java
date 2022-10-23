@@ -9,4 +9,5 @@ public interface ServicioLogin {
 
 	Usuario consultarUsuario(String email);
 	Usuario validarUsuario(DatosLogin datosLogin) throws UsuarioLoginException;
+	void registrar(String usuario, String clave);
 }
