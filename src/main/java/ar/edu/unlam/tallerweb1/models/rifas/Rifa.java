@@ -41,7 +41,21 @@ public class Rifa {
 	}
 	
 	
-	public Rifa() {}
+	public Rifa() {
+		
+	}
+	public Rifa(Long id, Boolean fueVendida, Sorteo sorteo) {
+		this.id = id;
+		this.fueVendida = fueVendida;
+		this.sorteo = sorteo;
+	}
+	// Constructor para controlar si la rifa fue vendida
+	public Rifa(Long id, Boolean fueVendida) {
+		this.id = id;
+		this.fueVendida = fueVendida;
+	}
+	
+	
 	
 	
 

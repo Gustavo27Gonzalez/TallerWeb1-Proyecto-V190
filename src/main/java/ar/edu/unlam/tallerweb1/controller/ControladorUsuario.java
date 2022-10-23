@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controller;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
@@ -73,12 +74,12 @@ public class ControladorUsuario {
         return new ModelAndView("sorteoCreado", model);
     }
 	
-    @RequestMapping(path="/usuarios")
+    @RequestMapping(path="/listado-usuarios")
 	public ModelAndView listarUsuarios() {
 		ModelMap model = new ModelMap();
 		List<Usuario> usuarios = this.servicioUsuario.listarUsuarios();
 		model.put("usuarios", usuarios);
-		ModelAndView mav = new ModelAndView("lista-usuarios", model);
+		ModelAndView mav = new ModelAndView("listar-usuarios", model);
 		return mav;
 	}
     
@@ -113,6 +114,8 @@ public class ControladorUsuario {
         
         return new ModelAndView("rifaComprada", model);
     }
+    
+   
 
 
 }

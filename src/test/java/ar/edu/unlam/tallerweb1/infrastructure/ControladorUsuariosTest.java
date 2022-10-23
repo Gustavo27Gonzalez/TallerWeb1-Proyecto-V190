@@ -2,7 +2,9 @@ package ar.edu.unlam.tallerweb1.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.LinkedList;
@@ -18,8 +20,11 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioLoginImpl;
 
 public class ControladorUsuariosTest extends SpringTest {
 
@@ -27,13 +32,60 @@ public class ControladorUsuariosTest extends SpringTest {
 	   private ControladorUsuario controladorUsuario;
 	   private ServicioSorteo servicioSorteo;
 	   private ServicioUsuario servicioUsuario;
-	   private HttpServletRequest request;
+	   //private HttpServletRequest request;
+	   private ServicioLogin servicioLogin;
+	   private RepositorioUsuario repositorioUsuario;
 
 	    @Before
 	    public void init(){
-	        this.servicioUsuario = mock(ServicioUsuario.class);
-	        this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario);
+	        servicioUsuario = mock(ServicioUsuario.class);
+	        repositorioUsuario = mock(RepositorioUsuario.class);
+	        
+	        controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario);
+	        
+	        servicioLogin = new ServicioLoginImpl(repositorioUsuario);
 	    }
+	    
+	    // Test Guardar Usuario Nuevo
+	    
+	    @Test
+	    public void guardarUsuarioNuevoSiElRegistroEsExitoso(){
+
+	        cuandoRegistroUnUsuario("admin@admin.com", "1234");
+
+	        entoncesSeGuardaElUsuario("admin@admin.com", "1234");
+	    }
+
+	    @Test(expected = Exception.class)
+	    public void lanzarErrorAlRegistrarUnUsuarioExistente(){
+	        dadoQueExisteElUsuario("usuario@no-registrado.com");
+
+	        cuandoRegistroUnUsuario("usuario@no-registrado.com");
+	    }
+
+	    private void dadoQueExisteElUsuario(String usuarioQueYaExiste) {
+	        Usuario usuario= new Usuario();
+	        when(repositorioUsuario.buscarPorEmail(usuarioQueYaExiste)).thenReturn(usuario);
+	    }
+
+	    private void cuandoRegistroUnUsuario(String usuario) {
+	        cuandoRegistroUnUsuario(usuario, "");
+	    }
+
+	    private void cuandoRegistroUnUsuario(String usuario, String clave) {
+	        servicioLogin.registrar(usuario, clave);
+	    }
+
+	    private void entoncesSeGuardaElUsuario(String usuario, String clave) {
+	        Usuario nuevoUsuario = new Usuario();
+	        nuevoUsuario.setEmail(usuario);
+	        nuevoUsuario.setPassword(clave);
+
+	        verify(repositorioUsuario).guardar(any(Usuario.class));
+	        // ArgumentMatchers
+	    }
+	    
+	    // Test Obtener Lista de Usuarios
 
 	    @Test
 	    public void alPedirTodosLosUsuariosObtengoLaListaCompleta(){
@@ -68,25 +120,6 @@ public class ControladorUsuariosTest extends SpringTest {
 	        when(this.servicioUsuario.listarUsuarios()).thenReturn(usuarios);
 	    }
 	    
-	    @Test
-	    public void queCreoUnUsuario(){
-	    	
-	    	// TODO: Rehacer Test
-	    	
-	    	String nombre = "Gustavo";
-	    	Integer dni = 44333222;
-	    	String email = "gustavo@gmail.com";
-	    	String contrasenia = "Pass1234";
-	    	
-	    	DatosRegistro dr = new DatosRegistro(nombre, dni ,email, contrasenia);
-	    	
-	    	Usuario u = new Usuario(dr);
-	    	
-	    	assertNotNull(u);
-	    	assertEquals(u.getNombre(),nombre);
-	    	assertEquals(u.getNroDocumento(),dni);
-	    	assertEquals(u.getEmail(),email);
-	    	assertEquals(u.getPassword(),contrasenia);
-	    }
+	   
 
 }

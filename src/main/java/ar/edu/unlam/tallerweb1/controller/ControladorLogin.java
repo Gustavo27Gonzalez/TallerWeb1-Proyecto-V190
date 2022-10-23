@@ -21,7 +21,7 @@ import exceptions.UsuarioLoginException;
 public class ControladorLogin {
 
 	// La anotacion @Autowired indica a Spring que se debe utilizar el contructor
-	// como mecanismo de inyección de dependencias,
+	// como mecanismo de inyecciÃ³n de dependencias,
 	// es decir, qeue lo parametros del mismo deben ser un bean de spring y el
 	// framewrok automaticamente pasa como parametro
 	// el bean correspondiente, en este caso, un objeto de una clase que implemente

@@ -57,10 +57,24 @@
 					<h3 class="card-title text-light"
 						style="color: #797D7F; text-align: center;">Listar Sorteos</h3>
 				</div>
-				<a class="btn btn-success" href="listado-sorteos" role="button">Listar</a>
+				<a class="btn btn-success" href="listado-sorteos" role="button">Ver Sorteos</a>
 
 			</div>
 		</div>
+		
+		<div class="col-sm-4 mb-4 align-self-stretch ">
+
+			<div class="card shadow-lg  bg-white">
+
+				<div class="card-body border border-dark carta-sorteos">
+					<h3 class="card-title text-light"
+						style="color: #797D7F; text-align: center;">Ver Usuarios</h3>
+				</div>
+				<a class="btn btn-success" href="listado-usuarios" role="button">Ver Usuarios</a>
+
+			</div>
+		</div>
+		
 	</div>
 	<!-------------------------------------------------------------------------->
 

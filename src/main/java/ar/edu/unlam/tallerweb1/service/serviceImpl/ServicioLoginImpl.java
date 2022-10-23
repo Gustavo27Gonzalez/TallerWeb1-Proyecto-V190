@@ -41,7 +41,6 @@ public class ServicioLoginImpl implements ServicioLogin {
 			throw new UsuarioLoginException("El mail: " + datosLogin.getEmail() + " no existe");
 		}
 		
-		
 		if (datosLogin.getEmail().equals(buscado.getEmail())) {
 			// valida que lo ingresado sea igual a la contraseña que el usuario buscado
 			// tiene guardada
@@ -51,5 +50,20 @@ public class ServicioLoginImpl implements ServicioLogin {
 				throw new UsuarioLoginException("La contraseña ingresada no es válida");
 		}
 		return buscado;
+	}
+
+	@Override
+	public void registrar(String usuario, String clave) {
+		if(yaExiste(usuario))
+			throw new RuntimeException("usuario existente");
+
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.setEmail(usuario);
+		nuevoUsuario.setPassword(clave);
+		repositorioUsuario.guardar(nuevoUsuario);
+	}
+
+	private boolean yaExiste(String usuario) {
+		return repositorioUsuario.buscarPorEmail(usuario) != null;
 	}
 }

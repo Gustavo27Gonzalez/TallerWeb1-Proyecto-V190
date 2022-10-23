@@ -38,6 +38,13 @@ public class ControladorSorteo {
 		ModelAndView mav = new ModelAndView("listar-sorteos", model);
 		return mav;
 	}
+
+	@RequestMapping(path="/participar", method = RequestMethod.GET)
+	public ModelAndView participar() {
+		//ModelMap model = new ModelMap();
+		
+		return new ModelAndView("participar");
+	}
 	
 	
 
