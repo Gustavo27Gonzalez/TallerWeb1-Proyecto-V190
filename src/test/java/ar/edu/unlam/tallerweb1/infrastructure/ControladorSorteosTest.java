@@ -38,7 +38,7 @@ public class ControladorSorteosTest extends SpringTest {
 	    @Before
 	    public void init(){
 	        this.servicioSorteo = mock(ServicioSorteo.class);
-	        this.controladorSorteo = new ControladorSorteo(this.servicioSorteo);
+	        this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null);
 	        this.servicioUsuario = mock(ServicioUsuario.class);
 	        //this.controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario);
 	    }

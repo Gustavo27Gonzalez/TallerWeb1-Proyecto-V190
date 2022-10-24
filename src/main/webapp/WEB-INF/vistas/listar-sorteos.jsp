@@ -66,7 +66,7 @@
 
 						<div class="d-flex justify-content-end">
 							<a class="btn btn-outline-info"
-								href="https://www.google.com.ar/?hl=es-419" role="button">Participar</a>
+								href="participar" role="button">Participar</a>
 						</div>
 
 					</div>
