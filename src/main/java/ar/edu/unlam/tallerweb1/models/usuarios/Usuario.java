@@ -154,6 +154,13 @@ public class Usuario {
 		setPassword(datosLogin.getPassword());
 		setEstaLogueado(estaLogueado);
 	}
+	// Datos de usuario que participa en sorteo
+	public Usuario(Long id, String nombre, String email, Boolean ganoUnSorteo) {
+		setId(id);
+		setNombre(nombre);
+		setEmail(email);
+		setGanoUnSorteoYa(ganoUnSorteo);
+	}
 
 	
 }
