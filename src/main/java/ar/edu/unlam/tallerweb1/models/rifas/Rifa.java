@@ -26,6 +26,7 @@ public class Rifa {
 	private Sorteo sorteo;
 	@OneToOne(mappedBy = "rifa")
 	private Compra compra;
+	private Rifa rifa;
 	
 	public Long getId() {
 		return id;
