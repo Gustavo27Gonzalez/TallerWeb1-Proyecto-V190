@@ -140,7 +140,7 @@ public class Usuario {
 	}
 	*/
 	public Usuario() {};
-	
+
 	public Usuario(DatosRegistro datosRegistro) {
 		setNombre(datosRegistro.getNombre());
 		setNroDocumento(datosRegistro.getDni());

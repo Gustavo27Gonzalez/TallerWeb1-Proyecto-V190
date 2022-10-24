@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +43,7 @@ public class ControladorLoginTest extends SpringTest{
 		DatosLogin login = new DatosLogin("email@test.com", "test123");
 		givenExisteUnUsuarioQueQuiereLoguearseSeValidaCorrectamente(login);
 		givenRealizoLaPeticionExitosaElControladorMeRedirijeALaVistaDeInicioCorrecta(login);
-		ModelAndView mav = whenInicioSesionIngresoAlIndexCorrecto(login, request);
+		ModelAndView mav = whenInicioSesionIngresoAlIndexCorrecto(login);
 		thenInicioSesionYMeRedireccionaALaVistaDeInicioCorrectaYElUsuarioSeSeteaComoLogueado(mav, "redirect:/login-index");
 	}
 
@@ -52,14 +54,16 @@ public class ControladorLoginTest extends SpringTest{
 	
 	private void givenRealizoLaPeticionExitosaElControladorMeRedirijeALaVistaDeInicioCorrecta(DatosLogin login){
 		givenSession();
-		when(this.controladorLogin.validarLogin(login, this.request)).thenReturn(new ModelAndView("redirect:/login-index"));
+		//Mockito.doNothing().when(request).getSession().setAttribute("login", login);
+		doThrow(UsuarioLoginException.class).when(this.controladorLogin).validarLogin(login, request);
+		//when(this.controladorLogin.validarLogin(login, this.request)).thenReturn(new ModelAndView("redirect:/login-index"));
 	}
 	
 	private void givenSession(){
 		when(this.request.getSession()).thenReturn(this.session);
 	}
 
-	private ModelAndView whenInicioSesionIngresoAlIndexCorrecto(DatosLogin datosLogin, HttpServletRequest request) {
+	private ModelAndView whenInicioSesionIngresoAlIndexCorrecto(DatosLogin datosLogin) {
 		return this.controladorLogin.validarLogin(datosLogin, request);
 	}
 
