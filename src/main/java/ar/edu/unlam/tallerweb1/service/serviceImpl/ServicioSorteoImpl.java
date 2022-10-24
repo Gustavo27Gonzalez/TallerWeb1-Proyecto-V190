@@ -69,6 +69,12 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		return this.sorteoRepository.listarParticipantes(sorteo);
 	}
 
+	@Override
+	public List<Rifa> listarRifas(Sorteo sorteo) {
+		buscarPorId(sorteo.getId());
+		return this.sorteoRepository.listarRifas(sorteo);
+	}
+
 	
 
 	

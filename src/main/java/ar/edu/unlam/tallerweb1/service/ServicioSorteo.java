@@ -15,4 +15,5 @@ public interface ServicioSorteo {
 	Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List<Rifa> rifas);
 	Usuario obtenerGanador(Sorteo sorteo);
 	List<Usuario> listarParticipantes(Sorteo sorteo);
+	List<Rifa> listarRifas(Sorteo sorteo);
 }

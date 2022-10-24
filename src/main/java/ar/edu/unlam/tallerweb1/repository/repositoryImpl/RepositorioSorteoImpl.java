@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
@@ -73,6 +74,14 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	public List<Usuario> listarParticipantes(Sorteo sorteo) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
+	}
+
+	@Override
+	public List<Rifa> listarRifas(Sorteo sorteo) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Rifa.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
 	}

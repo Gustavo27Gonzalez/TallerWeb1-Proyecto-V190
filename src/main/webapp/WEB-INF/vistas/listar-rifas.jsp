@@ -12,7 +12,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Sortea2 |  Listado de sorteos</title>
+<title>Sortea2 |  Listado de rifas</title>
 </head>
 <body>
 
@@ -50,54 +50,22 @@
 
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
-		<c:forEach var="SORTEO" items="${sorteos}">
+		<c:forEach var="RIFA" items="${rifas}">
 			<div class="col-sm-4 mb-4 align-self-stretch ">
 				<div class="card shadow-lg  bg-white">
 
 					<div class="card-body border border-dark carta-sorteos">
 						<h3 class="card-title text-light"
-							style="color: #797D7F; text-align: center;">${SORTEO.nombre}</h3>
+							style="color: #797D7F; text-align: center;">${RIFA.sorteo}</h3>
 						<p class="card-text text-light" style="color: #424949">ID:
-							${SORTEO.id}</p>
-						<p class="card-text text-light" style="color: #797D7F">Descripcion:
-							${SORTEO.descripcion}</p>
-						<p class="card-text text-light" style="color: #797D7F">Precio:
-							$${SORTEO.precioRifa}</p>
-
-						<div class="d-flex justify-content-end">
-							<a class="btn btn-outline-info"
-								href="listado-rifas" role="button">Ver</a>
-						</div>
+							${RIFA.id}</p>
+						
 
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-
-
-	<!--  <div class="container" style="text-align: center;">
-		<table class="table tabla">
-			<thead>
-				<tr class="font-weight-light">
-					<th scope="col">ID sorteo</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Descripción</th>
-					<th scope="col">Precio $ARG</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="HOLA" items="${sorteos}">
-					<tr>
-						<td>${SORTEO.id}</td>
-						<td>${SORTEO.nombre}</td>
-						<td>${SORTEO.descripcion}</td>
-						<td>${SORTEO.precioRifa}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>-->
 
 
 </body>

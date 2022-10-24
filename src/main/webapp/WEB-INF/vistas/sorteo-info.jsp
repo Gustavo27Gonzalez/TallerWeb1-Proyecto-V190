@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -12,14 +12,14 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Sortea2 |  Listado de sorteos</title>
+<title>Sortea2 | Info del Sorteo</title>
 </head>
 <body>
 
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
-	
+
 	<!-- ----------------------------------------------------------------------------------- -->
 	<div class="d-flex justify-content-center">
 		<nav class="navbar navbar-expand-lg "
@@ -50,7 +50,7 @@
 
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
-		<c:forEach var="SORTEO" items="${sorteos}">
+		<c:forEach var="SORTEO" items="${sorteo}">
 			<div class="col-sm-4 mb-4 align-self-stretch ">
 				<div class="card shadow-lg  bg-white">
 
@@ -64,9 +64,23 @@
 						<p class="card-text text-light" style="color: #797D7F">Precio:
 							$${SORTEO.precioRifa}</p>
 
+						<div class="col-sm-4 mb-4 align-self-stretch ">
+
+							<div class="card shadow-lg  bg-white">
+
+								<div class="card-body border border-dark carta-sorteos">
+									<h3 class="card-title text-light"
+										style="color: #797D7F; text-align: center;">Ver Rifas</h3>
+								</div>
+								<a class="btn btn-success" href="listado-usuarios" role="button">Ver
+									Rifas</a>
+
+							</div>
+						</div>
+
 						<div class="d-flex justify-content-end">
 							<a class="btn btn-outline-info"
-								href="listado-rifas" role="button">Ver</a>
+								href="https://www.google.com.ar/?hl=es-419" role="button">Participar</a>
 						</div>
 
 					</div>
@@ -74,31 +88,6 @@
 			</div>
 		</c:forEach>
 	</div>
-
-
-	<!--  <div class="container" style="text-align: center;">
-		<table class="table tabla">
-			<thead>
-				<tr class="font-weight-light">
-					<th scope="col">ID sorteo</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Descripción</th>
-					<th scope="col">Precio $ARG</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="HOLA" items="${sorteos}">
-					<tr>
-						<td>${SORTEO.id}</td>
-						<td>${SORTEO.nombre}</td>
-						<td>${SORTEO.descripcion}</td>
-						<td>${SORTEO.precioRifa}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>-->
-
 
 </body>
 </html>

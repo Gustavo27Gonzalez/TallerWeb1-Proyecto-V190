@@ -33,6 +33,7 @@ public class ControladorSorteosTest extends SpringTest {
 	   public static final int CANTIDAD_SORTEOS = 5;
 	   public static final int CANTIDAD_USUARIOS = 4;
 	   public static final int CANTIDAD_PARTICIPANTES = 3;
+	   public static final int CANTIDAD_RIFAS = 50;
 	   private ControladorSorteo controladorSorteo;
 	   private ControladorUsuario controladorUsuario;
 	   private ServicioSorteo servicioSorteo;
@@ -85,7 +86,7 @@ public class ControladorSorteosTest extends SpringTest {
 //	        this.servicioSorteo = new ServicioSorteoImpl();
 	    	
 	        List<Sorteo> sorteos = new LinkedList<>();
-	        for(int i = 0; i<5; i++) {
+	        for(int i = 0; i<cantidadSorteos; i++) {
 	        	sorteos.add(new Sorteo());
 	        	this.repositorioSorteo.crear(new Sorteo());
 	        }
@@ -93,10 +94,31 @@ public class ControladorSorteosTest extends SpringTest {
 	        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
 	    }
 	    
-	    
-	    // Test quiero participar en 1 sorteo
+	    // Test pedir listado de rifas de un sorteo
 	    
 	    @Test
+	    public void alPedirTodasLasRifasObtengoLaListaCompleta(){
+	        // Preparacion
+	        Sorteo sorteo = dadoQueExiste1Sorteo(1);
+
+	        // Ejecucion
+	        ModelAndView mav = cuandoListoRifas(sorteo);
+
+	        // Verificacion
+	        entoncesEncuentro(mav, CANTIDAD_RIFAS);
+	        
+	        entoncesMeLLevaALaVista(mav, "listar-rifas");
+	    }
+	    
+	    
+	    
+	    private ModelAndView cuandoListoRifas(Sorteo sorteo) {
+	    	return controladorSorteo.listarRifas(sorteo);
+		}
+	    
+	    // Test quiero participar en 1 sorteo
+
+		@Test
 	    public void quieroParticiparEnUnSorteo() {
 	    	givenHayUnSorteoExistenteQueQuieroParticipar();
 	    	ModelAndView model = whenGeneroLaAccionDeParticiparEnUnSorteo();
@@ -143,6 +165,8 @@ public class ControladorSorteosTest extends SpringTest {
 	        ModelAndView mav = cuandoListoParticipantes(sorteo);
 
 	        // Verificacion
+	        givenHayUnSorteoExistenteQueQuieroParticipar();
+	    	ModelAndView model = whenGeneroLaAccionDeParticiparEnUnSorteo();
 	        entoncesEncuentroParticipantes(mav, CANTIDAD_PARTICIPANTES);
 	        
 	        entoncesMeLLevaALaVistaParticipantes(mav, "lista-participantes");
@@ -152,8 +176,8 @@ public class ControladorSorteosTest extends SpringTest {
 	        assertThat(mav.getViewName()).isEqualTo(vistaEsperada);
 	    }
 
-	    private void entoncesEncuentroParticipantes(ModelAndView mav, int cantidadUsuariosEsperados){
-	        assertThat((List<Usuario>)mav.getModel().get("usuarios")).hasSize(cantidadUsuariosEsperados);
+	    private void entoncesEncuentroParticipantes(ModelAndView mav, int cantidadParticipantesEsperados){
+	        assertThat((List<Usuario>)mav.getModel().get("participantes")).hasSize(cantidadParticipantesEsperados);
 	    }
 
 	    private ModelAndView cuandoListoParticipantes(Sorteo sorteo){

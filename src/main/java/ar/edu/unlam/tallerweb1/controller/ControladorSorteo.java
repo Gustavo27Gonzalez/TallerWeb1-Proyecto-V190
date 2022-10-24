@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
@@ -42,8 +43,8 @@ public class ControladorSorteo {
 
 	@RequestMapping(path="/participar", method = RequestMethod.GET)
 	public ModelAndView participar() {
-		//ModelMap model = new ModelMap();
-		
+		ModelMap model = new ModelMap();
+		//this.servicioSorteo.participar(sorteo, usuario, rifa);
 		return new ModelAndView("participar");
 	}
 	
@@ -64,7 +65,18 @@ public class ControladorSorteo {
 		ModelAndView mav = new ModelAndView("ganador", model);
 		return mav;
 	}
+
+	@RequestMapping(path="/listado-rifas")
+	public ModelAndView listarRifas(Sorteo sorteo) {
+		ModelMap model = new ModelMap();
+		List<Rifa> rifas = this.servicioSorteo.listarRifas(sorteo);
+		model.put("rifas", rifas);
+		ModelAndView mav = new ModelAndView("listar-rifas", model);
+		return mav;
+	}
 	
-	
+	public ModelAndView sorteoInfo(Sorteo sorteo){
+		return new ModelAndView("redirect:/listado-rifas");
+	}
 
 }
