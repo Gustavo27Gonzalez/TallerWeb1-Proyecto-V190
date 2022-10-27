@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
+import ar.edu.unlam.tallerweb1.service.ServicioRifa;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
 @Controller
@@ -22,12 +24,15 @@ public class ControladorSorteo {
 	
 	@Autowired
 	ServicioSorteo servicioSorteo;
+	@Autowired
+	ServicioRifa servicioRifa;
 	
 	private List<Sorteo> sorteos;
 	
 	@Autowired
-	public ControladorSorteo(ServicioSorteo servicioSorteo) {
+	public ControladorSorteo(ServicioSorteo servicioSorteo, ServicioRifa servicioRifa) {
 		this.servicioSorteo = servicioSorteo;
+		this.servicioRifa = servicioRifa;
 	}
 
 	@RequestMapping(path="/listado-sorteos", method = RequestMethod.GET)
@@ -39,12 +44,22 @@ public class ControladorSorteo {
 		return mav;
 	}
 
-	@RequestMapping(path="/participar", method = RequestMethod.GET)
+	@RequestMapping(path="/google", method = RequestMethod.GET)
 	public ModelAndView participar() {
 		//ModelMap model = new ModelMap();
 		
-		return new ModelAndView("participar");
+		return new ModelAndView("asdas");
 	}
+
+	@RequestMapping(path="/participar", method = RequestMethod.GET)
+	public ModelAndView listarRifas() {
+		ModelMap model = new ModelMap();
+		List<Rifa> rifas = this.servicioRifa.listarRifas();
+		model.put("rifas", rifas);
+		ModelAndView mav = new ModelAndView("participar", model);
+		return mav;
+	}
+	
 	
 	
 
