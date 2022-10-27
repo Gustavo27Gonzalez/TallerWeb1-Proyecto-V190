@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.controller;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
-import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
@@ -41,37 +40,7 @@ public class ControladorUsuario {
     }
     
     
-    @RequestMapping(path="/crearSorteo", method = RequestMethod.GET)
-    public ModelAndView crearSorteo() {
-    	
-    	ModelMap modelo = new ModelMap();
-    	modelo.put("datosSorteo", new DatosSorteo());
-    	
-    	return new ModelAndView("crearSorteo", modelo);
-    }
     
-    @RequestMapping(path = "/validar-crearSorteo", method = RequestMethod.POST)
-	public ModelAndView validarCrearSorteo(@ModelAttribute("datosSorteo") DatosSorteo datosSorteo, HttpServletRequest request) {
-		ModelMap model = new ModelMap();
-
-		try{
-			servicioSorteo.crear(datosSorteo);
-        }catch(RuntimeException e){
-            e.printStackTrace();
-        }
-        return sorteoCreadoExitosamente();
-    }
-
-    private ModelAndView sorteoCreadoExitosamente(){
-        return new ModelAndView("redirect:/sorteoCreado");
-    }
-    
-    @RequestMapping(path="/sorteoCreado", method = RequestMethod.GET)
-    public ModelAndView sorteoCreado(){
-        ModelMap model = new ModelMap();
-        
-        return new ModelAndView("sorteoCreado", model);
-    }
 	
     @RequestMapping(path="/usuarios")
 	public ModelAndView listarUsuarios() {
@@ -81,7 +50,7 @@ public class ControladorUsuario {
 		ModelAndView mav = new ModelAndView("lista-usuarios", model);
 		return mav;
 	}
-    
+    /*
     @RequestMapping(path="/comprarRifa", method = RequestMethod.GET)
     public ModelAndView comprarRifa() {
     	
@@ -93,7 +62,6 @@ public class ControladorUsuario {
     
     @RequestMapping(path = "/validar-ComprarRifa", method = RequestMethod.POST)
 	public ModelAndView validarComprarRifa(@ModelAttribute("datosCompra") DatosCompra datosCompra, HttpServletRequest request) {
-		ModelMap model = new ModelMap();
 
 		try{
 			servicioUsuario.comprar(datosCompra);
@@ -113,6 +81,6 @@ public class ControladorUsuario {
         
         return new ModelAndView("rifaComprada", model);
     }
-
+	*/
 
 }

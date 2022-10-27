@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.service;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
@@ -13,4 +14,6 @@ public interface ServicioSorteo {
 	Sorteo buscarPorId(Long id);
 	List<Sorteo> listarSorteos();
 	Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List<Rifa> rifas);
+	Sorteo obtenerDatosDelSorteo(Sorteo sorteo);
+	void comprar(DatosCompra datosCompra);
 }

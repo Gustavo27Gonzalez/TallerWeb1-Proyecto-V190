@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 
@@ -67,5 +68,15 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Sorteo obtenerSorteo(Sorteo sorteo) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Sorteo) session.createCriteria(Sorteo.class)
+				//.add(Restrictions.eq("id", id))
+				.uniqueResult();
+	}
+
+	
 
 }

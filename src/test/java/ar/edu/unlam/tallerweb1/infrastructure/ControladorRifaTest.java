@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.ControladorSorteo;
 import ar.edu.unlam.tallerweb1.controller.ControladorUsuario;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
@@ -39,18 +40,42 @@ public class ControladorRifaTest extends SpringTest {
 		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
 		
 	}
+	
+	// Comprar Rifa de Sorteo
+	
+	@Test void queSePuedeComprarUnaRifa() {
+		Usuario usuario = givenQueExiste1Usuario();
+		Sorteo sorteo = givenQueExiste1Sorteo();
+		Rifa rifa = givenQueExiste1Rifa(sorteo);
+		
+		ModelAndView mav = whenQuieroComprarUnaRifa(usuario, sorteo, rifa);
+		
+		thenMeMuestraLaPantallaDeCompra(mav, "comprar");
+	}
+	
+	private Usuario givenQueExiste1Usuario() {
+		DatosRegistro datosRegistro = new DatosRegistro("John", 12345678, "john.doe@mail.com", "1234");
+		return new Usuario(datosRegistro);
+	}
+
+	private Rifa givenQueExiste1Rifa(Long id) {
+		Sorteo s = this.servicioSorteo.obtenerSorteoPorId(id);
+		return new Rifa(datosRifa);
+	}
+
+	// Listar Rifas en Un Sorteo
 
 	@Test
 	public void queSePuedanListarRifasEnUnSorteo() {
 		Sorteo sorteo = givenQueExiste1Sorteo();
+		
 		ModelAndView mav = whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles();
 		thenMeMuestraLasRifasDisponibles(mav, "participar");
 
 	}
 
 	private void thenMeMuestraLasRifasDisponibles(ModelAndView model, String vistaEsperada) {
-		assertThat(model.getViewName()).isEqualTo(vistaEsperada);
-		
+		assertThat(model.getViewName()).isEqualTo(vistaEsperada);	
 	}
 
 	private ModelAndView whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles() {

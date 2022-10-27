@@ -68,25 +68,6 @@ public class ControladorUsuariosTest extends SpringTest {
 	        when(this.servicioUsuario.listarUsuarios()).thenReturn(usuarios);
 	    }
 	    
-	    @Test
-	    public void queCreoUnUsuario(){
-	    	
-	    	// TODO: Rehacer Test
-	    	
-	    	String nombre = "Gustavo";
-	    	Integer dni = 44333222;
-	    	String email = "gustavo@gmail.com";
-	    	String contrasenia = "Pass1234";
-	    	
-	    	DatosRegistro dr = new DatosRegistro(nombre, dni ,email, contrasenia);
-	    	
-	    	Usuario u = new Usuario(dr);
-	    	
-	    	assertNotNull(u);
-	    	assertEquals(u.getNombre(),nombre);
-	    	assertEquals(u.getNroDocumento(),dni);
-	    	assertEquals(u.getEmail(),email);
-	    	assertEquals(u.getPassword(),contrasenia);
-	    }
+	    
 
 }

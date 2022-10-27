@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repository;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
 public interface RepositorioSorteo {
@@ -14,4 +15,5 @@ public interface RepositorioSorteo {
 	List <Sorteo> buscarSorteosPorPrecioRifa(Double precio);
 	List <Sorteo> buscarSorteosConRifasDisponibles();
 	// Pensar Qué otros métodos implementar
+	Sorteo obtenerSorteo(Sorteo sorteo);
 }

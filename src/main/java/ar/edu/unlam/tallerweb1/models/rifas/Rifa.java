@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRifa;
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 
@@ -26,8 +27,6 @@ public class Rifa {
 	private Sorteo sorteo;
 	@OneToOne(mappedBy = "rifa")
 	private Compra compra;
-	private Rifa rifa;
-	
 	public Long getId() {
 		return id;
 	}
@@ -40,24 +39,32 @@ public class Rifa {
 	public void setFueVendida(Boolean fueVendida) {
 		this.fueVendida = fueVendida;
 	}
-	
-	
-	public Rifa() {
-		
+	public Sorteo getSorteo() {
+		return sorteo;
 	}
-	public Rifa(Long id, Boolean fueVendida, Sorteo sorteo) {
-		this.id = id;
-		this.fueVendida = fueVendida;
+	public void setSorteo(Sorteo sorteo) {
 		this.sorteo = sorteo;
 	}
-	// Constructor para controlar si la rifa fue vendida
-	public Rifa(Long id, Boolean fueVendida) {
-		this.id = id;
-		this.fueVendida = fueVendida;
+	public Compra getCompra() {
+		return compra;
+	}
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 	
+	public Rifa() {}
 	
+	public Rifa(Long id) {
+		setId(id);
+	}
+
+	public Rifa(Long id, Boolean fueVendida) {
+		setId(id);
+		setFueVendida(fueVendida);
+	}
 	
-	
+	public Rifa(DatosRifa datosRifa) {
+		setId(datosRifa.getRifaId());
+	}
 
 }
