@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 
@@ -28,6 +29,12 @@ public class RepositorioRifaImpl implements RepositorioRifa{
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .list();
 	}
+
+	@Override
+	public Compra comprar(Compra compra) {
+		return (Compra)this.sessionFactory.getCurrentSession().save(compra);
+	}
+
 
 	
 }

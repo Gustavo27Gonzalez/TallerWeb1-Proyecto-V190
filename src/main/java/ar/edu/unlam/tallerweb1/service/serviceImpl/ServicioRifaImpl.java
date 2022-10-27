@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 import ar.edu.unlam.tallerweb1.service.ServicioRifa;
@@ -25,6 +26,12 @@ public class ServicioRifaImpl implements ServicioRifa{
 		
 		return this.repositorioRifa.listarRifas();
 	}
+
+	@Override
+	public Compra comprarRifa(Compra compraRifa) {
+		return this.repositorioRifa.comprar(compraRifa);
+	}
+
 
 	
 }

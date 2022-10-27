@@ -13,8 +13,13 @@ import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioRifaImpl;
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
@@ -23,6 +28,7 @@ public class SorteoServiceTest extends SpringTest{
 	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO);
 	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
 	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
+	
 	
 	@Before
 	public void init() {
@@ -67,7 +73,7 @@ public class SorteoServiceTest extends SpringTest{
 	@Test
 	public void quieroVerLaListaDeSorteosDisponibles(){
 		givenQueTengoUnaListaDeSorteosQueFueronCreados();
-		List listaSorteos = whenSolicitoLosSorteosMeLosLista();
+		List<Sorteo> listaSorteos = whenSolicitoLosSorteosMeLosLista();
 		thenPuedoVisualizarLosSorteos(listaSorteos);
 	}
 
@@ -75,21 +81,22 @@ public class SorteoServiceTest extends SpringTest{
 		assertThat(listaSorteos).asList();
 	}
 
-	private List whenSolicitoLosSorteosMeLosLista() {
+	private List<Sorteo> whenSolicitoLosSorteosMeLosLista() {
 		return this.sorteoService.listarSorteos();
 	}
 
 	private void givenQueTengoUnaListaDeSorteosQueFueronCreados() {
-		List listaSorteos = obtenerSorteos();
+		List<Sorteo> listaSorteos = obtenerSorteos();
 		when(this.sorteoService.listarSorteos()).thenReturn(listaSorteos);
 	}
 
-	private List obtenerSorteos() {
-		List sorteos = new ArrayList<Sorteo>();
+	private List<Sorteo>obtenerSorteos() {
+		List<Sorteo> sorteos = new ArrayList<Sorteo>();
 		sorteos.add(SORTEO);
 		sorteos.add(SORTEO);
 		sorteos.add(SORTEO);
 		return sorteos;
 	}
+	
 	
 }
