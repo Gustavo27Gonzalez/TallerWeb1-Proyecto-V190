@@ -59,5 +59,31 @@ public class ServiceSorteoTest extends SpringTest {
 	            
 	        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
 	    }
+	    
+	    
+	    //***********
+	    
+	    @Test
+	    public void queBuscoUnSorteoPorsuIdLoEncuentro() {
+	    	Sorteo sorteoEsperado = dadoQueExiste1Sorteo();
+	    	
+	    	Sorteo sorteoObtenido = whenRealizoLaBusquedaDelSorteoPorId(1L);
+	    	
+	    	EntoncesObtengoElSorteo(sorteoObtenido, sorteoEsperado );
+	    }
+
+		private void EntoncesObtengoElSorteo(Sorteo sorteoObtenido, Sorteo sorteoEsperado) {
+			assertThat(sorteoObtenido.getNombre()).equals(sorteoEsperado.getNombre());
+		}
+
+		private Sorteo whenRealizoLaBusquedaDelSorteoPorId(Long id) {
+			return (Sorteo) when(this.servicioSorteo.buscarPorId(id)).thenReturn(new Sorteo());
+		}
+
+		private Sorteo dadoQueExiste1Sorteo() {
+			Sorteo s = new Sorteo("SorteoPrueba");
+			//this.servicioSorteo.crear(s);
+			return s;
+		}
 
 }

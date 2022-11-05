@@ -91,6 +91,10 @@ public class Sorteo {
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
 	}
+	
+	public Sorteo(String nombre) {
+		setNombre(nombre);
+	}
     
     
 }
