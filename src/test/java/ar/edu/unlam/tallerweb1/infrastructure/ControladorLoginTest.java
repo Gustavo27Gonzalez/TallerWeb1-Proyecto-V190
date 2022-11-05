@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.infrastructure;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -52,7 +54,9 @@ public class ControladorLoginTest extends SpringTest{
 	
 	private void givenRealizoLaPeticionExitosaElControladorMeRedirijeALaVistaDeInicioCorrecta(DatosLogin login){
 		givenSession();
-		when(this.controladorLogin.validarLogin(login, this.request)).thenReturn(new ModelAndView("redirect:/login-index"));
+		//Mockito.doNothing().when(request).getSession().setAttribute("login", login);
+		doThrow(UsuarioLoginException.class).when(this.controladorLogin).validarLogin(login, request);
+		//when(this.controladorLogin.validarLogin(login, this.request)).thenReturn(new ModelAndView("redirect:/login-index"));
 	}
 	
 	private void givenSession(){

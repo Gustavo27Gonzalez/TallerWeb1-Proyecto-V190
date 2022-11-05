@@ -27,7 +27,5 @@ public class DatosCompra {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
 
 }

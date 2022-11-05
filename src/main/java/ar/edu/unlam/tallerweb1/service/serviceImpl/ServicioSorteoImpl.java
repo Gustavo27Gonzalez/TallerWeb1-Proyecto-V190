@@ -54,7 +54,6 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		DatosCompra datos = new DatosCompra(rifa, usuarioParticipante);
 		nuevoSorteo.setCantidadRifas(nuevoSorteo.getCantidadRifas()-rifas.size());
 		//Compra compraRifa = new Compra();
-		
 		return nuevoSorteo.getCantidadRifas().equals(7);
 	}
 
