@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.models.sorteos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -90,6 +91,24 @@ public class Sorteo {
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(cantidadRifas, descripcion, id, nombre, precioRifa, premio, rifas);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sorteo other = (Sorteo) obj;
+		return Objects.equals(cantidadRifas, other.cantidadRifas) && Objects.equals(descripcion, other.descripcion)
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(precioRifa, other.precioRifa) && Objects.equals(premio, other.premio)
+				&& Objects.equals(rifas, other.rifas);
 	}
     
     

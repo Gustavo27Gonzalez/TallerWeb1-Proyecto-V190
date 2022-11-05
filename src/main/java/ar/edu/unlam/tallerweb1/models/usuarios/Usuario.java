@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.models.usuarios;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -160,6 +161,34 @@ public class Usuario {
 		setNombre(nombre);
 		setEmail(email);
 		setGanoUnSorteoYa(ganoUnSorteo);
+	}
+
+	public Usuario(String nombre) {
+		setNombre(nombre);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cuentaEliminada, email, estaLogueado, fechaNacimiento, ganoUnSorteoYa, id, nombre,
+				nroDocumento, password, referidos, rifasCompradas, tipoDocumento);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(cuentaEliminada, other.cuentaEliminada) && Objects.equals(email, other.email)
+				&& Objects.equals(estaLogueado, other.estaLogueado)
+				&& Objects.equals(fechaNacimiento, other.fechaNacimiento)
+				&& Objects.equals(ganoUnSorteoYa, other.ganoUnSorteoYa) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(nroDocumento, other.nroDocumento)
+				&& Objects.equals(password, other.password) && Objects.equals(referidos, other.referidos)
+				&& Objects.equals(rifasCompradas, other.rifasCompradas) && tipoDocumento == other.tipoDocumento;
 	}
 
 	

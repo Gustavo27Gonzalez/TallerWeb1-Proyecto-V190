@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.models.rifas;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,6 +55,22 @@ public class Rifa {
 	public Rifa(Long id, Boolean fueVendida) {
 		this.id = id;
 		this.fueVendida = fueVendida;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(compra, fueVendida, id, sorteo);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rifa other = (Rifa) obj;
+		return Objects.equals(compra, other.compra) && Objects.equals(fueVendida, other.fueVendida)
+				&& Objects.equals(id, other.id) && Objects.equals(sorteo, other.sorteo);
 	}
 	
 	

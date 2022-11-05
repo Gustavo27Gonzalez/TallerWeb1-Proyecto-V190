@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.models.compra;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,6 +61,24 @@ public class Compra {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, rifa, usuario);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Compra other = (Compra) obj;
+		return Objects.equals(id, other.id) && Objects.equals(rifa, other.rifa)
+				&& Objects.equals(usuario, other.usuario);
 	}
 	
 	
