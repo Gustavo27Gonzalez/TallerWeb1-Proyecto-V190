@@ -63,6 +63,16 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 		return usuarios;
 	}
 
+	@Override
+	public Usuario buscarPorEmail(String email) {
+		return this.repositorioUsuario.buscarPorEmail(email);
+	}
+
+	@Override
+	public void enviarMailRecuperacionContraseña(String email) {
+		
+	}
+
 	
 
    

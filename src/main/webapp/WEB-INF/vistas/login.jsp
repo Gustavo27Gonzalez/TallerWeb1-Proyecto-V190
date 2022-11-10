@@ -43,7 +43,8 @@
 
 			<div class="d-flex justify-content-between pt-2">
 				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Registrarme</a>
-				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Olvidé mi Contraseña</a>
+				<a class="btn btn-outline-info" href="recuperar-contraseña" role="button">Olvidé mi Contraseña</a>
+				<a class="btn btn-outline-info" href="compras" role="button">PROBAR</a>
 			</div>
 
 			</br>
@@ -58,7 +59,7 @@
 		</div>
 
 	</div>
-
+	
 
 </body>
 </html>

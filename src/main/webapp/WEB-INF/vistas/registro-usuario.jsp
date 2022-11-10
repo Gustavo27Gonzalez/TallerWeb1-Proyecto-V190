@@ -10,66 +10,57 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<div id="loginbox" style="margin-top: 50px;"
-			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 add-margin-b2">
-			<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
-			<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
-			<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-			<form:form action="registrar-usuario" method="POST"
-				modelAttribute="datosRegistro">
+
+	<h1 class="display-3">Registrarse</h1>
+
+	<div class="d-flex justify-content-center">
+
+		<div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
+			<form:form action="registrar-usuario" method="POST" modelAttribute="datosRegistro">
 
 				<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
-				<div class="form-outline mb-4">
-					<form:label class="form-label" for="nombre" path="nombre">Nombre</form:label>
-					<form:input path="nombre" type="text" id="nombre" placeholder="Ingrese su Nombre..."
-						class="form-control" />
+				<div class="mb-2">
+					<form:label class="form-label text-light" for="nombre" path="nombre">Nombre(*)</form:label>
+					<form:input path="nombre" type="text" id="nombre" placeholder="Ingresar nombre" class="form-control" />
 				</div>
-				
-				</br>
-				
-				<div class="form-outline mb-4">
-					<form:label class="form-label" for="dni" path="dni">DNI</form:label>
-					<form:input path="dni" type="text" id="dni" placeholder="Ingrese su DNI..."
-						class="form-control" />
+
+
+				<div class="mb-2">
+					<form:label class="form-label text-light" for="dni" path="dni">DNI(*)</form:label>
+					<form:input path="dni" type="text" id="dni" placeholder="Ingresar número de documento" class="form-control" />
 				</div>
-				
-				</br>
-				
-				<div class="form-outline mb-4">
-					<form:label class="form-label" for="email" path="email">Email</form:label>
-					<form:input path="email" type="email" id="email" placeholder="Ingrese su Email..."
-						class="form-control" />
+
+
+				<div class="mb-2">
+					<form:label class="form-label text-light" for="email" path="email">Email(*)</form:label>
+					<form:input path="email" type="email" id="email" placeholder="Ingresar email" class="form-control" />
 				</div>
-				
-				</br>
-				
-				<div class="form-outline mb-4">
-					<form:label class="form-label" for="password" path="password">Contraseña</form:label>
-					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..."
-						class="form-control" />
+
+
+				<div class="mb-2">
+					<form:label class="form-label text-light" for="password" path="password">Contraseña(*)</form:label>
+					<form:input path="password" type="password" id="password" placeholder="Ingresar contraseña" class="form-control" />
 				</div>
-				
-				</br>
-				
-				<div class="form-outline mb-4">
-					<form:label class="form-label" for="repitePassword" path="repitePassword">Repita su Contraseña</form:label>
-					<form:input path="repitePassword" type="password" id="repitePassword" placeholder="Ingrese Nuevamente su Contraseña..."
-						class="form-control" />
+
+
+				<div class="mb-4">
+					<form:label class="form-label text-light" for="repitePassword" path="repitePassword">Repita su Contraseña(*)</form:label>
+					<form:input path="repitePassword" type="password" id="repitePassword" placeholder="Ingresar nuevamente su contraseña" class="form-control" />
 				</div>
-				
-				</br>
-				
-				<button class="btn btn-lg btn-primary btn-block add-margin-b2"
-					type="Submit">Registrarme</button>
-					
-				</br>
-					
+
+				<button class="btn btn-lg btn-success btn-block mb-3" type="Submit">Registrarme</button>
+
+
 			</form:form>
 			
-			<a href="login"	>¿Ya posee una cuenta? <strong style="color: black;">Ingrese con sus datos</strong></a>
-			
-			
+			<div class="container">
+				<div class="d-flex align-items-center justify-content-center">
+					<p class="text-light" style="font-size: 25px;">¿Ya posee una cuenta?</p>
+					<p class="text-light ml-2" style="font-size: 18px;">Ingrese con sus datos <strong><a href="login"> acá</a></strong></p>
+				</div>
+			</div>
+
+
 			<%--Bloque que es visible si el elemento error no esta vacio	--%>
 			<c:if test="${not empty error}">
 				<h4>

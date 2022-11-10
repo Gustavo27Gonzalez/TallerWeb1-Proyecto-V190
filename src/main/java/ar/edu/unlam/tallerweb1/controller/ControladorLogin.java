@@ -30,14 +30,9 @@ public class ControladorLogin {
 	// paquete de los indicados en
 	// applicationContext.xml
 
-	
 	ServicioUsuario servicioUsuario;
-
 	
 	ServicioLogin servicioLogin;
-
-	
-	
 
 	@Autowired
 	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario) {
