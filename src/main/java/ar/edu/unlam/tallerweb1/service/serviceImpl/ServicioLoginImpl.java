@@ -51,4 +51,19 @@ public class ServicioLoginImpl implements ServicioLogin {
 		}
 		return buscado;
 	}
+
+	@Override
+	public void registrar(String usuario, String clave) {
+		if(yaExiste(usuario))
+			throw new RuntimeException("usuario existente");
+
+		Usuario nuevoUsuario = new Usuario();
+		nuevoUsuario.setEmail(usuario);
+		nuevoUsuario.setPassword(clave);
+		repositorioUsuario.guardar(nuevoUsuario);
+	}
+
+	private boolean yaExiste(String usuario) {
+		return repositorioUsuario.buscarPorEmail(usuario) != null;
+	}
 }

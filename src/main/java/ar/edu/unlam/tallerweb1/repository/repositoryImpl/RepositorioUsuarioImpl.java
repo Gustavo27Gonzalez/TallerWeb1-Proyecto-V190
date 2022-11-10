@@ -66,4 +66,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		sessionFactory.getCurrentSession().save(compra);
 	}
 
+	
+
 }
