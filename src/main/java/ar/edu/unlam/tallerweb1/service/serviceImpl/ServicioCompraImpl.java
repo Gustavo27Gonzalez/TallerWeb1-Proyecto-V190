@@ -29,14 +29,14 @@ public class ServicioCompraImpl implements ServicioCompra{
 	}
 
 	@Override
-	public List<CompraDTO> listarMisCompras(String emailUsuario) {
+	public List<CompraDTO> listarMisCompras() {
 		List<CompraDTO> response = new ArrayList<>();
 		List<Compra> lista = this.repositorioCompra.listarCompras();
 		for(int i=0; i<lista.size(); i++) {
 			CompraDTO dto = new CompraDTO();
 			dto.setId(lista.get(i).getId());
 			Usuario usuario = lista.get(i).getUsuario();
-			Usuario buscado = this.repositorioUsuario.buscarPorEmail(usuario.getEmail());
+			Usuario buscado = this.repositorioUsuario.buscarPorEmail("admin@admin.com");
 			dto.setNombreUsuario(buscado.getNombre());
 			dto.setNumeroDeRifa(lista.get(i).getRifa().getId());
 			response.add(dto);

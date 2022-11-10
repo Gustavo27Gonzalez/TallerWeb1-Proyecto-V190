@@ -31,10 +31,9 @@ public class ControladorCompra {
 	}
 
 	@RequestMapping(path = "/compras", method = RequestMethod.GET)
-	public ModelAndView verCompras(HttpServletRequest request) {
-		String email = (String) request.getSession().getAttribute("email");
+	public ModelAndView verCompras() {
 		ModelMap model = new ModelMap();
-		List<CompraDTO> lista = this.servicioCompra.listarMisCompras(email);
+		List<CompraDTO> lista = this.servicioCompra.listarMisCompras();
 		model.put("compras", lista);
 		return new ModelAndView("ver-compras", model);
 	}
