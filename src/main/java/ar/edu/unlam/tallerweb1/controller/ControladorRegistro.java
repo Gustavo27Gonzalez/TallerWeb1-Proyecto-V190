@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.service.ServicioEmail;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 
@@ -19,10 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ControladorRegistro {
 	
     ServicioUsuario servicioUsuario;
+    ServicioEmail servicioEmail;
 
     @Autowired
-    public ControladorRegistro(ServicioUsuario servicioUsuario){
+    public ControladorRegistro(ServicioUsuario servicioUsuario, ServicioEmail servicioEmail){
         this.servicioUsuario = servicioUsuario;
+        this.servicioEmail = servicioEmail;
     }
 
     @RequestMapping(path="/registrar-usuario", method = RequestMethod.GET)
@@ -49,5 +52,19 @@ public class ControladorRegistro {
         return new ModelAndView("registrar-usuario", model);
     }
     
+    
+    @RequestMapping(path="/recuperar-contraseña")
+    public ModelAndView recuperarContraseña() {
+    	return new ModelAndView("recuperar-contraseña");
+    }
+    
+    @RequestMapping(path="/recuperar", method = RequestMethod.POST)
+    public ModelAndView recuperar(HttpServletRequest request) {
+    	String email = (String) request.getSession().getAttribute("email");
+        ModelMap model = new ModelMap();
+        Usuario buscado = this.servicioUsuario.buscarPorEmail("aguslive7@gmail.com");
+        this.servicioEmail.sendMailRecoveryPassword(buscado.getEmail());
+        return new ModelAndView("redirect:/login-index");
+    }
 
 }

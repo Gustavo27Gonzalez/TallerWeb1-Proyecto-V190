@@ -30,9 +30,9 @@ public class CompraServiceTest {
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
 		Sorteo sorteo = new Sorteo(datosSorteo);
 		
-		Rifa nueva = new Rifa(1L, false, sorteo);
+		Rifa rifa = new Rifa(1L, false, sorteo);
 		Usuario usuario = new Usuario(1L, "Agustin", "Agustin@test.com", Boolean.FALSE);
-		Compra compra = new Compra(nueva, usuario);
+		Compra compra = new Compra(rifa, usuario);
 		dadoQueExisteUnSorteoConUnaRifaYLaQuieroComprar(compra);
 		Compra compraExitosa = cuandoQuieroComprarUnNumeroDeUnaRifa(compra);
 		entoncesLaCompraEsExitosa(compraExitosa);
@@ -44,10 +44,10 @@ public class CompraServiceTest {
 
 	private Compra cuandoQuieroComprarUnNumeroDeUnaRifa(Compra compra) {
 		return this.servicioRifa.comprarRifa(compra);
-		
 	}
 
 	private void entoncesLaCompraEsExitosa(Compra compraExitosa) {
 		assertThat(compraExitosa).isNotNull();
 	}
+	
 }

@@ -23,7 +23,6 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 	
 	@Override
 	public List<Rifa> listarRifas() {
-		
 		return sessionFactory.getCurrentSession()
                 .createCriteria(Rifa.class)
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
@@ -34,7 +33,5 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 	public Compra comprar(Compra compra) {
 		return (Compra)this.sessionFactory.getCurrentSession().save(compra);
 	}
-
-
 	
 }
