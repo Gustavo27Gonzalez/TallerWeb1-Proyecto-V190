@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,6 +53,22 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 	public Rifa obtenerGanador(List<Rifa> rifas) {
 		int ganador = (int) Math.floor(Math.random() * rifas.size());
  		return rifas.get(ganador);
+	}
+
+	@Override
+	public Usuario obtenerUsuarioGanador(Sorteo sorteo) {
+		// TODO
+		// this.servicioCompraObtenerRifasPara(sorteo)
+		List<Rifa> rifas = new ArrayList();
+		rifas.add(new Rifa());
+		rifas.add(new Rifa());
+		Rifa rifa = obtenerGanador(rifas);
+		// TODO
+		// this.servicioCompraBuscarPropietarioDeRifa(rifa);
+		Usuario ganador = new Usuario();
+		ganador.setEmail("mock@mock.com");
+		ganador.setNombre("Test");
+		return ganador;
 	}
 
 	@Override
