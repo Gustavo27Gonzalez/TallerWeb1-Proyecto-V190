@@ -33,7 +33,7 @@
 
 
 				<div class="form-outline mb-4">
-					<form:label class="form-label text-light" for="descripcion" path="descripcion">Descripciï¿½n</form:label>
+					<form:label class="form-label text-light" for="descripcion" path="descripcion">Descripción</form:label>
 					<form:input path="descripcion" type="text" id="descripcion"
 						placeholder="Descripciï¿½n del Premio..." class="form-control" />
 				</div>

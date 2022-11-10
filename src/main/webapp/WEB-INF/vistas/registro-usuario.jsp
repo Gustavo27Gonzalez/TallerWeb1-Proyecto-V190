@@ -46,7 +46,7 @@
 				</br>
 				
 				<div class="form-outline mb-4">
-					<form:label class="form-label" for="password" path="password">Contraseï¿½a</form:label>
+					<form:label class="form-label" for="password" path="password">Contraseña</form:label>
 					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseï¿½a..."
 						class="form-control" />
 				</div>
@@ -54,7 +54,7 @@
 				</br>
 				
 				<div class="form-outline mb-4">
-					<form:label class="form-label" for="repitePassword" path="repitePassword">Repita su Contraseï¿½a</form:label>
+					<form:label class="form-label" for="repitePassword" path="repitePassword">Repita su Contraseña</form:label>
 					<form:input path="repitePassword" type="password" id="repitePassword" placeholder="Ingrese Nuevamente su Contraseï¿½a..."
 						class="form-control" />
 				</div>
@@ -68,7 +68,7 @@
 					
 			</form:form>
 			
-			<a href="login"	>ï¿½Ya posee una cuenta? <strong style="color: black;">Ingrese con sus datos</strong></a>
+			<a href="login"	>¿Ya posee una cuenta? <strong style="color: black;">Ingrese con sus datos</strong></a>
 			
 			
 			<%--Bloque que es visible si el elemento error no esta vacio	--%>
