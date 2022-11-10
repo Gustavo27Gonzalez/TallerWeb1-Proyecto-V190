@@ -7,6 +7,7 @@
 	    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	</head>
 	<body>
+		<jsp:include page="background.jsp"/>
 		<div class = "container">
 			<h1>Bienvenidos a Taller Web 1</h1>
 		</div>

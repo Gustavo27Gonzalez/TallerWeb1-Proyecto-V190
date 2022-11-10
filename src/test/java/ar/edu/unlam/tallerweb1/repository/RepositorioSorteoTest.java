@@ -1,23 +1,30 @@
 package ar.edu.unlam.tallerweb1.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
-import ar.edu.unlam.tallerweb1.repository.repositoryImpl.RepositorioSorteoImpl;
 
 public class RepositorioSorteoTest extends SpringTest {
 
 	public static final int CANTIDAD_SORTEOS = 5;
     private RepositorioSorteo repositorioSorteo;
+
+    @Before
+    public void init() {
+        this.repositorioSorteo = mock(RepositorioSorteo.class);
+    }
 
     @Test
     @Transactional
@@ -37,7 +44,13 @@ public class RepositorioSorteoTest extends SpringTest {
     }
 
     private void dadoQueExistenSorteos(int cantidadSorteos) {
-        this.repositorioSorteo = new RepositorioSorteoImpl(sessionFactory);
+        List<Sorteo> sorteos = new LinkedList<>();
+        for(int i = 0; i<cantidadSorteos; i++) {
+            sorteos.add(new Sorteo());
+            this.repositorioSorteo.crear(new Sorteo());
+        }
+
+        when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
     }
 
 }

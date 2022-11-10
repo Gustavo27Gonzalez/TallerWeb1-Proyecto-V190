@@ -49,6 +49,12 @@ public class ServicioSorteoImpl implements ServicioSorteo {
     }
 
 	@Override
+	public Rifa obtenerGanador(List<Rifa> rifas) {
+		int ganador = (int) Math.floor(Math.random() * rifas.size());
+ 		return rifas.get(ganador);
+	}
+
+	@Override
 	public Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List rifas) {
 		Rifa rifa = new Rifa(50L, Boolean.TRUE, nuevoSorteo);
 		DatosCompra datos = new DatosCompra(rifa, usuarioParticipante);

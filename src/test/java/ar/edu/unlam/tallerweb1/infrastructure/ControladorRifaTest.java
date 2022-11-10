@@ -37,7 +37,6 @@ public class ControladorRifaTest extends SpringTest {
 	public void init() {
 		this.servicioRifa = mock(ServicioRifa.class);
 		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
-		
 	}
 
 	@Test

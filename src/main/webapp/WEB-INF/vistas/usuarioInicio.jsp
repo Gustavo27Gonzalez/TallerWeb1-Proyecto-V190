@@ -16,7 +16,7 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-
+	<jsp:include page="background.jsp"/>
 	<!-------------------------------------------------------------------------->
 	<div class="d-flex justify-content-end navegador">
 		<nav class="navbar ">

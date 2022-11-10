@@ -11,6 +11,7 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="background.jsp"/>
 	<div class="container">
 		<h1>Sorteo Creado</h1>
 	</div>

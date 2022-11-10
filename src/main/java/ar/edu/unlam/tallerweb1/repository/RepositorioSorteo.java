@@ -13,5 +13,5 @@ public interface RepositorioSorteo {
 	List <Sorteo> buscarSorteosPorPremio(String premio);
 	List <Sorteo> buscarSorteosPorPrecioRifa(Double precio);
 	List <Sorteo> buscarSorteosConRifasDisponibles();
-	// Pensar Qué otros métodos implementar
+	// Pensar Que otros metodos implementar
 }

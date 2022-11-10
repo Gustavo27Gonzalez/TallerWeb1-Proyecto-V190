@@ -15,7 +15,7 @@
 <title>Sortea2 |  Listado de sorteos</title>
 </head>
 <body>
-
+	<jsp:include page="background.jsp"/>
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>

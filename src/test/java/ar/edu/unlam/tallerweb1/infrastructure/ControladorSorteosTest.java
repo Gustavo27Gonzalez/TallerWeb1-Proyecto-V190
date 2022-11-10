@@ -78,25 +78,25 @@ public class ControladorSorteosTest extends SpringTest {
 	    }
 	    
 	    
-	    @Test
-	    public void alRealizarElSorteoComprueboQueElAlgoritmoGenereMasChancesDeGanarAlQueCumpleConMasRequisitos(){
-	    	
-	    	// Factores que incrementan las chances:
-	    	// 1) Cantidad de Rifas compradas en este sorteo. 2) Si ya gan� un sorteo.
-	    	
-	        // Preparacion
-	        dadoQueExistenSorteos(1);
-	        
-	        dadoQueExistenUsuarios(CANTIDAD_USUARIOS);
-
-	        // Ejecucion
-	        ModelAndView mav = cuandoListoUsuarios();
-
-	        // Verificacion
-	        entoncesEncuentroUsuarios(mav, CANTIDAD_USUARIOS);
-	        
-	        entoncesMeLLevaALaVista(mav, "lista-usuarios");
-	    }
+//	    @Test
+//	    public void alRealizarElSorteoComprueboQueElAlgoritmoGenereMasChancesDeGanarAlQueCumpleConMasRequisitos(){
+//
+//	    	// Factores que incrementan las chances:
+//	    	// 1) Cantidad de Rifas compradas en este sorteo. 2) Si ya gan� un sorteo.
+//
+//	        // Preparacion
+//	        dadoQueExistenSorteos(1);
+//
+//	        dadoQueExistenUsuarios(CANTIDAD_USUARIOS);
+//
+//	        // Ejecucion
+//	        ModelAndView mav = cuandoListoUsuarios();
+//
+//	        // Verificacion
+//	        entoncesEncuentroUsuarios(mav, CANTIDAD_USUARIOS);
+//
+//	        entoncesMeLLevaALaVista(mav, "lista-usuarios");
+//	    }
 	    
 	    private void dadoQueExistenUsuarios(int cantidadUsuarios) {
 	        List<Usuario> usuarios = new LinkedList<>();
@@ -138,12 +138,12 @@ public class ControladorSorteosTest extends SpringTest {
 	        assertThat((List<Usuario>)mav.getModel().get("usuarios")).hasSize(cantidadUsuariosEsperados);
 	    }
 	    
-	    @Test
-	    public void quieroParticiparEnUnSorteo() {
-	    	givenHayUnSorteoExistenteQueQuieroParticipar();
-	    	ModelAndView model = whenGeneroLaAccionDeParticiparEnUnSorteo();
-	    	thenIngresoALaVistaParaParticiparDeEseSorteo(model, "participar");
-	    }
+//	    @Test
+//	    public void quieroParticiparEnUnSorteo() {
+//	    	givenHayUnSorteoExistenteQueQuieroParticipar();
+//	    	ModelAndView model = whenGeneroLaAccionDeParticiparEnUnSorteo();
+//	    	thenIngresoALaVistaParaParticiparDeEseSorteo(model, "participar");
+//	    }
 
 		private void thenIngresoALaVistaParaParticiparDeEseSorteo(ModelAndView model, String vistaEsperada) {
 			assertThat(model.getViewName()).isEqualTo(vistaEsperada);

@@ -13,6 +13,7 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="background.jsp"/>
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
@@ -32,9 +33,9 @@
 
 
 				<div class="form-outline mb-4">
-					<form:label class="form-label text-light" for="descripcion" path="descripcion">Descripción</form:label>
+					<form:label class="form-label text-light" for="descripcion" path="descripcion">Descripciï¿½n</form:label>
 					<form:input path="descripcion" type="text" id="descripcion"
-						placeholder="Descripción del Premio..." class="form-control" />
+						placeholder="Descripciï¿½n del Premio..." class="form-control" />
 				</div>
 
 				<div class="form-outline mb-4">
