@@ -64,6 +64,11 @@
 						<p class="card-text text-light" style="color: #797D7F">Precio:
 							$${SORTEO.precioRifa}</p>
 
+A						<div class="d-flex justify-content-start">
+							<a class="btn btn-outline-info"
+							   href="obtenerGanador" role="button">Sortear ganador</a>
+						</div>
+
 						<div class="d-flex justify-content-end">
 							<a class="btn btn-outline-info"
 								href="participar" role="button">Participar</a>
