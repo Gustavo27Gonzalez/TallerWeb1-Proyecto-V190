@@ -51,12 +51,17 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public Usuario buscarPorId(Long id) {
-        return null;
+        return this.repositorioUsuario.buscarId(id);
     }
 
 	@Override
 	public List<Usuario> listarUsuarios() {
 		return this.repositorioUsuario.listarUsuarios();
+	}
+
+	@Override
+	public Usuario buscarPorEmail(String email) {
+		return this.repositorioUsuario.buscarPorEmail(email);
 	}
 
 	

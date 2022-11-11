@@ -29,4 +29,3 @@
 	<context:component-scan base-package="ar.edu.unlam.tallerweb1.service" />
 
 </beans>
-
