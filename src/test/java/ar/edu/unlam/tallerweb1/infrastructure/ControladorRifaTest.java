@@ -16,9 +16,11 @@ import org.springframework.http.HttpRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.controller.ControladorRifa;
 import ar.edu.unlam.tallerweb1.controller.ControladorSorteo;
 import ar.edu.unlam.tallerweb1.controller.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRifa;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
@@ -29,21 +31,64 @@ import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 
 public class ControladorRifaTest extends SpringTest {
 
-	private ControladorSorteo controladorSorteo;
+	private DatosSorteo sorteo;
+	//private ControladorSorteo controladorSorteo;
 	private ServicioSorteo servicioSorteo;
 	private ServicioRifa servicioRifa;
+	private ControladorRifa controladorRifa;
 	
 
 	@Before
 	public void init() {
 		this.servicioRifa = mock(ServicioRifa.class);
-		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
+		this.controladorRifa = new ControladorRifa(this.servicioRifa);
+		//this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
 		
 	}
 	
+	// TEST obtener rifas sorteo
+	
+	@Test
+	public void queNoSePuedeObtenerRifasDeUnSorteoQueNoTiene() {
+		dadoQueExiste1Sorteo();
+		//Mock del servicio
+		dadoQueNoExistenRifasParaUnSorteo(this.sorteo);
+		
+		ModelAndView mav = cuandoObtengoLasRIfas(this.sorteo);
+		
+		entoncesMeLlevaAlaVista(mav, "ver-rifas");
+		
+		entoncesContieneRifas(mav);
+	}
+	
+	private void entoncesContieneRifas(ModelAndView mav) {
+		//assertThat((List<Rifa>)mav.getModel().get("rifa")).hasSize(cantidadEsperada);
+		assertThat((List<Rifa>)mav.getModel().get("rifa")).isNull();
+	}
+
+	private void entoncesMeLlevaAlaVista(ModelAndView mav, String vistaEsperada) {
+		assertThat(mav.getViewName()).isEqualTo(vistaEsperada);
+	}
+	
+	private void dadoQueNoExistenRifasParaUnSorteo(DatosSorteo s) {
+		List<DatosRifa> listaEsperada = new ArrayList<>();
+		when(this.servicioRifa.obtenerPorIdSorteo(s.getIdSorteo())).thenReturn(listaEsperada);
+	}
+
+	private ModelAndView cuandoObtengoLasRIfas(DatosSorteo sorteo) {
+		
+		return this.controladorRifa.obtenerPorIdSorteo(sorteo.getIdSorteo());
+		
+	}
+
+	private void dadoQueExiste1Sorteo() {
+		this.sorteo = new DatosSorteo( 1L,"sorteito", "prueba", 150.00, 10);	
+	}
+
 	// Comprar Rifa de Sorteo
 	
-	@Test void queSePuedeComprarUnaRifa() {
+	@Test 
+	public void queSePuedeComprarUnaRifa() {
 		Usuario usuario = givenQueExiste1Usuario();
 		Sorteo sorteo = givenQueExiste1Sorteo();
 		Rifa rifa = givenQueExiste1Rifa(sorteo);
@@ -67,7 +112,7 @@ public class ControladorRifaTest extends SpringTest {
 
 	@Test
 	public void queSePuedanListarRifasEnUnSorteo() {
-		Sorteo sorteo = givenQueExiste1Sorteo();
+		givenQueExiste1Sorteo();
 		
 		ModelAndView mav = whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles();
 		thenMeMuestraLasRifasDisponibles(mav, "participar");
