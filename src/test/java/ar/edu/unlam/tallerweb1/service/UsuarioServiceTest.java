@@ -24,8 +24,8 @@ public class UsuarioServiceTest extends SpringTest {
 
 	private static final DatosRegistro DATOS_USUARIO = new DatosRegistro("User1", 12345678,"user1@user.com", "user1234");
 	private static final Usuario USUARIO = new Usuario(DATOS_USUARIO);
-	private RepositorioUsuario usuarioRepository; /*= mock(SorteoRepository.class);*/
-	private ServicioUsuario usuarioService; /*= new SorteoServiceImpl(sorteoRepository);*/
+	private RepositorioUsuario usuarioRepository; 
+	private ServicioUsuario usuarioService; 
 	
 	
 	@Before
