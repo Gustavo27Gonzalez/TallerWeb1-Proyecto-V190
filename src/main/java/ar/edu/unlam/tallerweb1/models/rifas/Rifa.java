@@ -56,6 +56,7 @@ public class Rifa {
 		this.id = id;
 		this.fueVendida = fueVendida;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(compra, fueVendida, id, sorteo);

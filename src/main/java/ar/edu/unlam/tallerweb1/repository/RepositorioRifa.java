@@ -9,4 +9,5 @@ public interface RepositorioRifa {
 
 	List<Rifa> listarRifas();
 	Compra comprar(Compra compra);
+	Rifa getRifaById(Long id);
 }

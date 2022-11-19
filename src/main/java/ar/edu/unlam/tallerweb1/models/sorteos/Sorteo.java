@@ -110,6 +110,9 @@ public class Sorteo {
 				&& Objects.equals(precioRifa, other.precioRifa) && Objects.equals(premio, other.premio)
 				&& Objects.equals(rifas, other.rifas);
 	}
+	public void addRifa(Rifa rifa) {
+		this.rifas.add(rifa);
+	}
     
     
 }

@@ -32,9 +32,16 @@ public class ControladorCompra {
 
 	@RequestMapping(path = "/compras", method = RequestMethod.GET)
 	public ModelAndView verCompras() {
+		//String email = req.getSession().getAttribute("email");
 		ModelMap model = new ModelMap();
 		List<CompraDTO> lista = this.servicioCompra.listarMisCompras();
-		model.put("compras", lista);
-		return new ModelAndView("ver-compras", model);
+		if (lista.size() > 0) {
+			model.put("compras", lista);
+			model.put("msj", "Compra correcta");
+			return new ModelAndView("ver-compras", model);
+		}else {
+			model.put("ERROR", "Rifa no diponible");
+			return new ModelAndView("ver-compras", model);
+		}
 	}
 }
