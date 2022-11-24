@@ -1,6 +1,5 @@
-package ar.edu.unlam.tallerweb1.models.algoritmo.strategy;
+package ar.edu.unlam.tallerweb1.service.serviceImpl.strategy;
 
-import ar.edu.unlam.tallerweb1.models.algoritmo.strategy.AlgoritmoStrategy;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 import java.util.List;

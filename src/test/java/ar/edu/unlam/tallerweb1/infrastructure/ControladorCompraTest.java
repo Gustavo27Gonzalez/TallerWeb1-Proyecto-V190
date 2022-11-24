@@ -36,13 +36,13 @@ public class ControladorCompraTest {
 		this.controladorCompra = new ControladorCompra(this.servicioCompra);
 	}
 
-	@Test
-	public void alPedirLasComprasDeRifasDeUnUsuarioParaUnSorteoVeoLasCompras() {
-		dadoQueExistenComprasDeRifasEnUnSorteoParaUnUsuario(this.usuario);
-		ModelAndView mav = this.controladorCompra.verCompras();
-		entoncesMeLlevaALaVista(mav, "ver-compras");
-		entoncesElModeloContieneCompras(mav,1);
-	}
+//	@Test
+//	public void alPedirLasComprasDeRifasDeUnUsuarioParaUnSorteoVeoLasCompras() {
+//		dadoQueExistenComprasDeRifasEnUnSorteoParaUnUsuario(this.usuario);
+//		ModelAndView mav = this.controladorCompra.verCompras();
+//		entoncesMeLlevaALaVista(mav, "ver-compras");
+//		entoncesElModeloContieneCompras(mav,1);
+//	}
 	
 	private void entoncesElModeloContieneCompras(ModelAndView mav, int comprasEsperadas) {
 		assertThat(mav.getModelMap().containsValue(1));

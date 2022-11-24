@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.models.algoritmo.Algoritmo;
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
@@ -41,7 +40,7 @@ public class Sorteo {
 	@JoinColumn(name = "premio_id")
 	private Premio premio;
 
-	private Algoritmo algoritmo;
+	private TipoAlgoritmo tipoAlgoritmo;
 
 	public Long getId() {
 		return id;
@@ -87,16 +86,14 @@ public class Sorteo {
 		this.rifas = rifas;
 	}
 	
-	public Sorteo() {
-		this.algoritmo = new Algoritmo();
-	}
+	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo) {
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
-		this.algoritmo = new Algoritmo();
+		this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
 	}
 	@Override
 	public int hashCode() {
@@ -121,11 +118,11 @@ public class Sorteo {
 	}
 
 
-    public Algoritmo getAlgoritmo() {
-		return this.algoritmo;
+    public TipoAlgoritmo getAlgoritmo() {
+		return this.tipoAlgoritmo;
     }
 
 	public void setAlgoritmo(TipoAlgoritmo tipo) {
-		this.algoritmo.setTipo(tipo);
+		this.tipoAlgoritmo = tipo;
 	}
 }

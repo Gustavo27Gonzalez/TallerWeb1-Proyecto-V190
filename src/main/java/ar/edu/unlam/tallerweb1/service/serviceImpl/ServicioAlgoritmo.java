@@ -1,43 +1,27 @@
-package ar.edu.unlam.tallerweb1.models.algoritmo;
+package ar.edu.unlam.tallerweb1.service.serviceImpl;
 
-import ar.edu.unlam.tallerweb1.models.algoritmo.strategy.AlgoritmoMayorCompradorStrategy;
-import ar.edu.unlam.tallerweb1.models.algoritmo.strategy.AlgoritmoPreseleccionadoStrategy;
-import ar.edu.unlam.tallerweb1.models.algoritmo.strategy.AlgoritmoRandomStrategy;
-import ar.edu.unlam.tallerweb1.models.algoritmo.strategy.Context;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.strategy.AlgoritmoMayorCompradorStrategy;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.strategy.AlgoritmoPreseleccionadoStrategy;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.strategy.AlgoritmoRandomStrategy;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.strategy.Context;
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name="algoritmo")
-
-public class Algoritmo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    //TODO como hago ???
+@Service
+public class ServicioAlgoritmo {
     private Context context;
     private TipoAlgoritmo tipoAlgoritmo;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void Algoritmo() {
-        this.context = new Context();
+    public void ServicioAlgoritmo() {
         this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
     }
 
     public Rifa getGanador(List<Rifa> rifas) {
+        context = new Context();
         //TODO pasar esto a map
         if(tipoAlgoritmo == TipoAlgoritmo.RANDOM) {
             this.context.setStrategy(new AlgoritmoRandomStrategy());

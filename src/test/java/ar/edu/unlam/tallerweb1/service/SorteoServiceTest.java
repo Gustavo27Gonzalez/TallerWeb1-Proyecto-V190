@@ -10,18 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
-import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
-import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioRifaImpl;
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
@@ -30,12 +27,13 @@ public class SorteoServiceTest extends SpringTest{
 	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO);
 	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
 	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
-	
-	
+	private ServicioAlgoritmo servicioAlgoritmo;
+
 	@Before
 	public void init() {
 		this.sorteoRepository = mock(RepositorioSorteo.class);
         this.sorteoService = new ServicioSorteoImpl(this.sorteoRepository);
+		this.servicioAlgoritmo = new ServicioAlgoritmo();
 	}
 
 	@Test
@@ -46,22 +44,47 @@ public class SorteoServiceTest extends SpringTest{
 	}
 
 	@Test
-	public void quieroElegirAlgoritmoParaCadaSorteo() {
-		dadoQueExisteUnSorteo(SORTEO);
-		cuandoSeleccionoElAlgoritmo();
-		entoncesElAlgoritmoQuedaActivo();
+	public void quieroElegirAlgoritmoPreseleccionadoYObtenerGanador() {
+		dadoQueExisteUnSorteoConUnaRifaGanadora(SORTEO);
+		cuandoSeleccionoElAlgoritmo(TipoAlgoritmo.PRESELECCIONADO);
+		entoncesObtengoUnGanadorConRifaId(17);
 	}
 
-	private void entoncesElAlgoritmoQuedaActivo() {
-		assertEquals(SORTEO.getAlgoritmo(), TipoAlgoritmo.RANDOM);
+	@Test
+	public void quieroElegirAlgoritmoRandomYObtenerGanadorRandom() {
+		dadoQueExisteUnSorteoConUnaRifaGanadora(SORTEO);
+		cuandoSeleccionoElAlgoritmo(TipoAlgoritmo.PRESELECCIONADO);
+		entoncesObtengoUnGanadorConRifaIdRandom();
 	}
 
-	private void cuandoSeleccionoElAlgoritmo() {
-		SORTEO.setAlgoritmo(TipoAlgoritmo.RANDOM);
+	private void entoncesObtengoUnGanadorConRifaId(long ganadorId) {
+		this.servicioAlgoritmo.setTipo(SORTEO.getAlgoritmo());
+		Rifa ganador = this.servicioAlgoritmo.getGanador(SORTEO.getRifas());
+		assertThat(ganador.getId()).isEqualTo(ganadorId);
 	}
 
-	private void dadoQueExisteUnSorteo(Sorteo nuevo) {
-		when(sorteoRepository.buscarSorteoPorId(nuevo.getId())).thenReturn(nuevo);
+	private void entoncesObtengoUnGanadorConRifaIdRandom() {
+		this.servicioAlgoritmo.setTipo(SORTEO.getAlgoritmo());
+		Rifa ganador = this.servicioAlgoritmo.getGanador(SORTEO.getRifas());
+		assertThat(ganador.getId()).isNotNull();
+	}
+
+	private void cuandoSeleccionoElAlgoritmo(TipoAlgoritmo algoritmo) {
+		SORTEO.setAlgoritmo(algoritmo);
+	}
+
+	private void dadoQueExisteUnSorteo(Sorteo sorteo) {
+		this.dadoQueExisteUnSorteoConUnaRifaGanadora(sorteo);
+	}
+	private void dadoQueExisteUnSorteoConUnaRifaGanadora(Sorteo nuevo) {
+		nuevo.addRifa(new Rifa(13L,true));
+		nuevo.addRifa(new Rifa(14L,true));
+		nuevo.addRifa(new Rifa(15L,true));
+		Rifa rifa = new Rifa(17L,true);
+		rifa.setEsGanadora(true);
+		nuevo.addRifa(rifa);
+		nuevo.addRifa(new Rifa(18L,true));
+		sorteoRepository.crear(nuevo);
 	}
 
 	private Sorteo cuandoBuscoElSorteoPorSuId(Long id) {

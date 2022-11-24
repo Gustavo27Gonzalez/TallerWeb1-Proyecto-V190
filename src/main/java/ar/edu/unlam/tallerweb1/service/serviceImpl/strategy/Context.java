@@ -1,10 +1,6 @@
-package ar.edu.unlam.tallerweb1.models.algoritmo.strategy;
+package ar.edu.unlam.tallerweb1.service.serviceImpl.strategy;
 
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
