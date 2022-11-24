@@ -5,9 +5,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
+import exceptions.RifaNoDisponibleException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +27,7 @@ import ar.edu.unlam.tallerweb1.service.ServicioRifa;
 @Controller("controladorCompra")
 public class ControladorCompra {
 	ServicioCompra servicioCompra;
-	
+
 	@Autowired
 	public ControladorCompra(ServicioCompra servicioCompra) {
 		this.servicioCompra = servicioCompra;
@@ -43,5 +46,12 @@ public class ControladorCompra {
 			model.put("ERROR", "Rifa no diponible");
 			return new ModelAndView("ver-compras", model);
 		}
+	}
+
+	@RequestMapping(path = "/comprar", method = RequestMethod.POST)
+	public ModelAndView comprarRifa(@ModelAttribute("rifa") Rifa rifa) throws RifaNoDisponibleException {
+		Usuario usuario = new Usuario(1L, "Agustin", "admin@admin.com", Boolean.FALSE);
+		this.servicioCompra.comprar(rifa,usuario);
+		return new ModelAndView("ver-compras");
 	}
 }

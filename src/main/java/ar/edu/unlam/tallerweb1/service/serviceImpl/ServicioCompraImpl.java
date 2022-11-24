@@ -21,7 +21,6 @@ import exceptions.RifaNoDisponibleException;
 
 @Service
 public class ServicioCompraImpl implements ServicioCompra{
-	
 	private RepositorioCompra repositorioCompra;
 	private RepositorioUsuario repositorioUsuario;
 	private RepositorioRifa repositorioRifa;
@@ -54,7 +53,7 @@ public class ServicioCompraImpl implements ServicioCompra{
 		try {
 			rifa = repositorioRifa.getRifaById(rifa.getId());
 		} catch (Exception e) {
-			throw new RifaNoDisponibleException("RIFA NO DISPONIBLE");
+			throw new RifaNoDisponibleException("RIFA NO DISPONIBLE " + rifa.getId());
 		}
 		DatosCompra datosCompra = new DatosCompra(rifa, usuario);
 		Compra compra = new Compra(datosCompra);

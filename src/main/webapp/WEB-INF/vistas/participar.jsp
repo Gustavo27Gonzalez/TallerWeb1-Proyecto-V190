@@ -61,11 +61,17 @@
 						<p class="card-text text-light" style="color: #797D7F">Precio:
 							${SORTEO.precioRifa}</p>
 						-->
+
 						<div class="d-flex justify-content-end">
-						
-							<a class="btn btn-outline-info"
-								href="participar" role="button">Comprar</a>
+							<a class="btn btn-outline-info" href="comprar" role="button" type="submit">Comprar</a>
+
 						</div>
+
+						<form name="submitForm" method="POST" action="/Sorteo_Server/comprar">
+							<input type="hidden" name="RIFA" value=${RIFA.id}>
+							<A class="btn btn-outline-info" HREF="javascript:document.submitForm.submit()">Comprar</A>
+						</form>
+
 
 					</div>
 				</div>

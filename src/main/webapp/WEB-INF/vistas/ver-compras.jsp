@@ -11,6 +11,7 @@
 <title>COMPRAS</title>
 </head>
 <body>
+	<jsp:include page="background.jsp"/>
 	<h1>Mis compras</h1>
 	
 	<div class="d-flex justify-content-center flex-wrap"
