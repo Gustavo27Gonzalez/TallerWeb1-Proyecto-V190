@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.algoritmo.Algoritmo;
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import jakarta.validation.constraints.NotNull;
@@ -38,8 +40,9 @@ public class Sorteo {
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "premio_id")
 	private Premio premio;
-    
-    
+
+	private Algoritmo algoritmo;
+
 	public Long getId() {
 		return id;
 	}
@@ -84,13 +87,16 @@ public class Sorteo {
 		this.rifas = rifas;
 	}
 	
-	public Sorteo() {}
+	public Sorteo() {
+		this.algoritmo = new Algoritmo();
+	}
     
 	public Sorteo(DatosSorteo datosSorteo) {
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
+		this.algoritmo = new Algoritmo();
 	}
 	@Override
 	public int hashCode() {
@@ -113,6 +119,13 @@ public class Sorteo {
 	public void addRifa(Rifa rifa) {
 		this.rifas.add(rifa);
 	}
-    
-    
+
+
+    public Algoritmo getAlgoritmo() {
+		return this.algoritmo;
+    }
+
+	public void setAlgoritmo(TipoAlgoritmo tipo) {
+		this.algoritmo.setTipo(tipo);
+	}
 }

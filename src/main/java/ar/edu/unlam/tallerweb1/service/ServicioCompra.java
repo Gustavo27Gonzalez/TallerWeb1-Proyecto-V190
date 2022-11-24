@@ -11,4 +11,5 @@ import exceptions.RifaNoDisponibleException;
 public interface ServicioCompra {
 	List<CompraDTO> listarMisCompras();
 	void comprar(Rifa rifa, Usuario usuario) throws RifaNoDisponibleException;
+	List<Compra> getComprasSorteo(Long sorteoId);
 }
