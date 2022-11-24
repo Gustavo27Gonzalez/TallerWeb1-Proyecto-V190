@@ -41,4 +41,12 @@ public class RepositorioCompraImpl implements RepositorioCompra{
 				.add(Restrictions.eq("id", compra.getId()))
 				.uniqueResult();
 	}
+
+	@Override
+	public List<Compra> findComprasDeSorteo(Long sorteoId) {
+		return (List<Compra>) sessionFactory.getCurrentSession()
+				.createCriteria(Compra.class)
+				.add(Restrictions.eq("rifa_id", sorteoId))
+				.list();
+	}
 }

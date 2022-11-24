@@ -2,12 +2,14 @@ package ar.edu.unlam.tallerweb1.service;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,6 +43,21 @@ public class SorteoServiceTest extends SpringTest{
 		dadoQueExisteUnSorteo(SORTEO);
 		Sorteo buscado = cuandoBuscoElSorteoPorSuId(SORTEO.getId());
 		entoncesLoEncuentro(buscado);
+	}
+
+	@Test
+	public void quieroElegirAlgoritmoParaCadaSorteo() {
+		dadoQueExisteUnSorteo(SORTEO);
+		cuandoSeleccionoElAlgoritmo();
+		entoncesElAlgoritmoQuedaActivo();
+	}
+
+	private void entoncesElAlgoritmoQuedaActivo() {
+		assertEquals(SORTEO.getAlgoritmo(), TipoAlgoritmo.RANDOM);
+	}
+
+	private void cuandoSeleccionoElAlgoritmo() {
+		SORTEO.setAlgoritmo(TipoAlgoritmo.RANDOM);
 	}
 
 	private void dadoQueExisteUnSorteo(Sorteo nuevo) {
