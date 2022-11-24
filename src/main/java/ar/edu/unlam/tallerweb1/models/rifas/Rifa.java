@@ -19,7 +19,7 @@ import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 public class Rifa {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="rifa_id")
 	private Long id;
 	private Boolean fueVendida = false;

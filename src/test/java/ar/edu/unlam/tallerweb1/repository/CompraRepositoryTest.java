@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.repository;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
+import ar.edu.unlam.tallerweb1.repository.repositoryImpl.RepositorioRifaImpl;
+import ar.edu.unlam.tallerweb1.repository.repositoryImpl.RepositorioUsuarioImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,15 @@ public class CompraRepositoryTest extends SpringTest{
 	
 	@Autowired
 	private RepositorioCompra repositorioCompra;
+	private RepositorioRifa repositorioRifa;
+	private RepositorioUsuario repositorioUsuario;
 	
 	private Usuario usuario = new Usuario();
 	
 	@Before
 	public void init() {
+		this.repositorioRifa = new RepositorioRifaImpl(this.sessionFactory);
+		this.repositorioUsuario = new RepositorioUsuarioImpl(this.sessionFactory);
 		this.repositorioCompra = new RepositorioCompraImpl(this.sessionFactory);
 	}
 	
@@ -38,13 +44,15 @@ public class CompraRepositoryTest extends SpringTest{
 	private Compra dadoQueTengoUnaCompraListaParaSerPersistida() {
 		Rifa rifa = new Rifa();
 		rifa.setFueVendida(Boolean.FALSE);
+		this.repositorioRifa.comprar(rifa);
 		usuario = createUser();
+		this.repositorioUsuario.guardar(usuario);
 		DatosCompra datosCompra = new DatosCompra(rifa, usuario);
 		return new Compra(datosCompra);
 	}
 
 	private Usuario createUser() {
-		this.usuario.setId(1L);
+//		this.usuario.setId(1L);
 		this.usuario.setNombre("Agustin");
 		this.usuario.setEmail("agustin@test.com");
 		this.usuario.setGanoUnSorteoYa(Boolean.FALSE);

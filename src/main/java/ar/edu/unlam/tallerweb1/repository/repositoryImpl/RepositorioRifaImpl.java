@@ -32,6 +32,11 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 	}
 
 	@Override
+	public void comprar(Rifa rifa) {
+		this.sessionFactory.getCurrentSession().save(rifa);
+	}
+
+	@Override
 	public Compra comprar(Compra compra) {
 		return (Compra)this.sessionFactory.getCurrentSession().save(compra);
 	}
