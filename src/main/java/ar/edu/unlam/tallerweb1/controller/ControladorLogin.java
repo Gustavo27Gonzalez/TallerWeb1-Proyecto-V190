@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,11 +34,13 @@ public class ControladorLogin {
 	ServicioUsuario servicioUsuario;
 	
 	ServicioLogin servicioLogin;
+	SessionService sessionService;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario) {
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario, SessionService sessionService) {
 		this.servicioLogin = servicioLogin;
 		this.servicioUsuario = servicioUsuario;
+		this.sessionService = sessionService;
 	}
 
 	// Escucha la url /, y redirige a la URL /login, es lo mismo que si se invoca la
@@ -104,8 +107,7 @@ public class ControladorLogin {
 			
 			if (usuarioBuscado != null) {
 				model.put("usuario", usuarioBuscado);
-				request.getSession().setAttribute("Estado", "Activo");
-				request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+				this.sessionService.setCurrentUser(usuarioBuscado);
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
