@@ -43,7 +43,7 @@ public class ControladorSorteosTest extends SpringTest {
 	}
 
 	@Test
-	public void alSortearObtengoUnaGanador() {
+	public void alSortearObtengoUnGanador() {
 		Sorteo sorteo = dadoQueExisteUnSorteo();
 
 		ModelAndView mav = cuandoSorteoElGanador(sorteo);

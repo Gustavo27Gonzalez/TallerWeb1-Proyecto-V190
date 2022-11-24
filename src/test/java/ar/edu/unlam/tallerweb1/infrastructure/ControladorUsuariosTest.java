@@ -87,19 +87,19 @@ public class ControladorUsuariosTest extends SpringTest {
 	    
 	    // Test Obtener Lista de Usuarios
 
-	    @Test
-	    public void alPedirTodosLosUsuariosObtengoLaListaCompleta(){
-	        // Preparacion
-	        dadoQueExistenUsuarios(CANTIDAD_USUARIOS);
-
-	        // Ejecucion
-	        ModelAndView mav = cuandoListoUsuarios();
-
-	        // Verificacion
-	        entoncesEncuentro(mav, CANTIDAD_USUARIOS);
-	        
-	        entoncesMeLLevaALaVista(mav, "lista-usuarios");
-	    }
+//	    @Test
+//	    public void alPedirTodosLosUsuariosObtengoLaListaCompleta(){
+//	        // Preparacion
+//	        dadoQueExistenUsuarios(CANTIDAD_USUARIOS);
+//
+//	        // Ejecucion
+//	        ModelAndView mav = cuandoListoUsuarios();
+//
+//	        // Verificacion
+//	        entoncesEncuentro(mav, CANTIDAD_USUARIOS);
+//
+//	        entoncesMeLLevaALaVista(mav, "lista-usuarios");
+//	    }
 
 	    private void entoncesMeLLevaALaVista(ModelAndView mav, String vistaEsperada) {
 	        assertThat(mav.getViewName()).isEqualTo(vistaEsperada);

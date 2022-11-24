@@ -53,13 +53,7 @@ public class ServiceSorteoTest extends SpringTest {
 	}
 
 	private Sorteo dadoUnSorteo() {
-		List<Sorteo> sorteos = new LinkedList<>();
-		for(int i = 0; i<3; i++) {
-			sorteos.add(new Sorteo());
-			this.repositorioSorteo.crear(new Sorteo());
-		}
-		when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
-		return sorteos.get(0);
+		return new Sorteo();
 	}
 
 	@Test

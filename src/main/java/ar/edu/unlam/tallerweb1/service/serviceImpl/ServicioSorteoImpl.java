@@ -58,6 +58,7 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 	@Override
 	public Usuario obtenerUsuarioGanador(Sorteo sorteo) {
 		// TODO
+		// compra filtrar por idsorteo, return lista de compras
 		// this.servicioCompraObtenerRifasPara(sorteo)
 		List<Rifa> rifas = new ArrayList();
 		rifas.add(new Rifa());
