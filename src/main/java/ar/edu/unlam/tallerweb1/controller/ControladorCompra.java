@@ -49,9 +49,9 @@ public class ControladorCompra {
 	}
 
 	@RequestMapping(path = "/comprar", method = RequestMethod.POST)
-	public ModelAndView comprarRifa(@ModelAttribute("rifa") Rifa rifa) throws RifaNoDisponibleException {
+	public ModelAndView comprarRifa(@ModelAttribute("id") Long id) throws RifaNoDisponibleException {
 		Usuario usuario = new Usuario(1L, "Agustin", "admin@admin.com", Boolean.FALSE);
-		this.servicioCompra.comprar(rifa,usuario);
+		this.servicioCompra.comprar(id,usuario);
 		return new ModelAndView("ver-compras");
 	}
 }

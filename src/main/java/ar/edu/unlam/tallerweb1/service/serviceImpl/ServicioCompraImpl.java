@@ -49,13 +49,14 @@ public class ServicioCompraImpl implements ServicioCompra{
 	}
 
 	@Override
-	public void comprar(Rifa rifa, Usuario usuario) throws RifaNoDisponibleException {
+	public void comprar(Long id, Usuario usuario) throws RifaNoDisponibleException {
+		Rifa buscada = new Rifa();
 		try {
-			rifa = repositorioRifa.getRifaById(rifa.getId());
+			buscada = repositorioRifa.getRifaById(id);
 		} catch (Exception e) {
-			throw new RifaNoDisponibleException("RIFA NO DISPONIBLE " + rifa.getId());
+			throw new RifaNoDisponibleException("RIFA NO DISPONIBLE " + buscada.getId());
 		}
-		DatosCompra datosCompra = new DatosCompra(rifa, usuario);
+		DatosCompra datosCompra = new DatosCompra(buscada, usuario);
 		Compra compra = new Compra(datosCompra);
 		this.repositorioCompra.guardarCompra(compra);
 	}

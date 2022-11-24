@@ -48,6 +48,8 @@
 		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
 	</div>
 
+
+
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
 		<c:forEach var="RIFA" items="${rifas}">
@@ -64,13 +66,13 @@
 
 						<div class="d-flex justify-content-end">
 							<a class="btn btn-outline-info" href="comprar" role="button" type="submit">Comprar</a>
-
 						</div>
 
-						<form name="submitForm" method="POST" action="/Sorteo_Server/comprar">
-							<input type="hidden" name="RIFA" value=${RIFA.id}>
-							<A class="btn btn-outline-info" HREF="javascript:document.submitForm.submit()">Comprar</A>
-						</form>
+						<form:form action="comprar" method="POST">
+							<div class="row">
+								<button class="noselect" Type="Submit"/>Comprar</button>
+							</div>
+						</form:form>
 
 
 					</div>

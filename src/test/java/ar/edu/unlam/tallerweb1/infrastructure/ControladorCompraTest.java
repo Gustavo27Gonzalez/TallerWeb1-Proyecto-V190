@@ -94,7 +94,7 @@ public class ControladorCompraTest {
 	private ModelAndView cuandoQuieroTerminarDeRealizarLaCompraObtengoUnError() throws RifaNoDisponibleException {
 		Rifa rifa = new Rifa(1L, false);
 		usuario = createUser();
-		doNothing().doThrow(new RifaNoDisponibleException("RIFA NO DISPONIBLE")).when(this.servicioCompra).comprar(rifa,usuario);
+		doNothing().doThrow(new RifaNoDisponibleException("RIFA NO DISPONIBLE")).when(this.servicioCompra).comprar(rifa.getId(),usuario);
 		ModelMap model = new ModelMap();
 		model.put("ERROR", "Rifa no diponible");
 		return new ModelAndView("ver-compras", model);
