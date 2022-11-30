@@ -68,7 +68,8 @@
 							<a class="btn btn-outline-info" href="comprar" role="button" type="submit">Comprar</a>
 						</div>
 
-						<form:form action="comprar" method="POST">
+						<!--//TODO: probar por request param -->
+						<form:form action="comprar" method="POST" >
 							<div class="row">
 								<button class="noselect" Type="Submit"/>Comprar</button>
 							</div>

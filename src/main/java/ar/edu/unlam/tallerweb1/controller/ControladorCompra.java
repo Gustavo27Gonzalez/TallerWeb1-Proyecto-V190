@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,8 +49,8 @@ public class ControladorCompra {
 		}
 	}
 
-	@RequestMapping(path = "/comprar", method = RequestMethod.POST)
-	public ModelAndView comprarRifa(@ModelAttribute("id") Long id) throws RifaNoDisponibleException {
+	@RequestMapping(path = "/comprar/{id}", method = RequestMethod.POST)
+	public ModelAndView comprarRifa(@PathVariable("id") Long id) throws RifaNoDisponibleException {
 		Usuario usuario = new Usuario(1L, "Agustin", "admin@admin.com", Boolean.FALSE);
 		this.servicioCompra.comprar(id,usuario);
 		return new ModelAndView("ver-compras");

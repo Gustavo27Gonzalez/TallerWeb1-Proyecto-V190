@@ -2,15 +2,7 @@ package ar.edu.unlam.tallerweb1.models.rifas;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
@@ -28,7 +20,10 @@ public class Rifa {
 	private Sorteo sorteo;
 	@OneToOne(mappedBy = "rifa")
 	private Compra compra;
-	
+
+	@OneToOne()
+	private Long idDueño;
+
 	public Long getId() {
 		return id;
 	}

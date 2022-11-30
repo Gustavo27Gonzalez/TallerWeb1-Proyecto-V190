@@ -9,7 +9,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Sortea2 | Iniciar sesión</title>
+<title>Sortea2 | Iniciar sesiï¿½n</title>
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
@@ -35,8 +35,8 @@
 				</div>
 
 				<div class="form-outline mb-4">
-					<form:label class="form-label text-light" for="password" path="password">Contraseña</form:label>
-					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseña..." class="form-control" />
+					<form:label class="form-label text-light" for="password" path="password">ContraseÃ±a</form:label>
+					<form:input path="password" type="password" id="password" placeholder="Ingrese su Contraseï¿½a..." class="form-control" />
 				</div>
 				<button class="btn btn-lg btn-success btn-block add-margin-b2" Type="Submit" />Login</button>
 			</form:form>
@@ -44,7 +44,7 @@
 
 			<div class="d-flex justify-content-between pt-2">
 				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Registrarme</a>
-				<a class="btn btn-outline-info" href="recuperar-contraseña" role="button">Olvidé mi Contraseña</a>
+				<a class="btn btn-outline-info" href="recuperar-contraseï¿½a" role="button">Olvidï¿½ mi Contraseï¿½a</a>
 				<a class="btn btn-outline-info" href="compras" role="button">PROBAR</a>
 			</div>
 

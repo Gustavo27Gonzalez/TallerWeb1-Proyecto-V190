@@ -34,7 +34,7 @@ public class CompraRepositoryTest extends SpringTest{
 		this.repositorioCompra = new RepositorioCompraImpl(this.sessionFactory);
 	}
 	
-	@Test @Transactional @Commit
+	@Test @Transactional //@Commit
 	public void alTerminarDeRealizarLaCompraLaMismaEsGuardadaEnLaBaseDeDatos() {
 		Compra nueva = dadoQueTengoUnaCompraListaParaSerPersistida();
 		cuandoLaCompraYaEsFinalizadaEntoncesLaMismaSeGuardaEnLaBaseDeDatos(nueva);
