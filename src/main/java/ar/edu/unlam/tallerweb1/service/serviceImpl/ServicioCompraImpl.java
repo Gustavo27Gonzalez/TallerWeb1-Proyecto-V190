@@ -60,5 +60,10 @@ public class ServicioCompraImpl implements ServicioCompra{
 		Compra compra = new Compra(datosCompra);
 		this.repositorioCompra.guardarCompra(compra);
 	}
-	
+
+	@Override
+	public List<Compra> getComprasSorteo(Long sorteoId) {
+		return this.repositorioCompra.findComprasDeSorteo(sorteoId);
+	}
+
 }

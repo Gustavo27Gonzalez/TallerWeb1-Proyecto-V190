@@ -16,6 +16,7 @@ public class Rifa {
 	@Column(name="rifa_id")
 	private Long id;
 	private Boolean fueVendida = false;
+	private Boolean esGanadora = false;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sorteo_id")
 	private Sorteo sorteo;
@@ -67,9 +68,11 @@ public class Rifa {
 		return Objects.equals(compra, other.compra) && Objects.equals(fueVendida, other.fueVendida)
 				&& Objects.equals(id, other.id) && Objects.equals(sorteo, other.sorteo);
 	}
-	
-	
-	
-	
 
+	public void setEsGanadora(boolean esGanadora) {
+		this.esGanadora = esGanadora;
+	}
+    public boolean esRifaGanadora() {
+		return this.esGanadora;
+    }
 }

@@ -8,4 +8,6 @@ public interface RepositorioCompra {
 	List<Compra> listarCompras();
 	void guardarCompra(Compra compra);
 	Compra findCompraById(Compra compra);
+
+    List<Compra> findComprasDeSorteo(Long sorteoId);
 }
