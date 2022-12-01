@@ -4,12 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpRequest;
@@ -31,12 +28,16 @@ public class ControladorRifaTest extends SpringTest {
 	private ControladorSorteo controladorSorteo;
 	private ServicioSorteo servicioSorteo;
 	private ServicioRifa servicioRifa;
-	
+	private SessionService sessionService;
+	private Usuario usuario;
+
 
 	@Before
 	public void init() {
+		this.servicioSorteo = mock(ServicioSorteo.class);
+		this.sessionService = mock(SessionService.class);
 		this.servicioRifa = mock(ServicioRifa.class);
-		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
+		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, this.servicioRifa,this.sessionService);
 	}
 
 	@Test
@@ -49,7 +50,6 @@ public class ControladorRifaTest extends SpringTest {
 
 	private void thenMeMuestraLasRifasDisponibles(ModelAndView model, String vistaEsperada) {
 		assertThat(model.getViewName()).isEqualTo(vistaEsperada);
-		
 	}
 
 	private ModelAndView whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles() {
@@ -59,6 +59,15 @@ public class ControladorRifaTest extends SpringTest {
 
 	private Sorteo givenQueExiste1Sorteo() {
 		DatosSorteo datosSorteo = new DatosSorteo("sorteo1", "unico sorteo", 100.00, 50);
-		return new Sorteo(datosSorteo);
+		this.usuario = createUser();
+		return new Sorteo(datosSorteo,this.usuario.getId());
+	}
+
+	private Usuario createUser() {
+		this.usuario.setId(1L);
+		this.usuario.setNombre("Agustin");
+		this.usuario.setEmail("agustin@test.com");
+		this.usuario.setGanoUnSorteoYa(Boolean.FALSE);
+		return this.usuario;
 	}
 }

@@ -53,7 +53,7 @@ public class SessionServiceTest {
 
     private void cuandoInicioSesion() {
         DatosLogin datosLogin = new DatosLogin("test@test.com", "123");
-//TODO En este when deberia hacer el set current user.. no lo hace pq esta mock.. esta bien ponerlo asi 'hardcodeado?
+        //TODO En este when deberia hacer el set current user.. no lo hace pq esta mock.. esta bien ponerlo asi 'hardcodeado?
         this.sessionService.setCurrentUser(this.usuario);
         when(this.controladorLogin.validarLogin(datosLogin, request))
                 .thenReturn(null);

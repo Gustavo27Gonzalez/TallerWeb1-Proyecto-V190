@@ -13,21 +13,18 @@ import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.models.compra.Compra;
-import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
-import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
-import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioRifaImpl;
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
 	
 	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
-	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO);
+	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO, null);
 	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
 	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/
+	private Usuario usuario;
 	
 	
 	@Before
@@ -62,12 +59,13 @@ public class SorteoServiceTest extends SpringTest{
 	}
 
 	private void thenSeGuardaCorrectamente(DatosSorteo sorteo) {
-		Sorteo nuevo = new Sorteo (sorteo);
+		Usuario usuario = createUser();
+		Sorteo nuevo = new Sorteo (sorteo, usuario.getId());
 		verify(sorteoRepository).crear(any(Sorteo.class));
 	}
 
 	private void givenQueCreoUnSorteo(DatosSorteo sorteo) {
-		sorteoService.crear(sorteo);
+		sorteoService.crear(sorteo, this.usuario);
 	}	
 	
 	@Test
@@ -91,12 +89,20 @@ public class SorteoServiceTest extends SpringTest{
 	}
 
 	private List<Sorteo>obtenerSorteos() {
+		Usuario usuario = createUser();
+		SORTEO.setIdCreador(usuario.getId());
 		List<Sorteo> sorteos = new ArrayList<Sorteo>();
 		sorteos.add(SORTEO);
 		sorteos.add(SORTEO);
 		sorteos.add(SORTEO);
 		return sorteos;
 	}
-	
-	
+
+	private Usuario createUser() {
+		this.usuario.setId(1L);
+		this.usuario.setNombre("Agustin");
+		this.usuario.setEmail("agustin@test.com");
+		this.usuario.setGanoUnSorteoYa(Boolean.FALSE);
+		return this.usuario;
+	}
 }

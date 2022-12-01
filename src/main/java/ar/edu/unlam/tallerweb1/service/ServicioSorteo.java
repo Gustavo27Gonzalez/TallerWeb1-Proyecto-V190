@@ -8,11 +8,13 @@ import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
 public interface ServicioSorteo {
-	void crear(DatosSorteo datosSorteo);
+	void crear(DatosSorteo datosSorteo, Usuario creador);
 	void modificar(Sorteo sorteo);
 	Sorteo buscarPorId(Long id);
 	List<Sorteo> listarSorteos();
 	Boolean participar(Sorteo nuevoSorteo, Usuario usuarioParticipante, List<Rifa> rifas);
 	Rifa obtenerGanador(List<Rifa> rifas);
 	Usuario obtenerUsuarioGanador(Sorteo sorteo);
+
+	List<Sorteo> listarMisSorteos(Long idUsuario);
 }

@@ -4,26 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
-import ar.edu.unlam.tallerweb1.models.premios.Premio;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import jakarta.validation.constraints.NotNull;
 
 
 @Entity (name="sorteo")
 public class Sorteo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sorteo_id")
@@ -35,10 +24,9 @@ public class Sorteo {
     private Integer cantidadRifas;
     @OneToMany(mappedBy = "sorteo", cascade = CascadeType.ALL)
     private List<Rifa> rifas = new ArrayList<>();
-    @ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "premio_id")
-	private Premio premio;
-    
+
+	@Column(name = "creador_sorteo")
+	private Long idCreador;
     
 	public Long getId() {
 		return id;
@@ -70,31 +58,32 @@ public class Sorteo {
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
 	}
-	public Premio getPremio() {
-		return premio;
-	}
-	public void setPremio(Premio premio) {
-		this.premio = premio;
-	}
-	
 	public List<Rifa> getRifas() {
 		return rifas;
 	}
 	public void setRifas(ArrayList<Rifa> rifas) {
 		this.rifas = rifas;
 	}
-	
+	public Long getIdCreador() {
+		return idCreador;
+	}
+
+	public void setIdCreador(Long id_creador) {
+		this.idCreador = id_creador;
+	}
+
 	public Sorteo() {}
     
-	public Sorteo(DatosSorteo datosSorteo) {
+	public Sorteo(DatosSorteo datosSorteo, Long idCreadorSorteo) {
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
+		setIdCreador(idCreadorSorteo);
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidadRifas, descripcion, id, nombre, precioRifa, premio, rifas);
+		return Objects.hash(cantidadRifas, descripcion, id, nombre, precioRifa, rifas);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -107,12 +96,10 @@ public class Sorteo {
 		Sorteo other = (Sorteo) obj;
 		return Objects.equals(cantidadRifas, other.cantidadRifas) && Objects.equals(descripcion, other.descripcion)
 				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(precioRifa, other.precioRifa) && Objects.equals(premio, other.premio)
 				&& Objects.equals(rifas, other.rifas);
 	}
 	public void addRifa(Rifa rifa) {
 		this.rifas.add(rifa);
 	}
-    
-    
+
 }

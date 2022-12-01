@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repository.repositoryImpl;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,6 +27,7 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	@Override
 	public void crear(Sorteo sorteo) {
 		sessionFactory.getCurrentSession().save(sorteo);
+
 	}
 
 	@Override
@@ -50,22 +52,19 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 				.list();
 	}
 
-	@Override
-	public List<Sorteo> buscarSorteosPorPremio(String premio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Sorteo> buscarSorteosPorPrecioRifa(Double precio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Sorteo> buscarSorteosConRifasDisponibles() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Sorteo> listarMisSorteos(Long idCreador) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Sorteo.class)
+				.add( Restrictions.eq("idCreador", idCreador))
+				.list();
 	}
 
 }

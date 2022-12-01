@@ -29,8 +29,8 @@ public class ServicioSorteoImpl implements ServicioSorteo {
     }
 	
 	@Override
-	public void crear(DatosSorteo datosSorteo) {
-		Sorteo nuevoSorteo = new Sorteo(datosSorteo);
+	public void crear(DatosSorteo datosSorteo, Usuario creador) {
+		Sorteo nuevoSorteo = new Sorteo(datosSorteo, creador.getId());
 		sorteoRepository.crear(nuevoSorteo);
 	}
 
@@ -70,6 +70,12 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		ganador.setEmail("mock@mock.com");
 		ganador.setNombre("Test");
 		return ganador;
+	}
+
+	@Override
+	public List<Sorteo> listarMisSorteos(Long idUsuario) {
+		List<Sorteo> misSorteos = this.sorteoRepository.listarMisSorteos(idUsuario);
+		return misSorteos;
 	}
 
 	@Override

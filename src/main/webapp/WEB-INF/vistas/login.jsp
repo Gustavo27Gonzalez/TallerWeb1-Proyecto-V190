@@ -9,7 +9,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Sortea2 | Iniciar sesi�n</title>
+<title>Sortea2 | Iniciar sesión</title>
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
@@ -44,7 +44,7 @@
 
 			<div class="d-flex justify-content-between pt-2">
 				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Registrarme</a>
-				<a class="btn btn-outline-info" href="recuperar-contrase�a" role="button">Olvid� mi Contrase�a</a>
+				<a class="btn btn-outline-info" href="recuperar-contrase�a" role="button">Olvidé mi Contraseña</a>
 				<a class="btn btn-outline-info" href="compras" role="button">PROBAR</a>
 			</div>
 

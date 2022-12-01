@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,20 +22,16 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class ControladorUsuario {
-	
-	
     ServicioSorteo servicioSorteo;
-	
-	
     ServicioUsuario servicioUsuario;
-	
-	
     HttpServletRequest request;
+    SessionService sessionService;
     
     @Autowired
-    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario) {
+    public ControladorUsuario(ServicioSorteo servicioSorteo, ServicioUsuario servicioUsuario, SessionService sessionService) {
         this.servicioSorteo = servicioSorteo;
         this.servicioUsuario = servicioUsuario;
+        this.sessionService = sessionService;
     }
     
     public ControladorUsuario(ServicioUsuario servicioUsuario) {
@@ -44,19 +41,17 @@ public class ControladorUsuario {
     
     @RequestMapping(path="/crearSorteo", method = RequestMethod.GET)
     public ModelAndView crearSorteo() {
-    	
     	ModelMap modelo = new ModelMap();
     	modelo.put("datosSorteo", new DatosSorteo());
-    	
     	return new ModelAndView("crearSorteo", modelo);
     }
     
     @RequestMapping(path = "/validar-crearSorteo", method = RequestMethod.POST)
-	public ModelAndView validarCrearSorteo(@ModelAttribute("datosSorteo") DatosSorteo datosSorteo, HttpServletRequest request) {
+	public ModelAndView validarCrearSorteo(@ModelAttribute("datosSorteo") DatosSorteo datosSorteo, HttpServletRequest request) throws Exception {
 		ModelMap model = new ModelMap();
-
+        Usuario usuario = sessionService.getCurrentUser();
 		try{
-			servicioSorteo.crear(datosSorteo);
+			servicioSorteo.crear(datosSorteo, usuario);
         }catch(RuntimeException e){
             e.printStackTrace();
         }
@@ -70,7 +65,6 @@ public class ControladorUsuario {
     @RequestMapping(path="/sorteoCreado", method = RequestMethod.GET)
     public ModelAndView sorteoCreado(){
         ModelMap model = new ModelMap();
-        
         return new ModelAndView("sorteoCreado", model);
     }
 	

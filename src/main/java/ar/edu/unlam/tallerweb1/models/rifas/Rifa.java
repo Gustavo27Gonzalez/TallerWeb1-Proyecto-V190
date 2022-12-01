@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
+import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 
 @Entity (name="rifa")
 public class Rifa {
@@ -18,11 +19,9 @@ public class Rifa {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sorteo_id")
 	private Sorteo sorteo;
+
 	@OneToOne(mappedBy = "rifa")
 	private Compra compra;
-
-	@OneToOne()
-	private Long idDueño;
 
 	public Long getId() {
 		return id;

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,17 +25,16 @@ import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 @Controller
 public class ControladorSorteo {
 	
-	@Autowired
 	ServicioSorteo servicioSorteo;
-	@Autowired
 	ServicioRifa servicioRifa;
-	
+	SessionService sessionService;
 	private List<Sorteo> sorteos;
 	
 	@Autowired
-	public ControladorSorteo(ServicioSorteo servicioSorteo, ServicioRifa servicioRifa) {
+	public ControladorSorteo(ServicioSorteo servicioSorteo, ServicioRifa servicioRifa, SessionService sessionService) {
 		this.servicioSorteo = servicioSorteo;
 		this.servicioRifa = servicioRifa;
+		this.sessionService = sessionService;
 	}
 
 	@RequestMapping(path="/listado-sorteos", method = RequestMethod.GET)
@@ -49,11 +49,10 @@ public class ControladorSorteo {
 	@RequestMapping(path="/google", method = RequestMethod.GET)
 	public ModelAndView participar() {
 		//ModelMap model = new ModelMap();
-		
 		return new ModelAndView("asdas");
 	}
 
-	@RequestMapping(path="/participar", method = RequestMethod.GET)
+	@RequestMapping(path="/listar-rifas", method = RequestMethod.GET)
 	public ModelAndView listarRifas() {
 		ModelMap model = new ModelMap();
 		List<Rifa> rifas = this.servicioRifa.listarRifas();
@@ -70,4 +69,14 @@ public class ControladorSorteo {
 		ModelAndView mav = new ModelAndView("ganador", model);
 		return mav;
     }
+
+	@RequestMapping(path="/mis-sorteos", method = RequestMethod.GET)
+	public ModelAndView listarMisSorteos() throws Exception {
+		ModelMap model = new ModelMap();
+		Usuario actual = this.sessionService.getCurrentUser();
+		List<Sorteo> sorteos = this.servicioSorteo.listarMisSorteos(actual.getId());
+		model.put("sorteos", sorteos);
+		ModelAndView mav = new ModelAndView("listar-sorteos", model);
+		return mav;
+	}
 }
