@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,15 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
+<!-------------------------------------------------------------------------->
+<div class="d-flex justify-content-end navegador">
+	<nav class="navbar ">
+		<form class="form-inline">
+			<a class="btn btn-danger" href="login" role="button">Salir</a>
+		</form>
+	</nav>
+</div>
+<!-------------------------------------------------------------------------->
 	<jsp:include page="background.jsp"/>
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>

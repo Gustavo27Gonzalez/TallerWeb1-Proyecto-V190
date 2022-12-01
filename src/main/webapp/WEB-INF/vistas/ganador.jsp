@@ -20,6 +20,15 @@
 <div>
   <a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
 </div>
+<!-------------------------------------------------------------------------->
+<div class="d-flex justify-content-end navegador">
+  <nav class="navbar ">
+    <form class="form-inline">
+      <a class="btn btn-danger" href="login" role="button">Salir</a>
+    </form>
+  </nav>
+</div>
+<!-------------------------------------------------------------------------->
 <jsp:include page="background.jsp"/>
 <div class="container">
   <h1>GANADOR</h1>

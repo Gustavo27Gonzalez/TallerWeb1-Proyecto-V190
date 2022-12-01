@@ -21,8 +21,13 @@
 	<div class="container">
 		<h1>Sorteo Creado</h1>
 	</div>
-	
-	
+	<div>
+		<img src="../../img/ok.jpg" alt="sorteo_ok">
+	</div>
+
+	<script type="text/javascript">
+		setTimeout("location.href = 'login-index';", 2500)
+	</script>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script
