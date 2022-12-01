@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AlgoritmoMayorCompradorStrategy implements AlgoritmoStrategy {
     @Autowired
@@ -18,48 +19,34 @@ public class AlgoritmoMayorCompradorStrategy implements AlgoritmoStrategy {
 
     @Override
     public Rifa execute(List<Rifa> rifas) {
-        try {
-            Long sorteoId = rifas.get(0).getId();
-            List<Compra> compras = this.servicioCompra.getComprasSorteo(sorteoId);
-            List<RifasPorUsuarioEnSorteo> rifasPorUsuario = new ArrayList<>();
-
-            compras.forEach(compra -> {
-                RifasPorUsuarioEnSorteo item = null;
-                boolean estaEnRifasPorUsuario = elUsuarioYaEstaEnLaLista(compra, rifasPorUsuario);
-                if (estaEnRifasPorUsuario) {
-                    item = rifasPorUsuario.stream().filter(rifasPorUsuarioEnSorteo -> {
-                        return rifasPorUsuarioEnSorteo.usuarioId == compra.getUsuario().getId();
-                    }).findAny().get();
-                    item.addInRifas(compra.getRifa());
-                }
-                else {
-                    RifasPorUsuarioEnSorteo nueva =new RifasPorUsuarioEnSorteo(compra.getUsuario().getId());
-                    nueva.addInRifas(compra.getRifa());
-                    rifasPorUsuario.add(nueva);
-                }
-            });
-
-            return usuarioConMasRifasCompradas(rifasPorUsuario);
-        }
-        catch (Exception e) {
-            throw new RuntimeException("Error al encontrar ganador con algoritmo mayor comprador: " + e);
-        }
+        int ganador = (int) Math.floor(Math.random() * rifas.size());
+        return rifas.get(ganador);
+//        try {
+//            Long sorteoId = rifas.get(0).getId();
+//            List<Compra> compras = this.servicioCompra.getComprasSorteo(sorteoId);
+//            List<RifasPorUsuarioEnSorteo> rifasPorUsuario = new ArrayList<>();
+//
+//            compras.forEach(compra -> {
+//                RifasPorUsuarioEnSorteo item = null;
+//                boolean estaEnRifasPorUsuario = elUsuarioYaEstaEnLaLista(compra, rifasPorUsuario);
+//                if (estaEnRifasPorUsuario) {
+//                    item = rifasPorUsuario.stream().filter(rifasPorUsuarioEnSorteo -> {
+//                        return rifasPorUsuarioEnSorteo.usuarioId == compra.getUsuario().getId();
+//                    }).findAny().get();
+//                    item.addInRifas(compra.getRifa());
+//                }
+//                else {
+//                    RifasPorUsuarioEnSorteo nueva =new RifasPorUsuarioEnSorteo(compra.getUsuario().getId());
+//                    nueva.addInRifas(compra.getRifa());
+//                    rifasPorUsuario.add(nueva);
+//                }
+//            });
+//
+//            return usuarioConMasRifasCompradas(rifasPorUsuario);
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException("Error al encontrar ganador con algoritmo mayor comprador: " + e);
+//        }
     }
 
-    private Rifa usuarioConMasRifasCompradas(List<RifasPorUsuarioEnSorteo> rifasPorUsuario) {
-        // TODO no se por que me lo hizo convertir en array
-        final RifasPorUsuarioEnSorteo[] ganador = {null};
-        rifasPorUsuario.forEach(rifasPorUsuarioEnSorteo -> {
-            if (ganador[0] == null || rifasPorUsuarioEnSorteo.getRifas().size() > ganador[0].getRifas().size()) {
-                ganador[0] = rifasPorUsuarioEnSorteo;
-            }
-        });
-        return ganador[0].rifas.get(0);
-    }
-
-    private boolean elUsuarioYaEstaEnLaLista(Compra compra,List<RifasPorUsuarioEnSorteo> rifasPorUsuario) {
-        return rifasPorUsuario.stream().filter(rifasPorUsuarioEnSorteo -> {
-            return compra.getUsuario().getId() == rifasPorUsuarioEnSorteo.getUsuarioId();
-        }).findAny().isPresent();
-    }
 }
