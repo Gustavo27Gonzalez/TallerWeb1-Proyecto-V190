@@ -24,6 +24,9 @@
 </div>
 <!-------------------------------------------------------------------------->
 	<jsp:include page="background.jsp"/>
+<div>
+	<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+</div>
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
@@ -60,8 +63,9 @@
 					<form:input path="cantidadRifas" type="text" id="cantidadRifas"
 						placeholder="Cantidad de Rifas..." class="form-control" />
 				</div>
-
+				<form:label class="form-label text-light" path="tipoAlgoritmo">Tipo de sorteo</form:label>
 				<form:select path="tipoAlgoritmo" class="form-control">
+
 					<form:options items="${algoritmos}" />
 				</form:select>
 
@@ -73,13 +77,11 @@
 <%--					</c:forEach>--%>
 <%--				</form:select>--%>
 
-				<button class="btn btn-lg btn-primary btn-block add-margin-b2"
-					type="Submit">Crear</button>
+				<button class="btn btn-lg btn-primary btn-block add-margin-b2 mt-3"
+					type="Submit">Crear sorteo</button>
 
 			</form:form>
 
-			<a class="btn btn-danger mt-2" href="login-index" role="button">Volver</a>
-			
 			<%--Bloque que es visible si el elemento error no esta vacio	--%>
 			<c:if test="${not empty error}">
 				<h4>
