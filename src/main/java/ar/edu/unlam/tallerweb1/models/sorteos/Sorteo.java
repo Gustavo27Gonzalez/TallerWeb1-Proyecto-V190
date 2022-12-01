@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
 
@@ -32,6 +31,7 @@ public class Sorteo {
     private Double precioRifa;
     private Integer cantidadRifas;
 
+	private boolean sorteoCerrado;
 	private Integer cantidadRifasVendidas;
     @ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "premio_id")
@@ -98,6 +98,7 @@ public class Sorteo {
 		setAlgoritmo(datosSorteo.getTipoAlgoritmo());
 		cantidadRifasVendidas= 0;
     	this.idCreador = idCreadorSorteo;
+		this.sorteoCerrado = false;
 	}
 	@Override
 	public int hashCode() {
@@ -130,5 +131,13 @@ public class Sorteo {
 
 	public void setCantidadRifasVendidas(Integer cantidadRifasVendidas) {
 		this.cantidadRifasVendidas = cantidadRifasVendidas;
+	}
+
+	public boolean isSorteoCerrado() {
+		return sorteoCerrado;
+	}
+
+	public void setSorteoCerrado(boolean sorteoCerrado) {
+		this.sorteoCerrado = sorteoCerrado;
 	}
 }

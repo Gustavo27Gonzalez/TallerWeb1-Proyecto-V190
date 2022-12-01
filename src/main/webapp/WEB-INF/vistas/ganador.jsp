@@ -16,14 +16,14 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
+
+<div>
+  <a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+</div>
 <jsp:include page="background.jsp"/>
 <div class="container">
   <h1>GANADOR</h1>
   <h1>${ganador.nombre}</h1>
-</div>
-
-<div>
-  <a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
 </div>
 
 <!-- Placed at the end of the document so the pages load faster -->

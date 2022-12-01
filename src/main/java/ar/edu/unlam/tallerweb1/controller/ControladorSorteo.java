@@ -120,6 +120,8 @@ public class ControladorSorteo {
 		ModelMap model = new ModelMap();
 		Sorteo sorteo = this.servicioSorteo.getSorteo(id);
 		Usuario ganador = this.servicioSorteo.obtenerUsuarioGanador(sorteo);
+		sorteo.setSorteoCerrado(true);
+		this.servicioSorteo.modificar(sorteo);
 		model.put("ganador", ganador);
 		ModelAndView mav = new ModelAndView("ganador", model);
 		return mav;
