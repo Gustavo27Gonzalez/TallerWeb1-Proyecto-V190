@@ -17,36 +17,18 @@
 <body>
 	<jsp:include page="background.jsp"/>
 	<div>
+		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+	</div>
+	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
 	
 	<!-- ----------------------------------------------------------------------------------- -->
 	<div class="d-flex justify-content-center">
-		<nav class="navbar navbar-expand-lg "
-			style="background-color: #121212;">
-			<a class="navbar-brand text-light" href="#">Navbar</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link text-light"
-						href="login-index" style="background-color: #70a6ba;">Inicio<span
-							class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link text-light" href="#">Features</a></li>
-					<li class="nav-item"><a class="nav-link text-light" href="#">Pricing</a></li>
-					<li class="nav-item"><a class="nav-link text-light" href="#">Disabled</a></li>
-				</ul>
-			</div>
-		</nav>
+
 	</div>
 
 	<!-- ----------------------------------------------------------------------------------- -->
-	<div>
-		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
-	</div>
 
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
@@ -59,8 +41,6 @@
 							<p class="card-text text-light" style="color: #797D7F">Descripcion: ${SORTEO.descripcion}</p>
 							<p class="card-text text-light" style="color: #797D7F">Precio: $${SORTEO.precioRifa}</p>
 							<div class="d-flex justify-content-end">
-								<a class="btn btn-outline-info"
-								   href="sortear" role="button">Sortear ganador</a>
 								<a class="btn btn-outline-info"
 								   href="seleccionar-sorteo?id=${SORTEO.id}" role="button">Participar</a>
 							</div>

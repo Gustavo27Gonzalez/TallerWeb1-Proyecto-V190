@@ -68,7 +68,7 @@
 
 				<div class="card-body border border-dark carta-sorteos">
 					<h3 class="card-title text-light"
-						style="color: #797D7F; text-align: center;">Ver Usuarios</h3>
+						style="color: #797D7F; text-align: center;">Mis Sorteos Creados</h3>
 				</div>
 				<!--TODO: SE CAMBIÓ POR VER MIS SORTEOS, ACÁ ESTABA VER USUARIOS-->
 				<a class="btn btn-success" href="mis-sorteos" role="button">Ver mis sorteos</a>

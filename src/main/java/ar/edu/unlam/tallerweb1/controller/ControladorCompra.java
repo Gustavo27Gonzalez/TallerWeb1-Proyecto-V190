@@ -51,12 +51,4 @@ public class ControladorCompra {
 		}
 	}
 
-	@RequestMapping(path = "/comprar/{id}", method = RequestMethod.POST)
-	public ModelAndView comprarRifa(@PathVariable("id") Long id) throws RifaNoDisponibleException {
-
-		Usuario usuario = new Usuario(1L, "Agustin", "admin@admin.com", Boolean.FALSE);
-		this.servicioCompra.comprar(compraRifa.getId(),usuario);
-		model.put("compraRifa", new CompraRifa());
-		return new ModelAndView("ver-compras", model);
-	}
 }

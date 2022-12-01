@@ -134,7 +134,7 @@ public class ControladorSorteo {
 		Usuario actual = this.sessionService.getCurrentUser();
 		List<Sorteo> sorteos = this.servicioSorteo.listarMisSorteos(actual.getId());
 		model.put("sorteos", sorteos);
-		ModelAndView mav = new ModelAndView("listar-sorteos", model);
+		ModelAndView mav = new ModelAndView("listar-mis-sorteos", model);
 		return mav;
 	}
 }

@@ -113,7 +113,7 @@ public class Sorteo {
 			return false;
 		Sorteo other = (Sorteo) obj;
 		return Objects.equals(cantidadRifas, other.cantidadRifas) && Objects.equals(descripcion, other.descripcion)
-				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
 	}
 
     public TipoAlgoritmo getAlgoritmo() {
