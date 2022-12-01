@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repository.repositoryImpl;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -47,7 +48,7 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	public List<Sorteo> listarSorteos() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Sorteo.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.add( Restrictions.eq("sorteoCerrado", false))
 				.list();
 	}
 
@@ -64,6 +65,19 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 				.createCriteria(Sorteo.class)
 				.add( Restrictions.eq("idCreador", idCreador))
 				.list();
+	}
+
+	@Override
+	public List<Rifa> getRifas(Sorteo sorteo) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Rifa.class)
+				.add( Restrictions.eq("sorteo", sorteo))
+				.list();
+	}
+
+	@Override
+	public void elimnar(Sorteo sorteo) {
+		sessionFactory.getCurrentSession().delete(sorteo);
 	}
 
 }

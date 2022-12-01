@@ -185,10 +185,5 @@
 			<artifactId>simple-java-mail</artifactId>
 			<version>6.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.mercadopago</groupId>
-			<artifactId>sdk-java</artifactId>
-			<version>2.1.4</version>
-		</dependency>
 	</dependencies>
 </project>

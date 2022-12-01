@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +29,7 @@ public class ServiceSorteoTest extends SpringTest {
 	@Before
 	public void init(){
 		this.repositorioSorteo = mock(RepositorioSorteo.class);
-		this.servicioSorteo = new ServicioSorteoImpl(this.repositorioSorteo);
+		this.servicioSorteo = new ServicioSorteoImpl(this.repositorioSorteo, mock(RepositorioUsuario.class));
 	}
 
 	@Test

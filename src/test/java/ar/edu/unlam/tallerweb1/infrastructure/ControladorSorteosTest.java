@@ -91,7 +91,7 @@ public class ControladorSorteosTest extends SpringTest {
 
 	private ModelAndView cuandoSorteoElGanador(Sorteo sorteo, Usuario usuario) {
 		when(this.servicioSorteo.obtenerUsuarioGanador(sorteo)).thenReturn(usuario);
-		return controladorSorteo.sortearGanador(sorteo);
+		return controladorSorteo.sortearGanador(1L);
 	}
 
 	private void dadoQueExistenSorteos(int cantidadSorteos) {

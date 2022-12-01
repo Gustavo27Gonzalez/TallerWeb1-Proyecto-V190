@@ -1,11 +1,10 @@
 package ar.edu.unlam.tallerweb1.service.serviceImpl;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import ar.edu.unlam.tallerweb1.repository.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +21,13 @@ import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 public class ServicioSorteoImpl implements ServicioSorteo {
 
     RepositorioSorteo sorteoRepository;
-    
+    ServicioAlgoritmo servicioAlgoritmo;
+	RepositorioUsuario repositorioUsuario;
     @Autowired
-    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository){
+    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository, RepositorioUsuario repositorioUsuario) {
         this.sorteoRepository = sorteoRepository;
+		this.servicioAlgoritmo = new ServicioAlgoritmo();
+		this.repositorioUsuario = repositorioUsuario;
     }
 	
 	@Override
@@ -57,19 +59,10 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
 	public Usuario obtenerUsuarioGanador(Sorteo sorteo) {
-		// TODO
-		// compra filtrar por idsorteo, return lista de compras
-		// this.servicioCompraObtenerRifasPara(sorteo)
-		List<Rifa> rifas = new ArrayList();
-		rifas.add(new Rifa());
-		rifas.add(new Rifa());
-		Rifa rifa = obtenerGanador(rifas);
-		// TODO
-		// this.servicioCompraBuscarPropietarioDeRifa(rifa);
-		Usuario ganador = new Usuario();
-		ganador.setEmail("mock@mock.com");
-		ganador.setNombre("Test");
-		return ganador;
+		List<Rifa> rifas = this.sorteoRepository.getRifas(sorteo);
+		this.servicioAlgoritmo.setTipo(sorteo.getAlgoritmo());
+		Rifa ganador = this.servicioAlgoritmo.getGanador(rifas);
+		return this.repositorioUsuario.buscarId(ganador.getUsuario());
 	}
 
 	@Override
@@ -80,6 +73,11 @@ public class ServicioSorteoImpl implements ServicioSorteo {
   
 	public Sorteo getSorteo(long sorteo) {
 		return this.sorteoRepository.buscarSorteoPorId(sorteo);
+	}
+
+	@Override
+	public void cerrarSorteo(Sorteo sorteo) {
+		this.sorteoRepository.elimnar(sorteo);
 	}
 
 	@Override

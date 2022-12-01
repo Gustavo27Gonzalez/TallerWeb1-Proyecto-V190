@@ -16,5 +16,6 @@ public interface ServicioSorteo {
 	Rifa obtenerGanador(List<Rifa> rifas);
 	Usuario obtenerUsuarioGanador(Sorteo sorteo);
 	List<Sorteo> listarMisSorteos(Long idUsuario);
-  Sorteo getSorteo(long id);
+  	Sorteo getSorteo(long id);
+	void cerrarSorteo(Sorteo sorteo);
 }
