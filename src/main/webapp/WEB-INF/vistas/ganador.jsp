@@ -17,9 +17,6 @@
 </head>
 <body>
 
-<div>
-  <a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
-</div>
 <!-------------------------------------------------------------------------->
 <div class="d-flex justify-content-end navegador">
   <nav class="navbar ">
@@ -29,6 +26,10 @@
   </nav>
 </div>
 <!-------------------------------------------------------------------------->
+
+<div>
+  <a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+</div>
 <jsp:include page="background.jsp"/>
 <div class="container">
   <h1>GANADOR</h1>
