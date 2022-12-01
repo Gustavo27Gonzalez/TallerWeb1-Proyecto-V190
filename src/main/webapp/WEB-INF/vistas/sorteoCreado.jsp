@@ -14,15 +14,14 @@
 	<link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-	<div>
-		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
-	</div>
 	<jsp:include page="background.jsp"/>
-	<div class="container">
-		<h1>Sorteo Creado</h1>
+	<div class="d-flex justify-content-center">
+		<h1 class="text-light display-2 align-center">Sorteo Creado</h1>
 	</div>
-	
-	
+
+	<script type="text/javascript">
+		setTimeout("location.href = 'login-index';", 1500)
+	</script>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script

@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.controller;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
-import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
@@ -75,7 +74,7 @@ public class ControladorUsuario {
 		ModelMap model = new ModelMap();
 		List<Usuario> usuarios = this.servicioUsuario.listarUsuarios();
 		model.put("usuarios", usuarios);
-		ModelAndView mav = new ModelAndView("listar-usuarios", model);
+		ModelAndView mav = new ModelAndView("rifas-vendidas", model);
 		return mav;
 	}
     

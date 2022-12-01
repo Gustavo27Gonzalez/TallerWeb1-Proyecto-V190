@@ -6,6 +6,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.SessionService;
 
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
@@ -31,15 +32,18 @@ public class ControladorSorteo {
 	ServicioRifa servicioRifa;
 	SessionService sessionService;
 	ServicioMercadoPagoImpl servicioMercadoPago;
+
+	RepositorioSorteo repositorioSorteo;
 	
 	private List<Sorteo> sorteos;
 	
 	@Autowired
-	public ControladorSorteo(ServicioSorteo servicioSorteo, ServicioRifa servicioRifa, SessionService sessionService, ServicioMercadoPagoImpl servicioMercadoPago) {
+	public ControladorSorteo(ServicioSorteo servicioSorteo, ServicioRifa servicioRifa, SessionService sessionService, ServicioMercadoPagoImpl servicioMercadoPago, RepositorioSorteo repositorioSorteo) {
 		this.servicioSorteo = servicioSorteo;
 		this.servicioRifa = servicioRifa;
 		this.sessionService = sessionService;
 		this.servicioMercadoPago = servicioMercadoPago;
+		this.repositorioSorteo = repositorioSorteo;
 	}
 
 	@RequestMapping(path="/listado-sorteos", method = RequestMethod.GET)
@@ -121,6 +125,7 @@ public class ControladorSorteo {
 		Sorteo sorteo = this.servicioSorteo.getSorteo(id);
 		Usuario ganador = this.servicioSorteo.obtenerUsuarioGanador(sorteo);
 		sorteo.setSorteoCerrado(true);
+		sorteo.setGanador(ganador.getEmail());
 		this.servicioSorteo.modificar(sorteo);
 		model.put("ganador", ganador);
 		ModelAndView mav = new ModelAndView("ganador", model);
@@ -136,17 +141,28 @@ public class ControladorSorteo {
 		ModelAndView mav = new ModelAndView("listar-sorteos-que-participo", model);
 		return mav;
 	}
-	
-	@RequestMapping(path="/mis-rifas", method = RequestMethod.GET)
-	public ModelAndView listarMisRifas() throws Exception {
+
+
+	@RequestMapping(path="/listar-rifas", method = RequestMethod.GET)
+	public ModelAndView verMisParticipantes(@RequestParam("id") long id) {
 		ModelMap model = new ModelMap();
-		Usuario actual = this.sessionService.getCurrentUser();
-		List<Rifa> rifas = this.servicioSorteo.listarMisRifas(actual.getId());
+		Sorteo sorteo = this.servicioSorteo.getSorteo(id);
+		List<Rifa> rifas = this.repositorioSorteo.getRifas(sorteo);
 		model.put("rifas", rifas);
-		ModelAndView mav = new ModelAndView("mis-rifas", model);
+		model.put("preseleccionado", sorteo.getAlgoritmo().equals(TipoAlgoritmo.PRESELECCIONADO));
+		ModelAndView mav = new ModelAndView("rifas-vendidas", model);
 		return mav;
 	}
-	
-	
-	
+
+		@RequestMapping(path="/mis-rifas", method = RequestMethod.GET)
+		public ModelAndView listarMisRifas() throws Exception {
+			ModelMap model = new ModelMap();
+			Usuario actual = this.sessionService.getCurrentUser();
+			List<Rifa> rifas = this.servicioSorteo.listarMisRifas(actual.getId());
+			model.put("rifas", rifas);
+			ModelAndView mav = new ModelAndView("mis-rifas", model);
+			return mav;
+		}
+
+
 }

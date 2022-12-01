@@ -58,7 +58,7 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 	public List<Rifa> listarMisRifas(Long id) {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Compra.class)
-				.add( Restrictions.eq("usuario_id", id))
+				.add( Restrictions.eq("usuarioId", id))
 				.list();
 	}
 

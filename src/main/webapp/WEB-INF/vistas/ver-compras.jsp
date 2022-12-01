@@ -12,6 +12,15 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
+	<!-------------------------------------------------------------------------->
+	<div class="d-flex justify-content-end navegador">
+		<nav class="navbar ">
+			<form class="form-inline">
+				<a class="btn btn-danger" href="login" role="button">Salir</a>
+			</form>
+		</nav>
+	</div>
+	<!-------------------------------------------------------------------------->
 	<h1>Mis compras</h1>
 	
 	<div class="d-flex justify-content-center flex-wrap"

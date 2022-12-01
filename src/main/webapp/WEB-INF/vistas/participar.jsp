@@ -57,29 +57,35 @@
 	<title>Sortea2 |  Listado de Rifas</title>
 </head>
 	<body>
-
+	<!-------------------------------------------------------------------------->
+	<div class="d-flex justify-content-end navegador">
+		<nav class="navbar ">
+			<form class="form-inline">
+				<a class="btn btn-danger" href="login" role="button">Salir</a>
+			</form>
+		</nav>
+	</div>
+	<!-------------------------------------------------------------------------->
 	<jsp:include page="background.jsp"/>
 	<div>
 		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
 	</div>
 		<div>
 			<h1 class="font-weight-bold">SORTEA2</h1>
+			<h3 class="font-weight-bold">Comprar rifa</h3>
 		</div>
 
 		<div class="d-flex justify-content-center flex-wrap" style="margin-top: 5rem;">
 			<div class="col-sm-4 mb-4 align-self-stretch ">
-				<div class="card shadow-lg  bg-white">
-					<div class="card-body border border-dark carta-sorteos">
-						<h3 class="card-title text-light" style="color: #797D7F; text-align: center;">${sorteo.nombre}</h3>
-						<p class="card-text text-light" style="color: #424949">ID: ${sorteo.id}</p>
-						<p class="card-text text-light" style="color: #797D7F">Descripcion: ${sorteo.descripcion}</p>
-						<p class="card-text text-light" style="color: #797D7F">Precio: $${sorteo.precioRifa}</p>
-						<div class="d-flex justify-content-end">
-							<a class="btn btn-outline-info" href="comprar" role="button" type="submit">Comprar</a>
-						</div>
-					</div>
+				<div class="card-counter danger">
+					<i class="fa fa-ticket"></i>
+					<span class="count-numbers">${sorteo.nombre}</span>
+					<span class="count-name">${sorteo.descripcion}</span>
 				</div>
 			</div>
+		</div>
+		<div class="d-flex justify-content-center flex-wrap" style="margin-top: 1rem;">
+			<a class="btn btn-primary" href="comprar" role="button" type="submit">Comprar: $ ${sorteo.precioRifa}</a>
 		</div>
 <%--		<div class="cho-container"></div>--%>
 
