@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="background.jsp"/>
 <div class="">
-    <h1 style="margin-top: 2.5em;" class="mb-3">Registrarse</h1>
+    <h1 class="mb-3">Registrarse</h1>
     <div id="loginbox" class="">
 
         <div class="d-flex justify-content-center">
@@ -24,21 +24,21 @@
 
                     <%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
                     <div class="mb-2">
-                        <form:label class="form-label text-light" for="nombre" path="nombre">Nombre(*)</form:label>
+                        <form:label class="form-label text-light" for="nombre" path="nombre">Nombre</form:label>
                         <form:input path="nombre" type="text" id="nombre" placeholder="Ingresar nombre"
                                     class="form-control"/>
                     </div>
 
 
                     <div class="mb-2">
-                        <form:label class="form-label text-light" for="dni" path="dni">DNI(*)</form:label>
+                        <form:label class="form-label text-light" for="dni" path="dni">DNI</form:label>
                         <form:input path="dni" type="text" id="dni" placeholder="Ingresar número de documento"
                                     class="form-control"/>
                     </div>
 
 
                     <div class="mb-2">
-                        <form:label class="form-label text-light" for="email" path="email">Email(*)</form:label>
+                        <form:label class="form-label text-light" for="email" path="email">Email</form:label>
                         <form:input path="email" type="email" id="email" placeholder="Ingresar email"
                                     class="form-control"/>
                     </div>
@@ -46,7 +46,7 @@
 
                     <div class="mb-2">
                         <form:label class="form-label text-light" for="password"
-                                    path="password">Contraseña(*)</form:label>
+                                    path="password">Contraseña</form:label>
                         <form:input path="password" type="password" id="password" placeholder="Ingrese su contraseña"
                                     class="form-control"/>
                     </div>
@@ -54,7 +54,7 @@
 
                     <div class="mb-4">
                         <form:label class="form-label text-light" for="repitePassword"
-                                    path="repitePassword">Repita su Contraseña(*)</form:label>
+                                    path="repitePassword">Repita su Contraseña</form:label>
                         <form:input path="repitePassword" type="password" id="repitePassword"
                                     placeholder="Ingresar nuevamente su contraseña" class="form-control"/>
                     </div>

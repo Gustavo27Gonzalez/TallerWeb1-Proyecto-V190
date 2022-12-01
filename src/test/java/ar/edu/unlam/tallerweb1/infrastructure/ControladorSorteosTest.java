@@ -45,7 +45,7 @@ public class ControladorSorteosTest extends SpringTest {
 		this.servicioSorteo = mock(ServicioSorteo.class);
 		this.servicioRifa = mock(ServicioRifa.class);
 		this.sessionService = mock(SessionService.class);
-		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null,mock(SessionService.class),mock(ServicioMercadoPagoImpl.class));
+		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null,mock(SessionService.class),mock(ServicioMercadoPagoImpl.class), mock(RepositorioSorteo.class));
 		this.servicioUsuario = mock(ServicioUsuario.class);
 		this.repositorioSorteo = mock(RepositorioSorteo.class);
 	}
