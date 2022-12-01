@@ -9,12 +9,6 @@ import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.SessionService;
 
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
-import com.mercadopago.MercadoPagoConfig;
-import com.mercadopago.client.preference.PreferenceClient;
-import com.mercadopago.client.preference.PreferenceItemRequest;
-import com.mercadopago.client.preference.PreferenceRequest;
-import com.mercadopago.exceptions.MPApiException;
-import com.mercadopago.exceptions.MPException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -67,7 +61,7 @@ public class ControladorSorteo {
 
 
 	@RequestMapping(path="/seleccionar-sorteo", method = RequestMethod.GET)
-	public ModelAndView seleccionarSorteo(@RequestParam("id") long id) throws MPException, MPApiException {
+	public ModelAndView seleccionarSorteo(@RequestParam("id") long id) {
 		this.sessionService.setCurrentSorteo(this.servicioSorteo.getSorteo(id));
 		ModelMap model = new ModelMap();
 		model.put("sorteo", this.servicioSorteo.getSorteo(id));
@@ -122,8 +116,9 @@ public class ControladorSorteo {
 
 	//deprecatedcrearSorteo
 	@RequestMapping(path="/sortear", method = RequestMethod.GET)
-    public ModelAndView sortearGanador(@ModelAttribute("sorteo") Sorteo sorteo) {
+    public ModelAndView sortearGanador(@RequestParam("id") long id) {
 		ModelMap model = new ModelMap();
+		Sorteo sorteo = this.servicioSorteo.getSorteo(id);
 		Usuario ganador = this.servicioSorteo.obtenerUsuarioGanador(sorteo);
 		model.put("ganador", ganador);
 		ModelAndView mav = new ModelAndView("ganador", model);

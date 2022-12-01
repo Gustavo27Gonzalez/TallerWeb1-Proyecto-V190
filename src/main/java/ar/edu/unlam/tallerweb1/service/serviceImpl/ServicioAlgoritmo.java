@@ -17,7 +17,6 @@ public class ServicioAlgoritmo {
     private TipoAlgoritmo tipoAlgoritmo;
 
     public void ServicioAlgoritmo() {
-        this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
     }
 
     public Rifa getGanador(List<Rifa> rifas) {

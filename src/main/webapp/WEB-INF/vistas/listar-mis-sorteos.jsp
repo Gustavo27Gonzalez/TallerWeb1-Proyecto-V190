@@ -44,7 +44,7 @@
                     <p class="card-text text-light" style="color: #797D7F">Tipo algoritmo: ${SORTEO.algoritmo}</p>
                     <div class="d-flex justify-content-end">
                         <a class="btn btn-outline-info"
-                           href="sortear" role="button">Sortear ganador</a>
+                           href="sortear?id=${SORTEO.id}" role="button">Sortear ganador</a>
                     </div>
                 </div>
             </div>

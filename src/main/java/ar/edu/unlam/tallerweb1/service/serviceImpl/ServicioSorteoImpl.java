@@ -22,10 +22,11 @@ import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 public class ServicioSorteoImpl implements ServicioSorteo {
 
     RepositorioSorteo sorteoRepository;
-    
+    ServicioAlgoritmo servicioAlgoritmo;
     @Autowired
-    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository){
+    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository, ServicioAlgoritmo servicioAlgoritmo) {
         this.sorteoRepository = sorteoRepository;
+		this.servicioAlgoritmo = new ServicioAlgoritmo();
     }
 	
 	@Override
@@ -57,19 +58,10 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
 	public Usuario obtenerUsuarioGanador(Sorteo sorteo) {
-		// TODO
-		// compra filtrar por idsorteo, return lista de compras
-		// this.servicioCompraObtenerRifasPara(sorteo)
-		List<Rifa> rifas = new ArrayList();
-		rifas.add(new Rifa());
-		rifas.add(new Rifa());
-		Rifa rifa = obtenerGanador(rifas);
-		// TODO
-		// this.servicioCompraBuscarPropietarioDeRifa(rifa);
-		Usuario ganador = new Usuario();
-		ganador.setEmail("mock@mock.com");
-		ganador.setNombre("Test");
-		return ganador;
+		List<Rifa> rifas = this.sorteoRepository.getRifas(sorteo);
+		this.servicioAlgoritmo.setTipo(sorteo.getAlgoritmo());
+		Rifa ganador = this.servicioAlgoritmo.getGanador(rifas);
+		return this.sorteoRepository.getUsuario(ganador);
 	}
 
 	@Override

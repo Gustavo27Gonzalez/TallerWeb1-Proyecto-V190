@@ -94,4 +94,8 @@ public class Rifa {
 	public void setUsuario(Long id) {
 		this.usuarioId = id;
 	}
+
+	public Long getUsuario() {
+		return this.usuarioId;
+	}
 }
