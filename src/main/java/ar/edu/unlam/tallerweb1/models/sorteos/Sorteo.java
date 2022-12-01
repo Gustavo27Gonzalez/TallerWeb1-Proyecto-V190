@@ -1,13 +1,22 @@
 package ar.edu.unlam.tallerweb1.models.sorteos;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-
 import javax.persistence.*;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
+import ar.edu.unlam.tallerweb1.models.premios.Premio;
+
 import jakarta.validation.constraints.NotNull;
 
 
@@ -22,8 +31,13 @@ public class Sorteo {
     @NotNull
     private Double precioRifa;
     private Integer cantidadRifas;
-    @OneToMany(mappedBy = "sorteo", cascade = CascadeType.ALL)
-    private List<Rifa> rifas = new ArrayList<>();
+
+	private Integer cantidadRifasVendidas;
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "premio_id")
+	private Premio premio;
+
+	private TipoAlgoritmo tipoAlgoritmo;
 
 	@Column(name = "creador_sorteo")
 	private Long idCreador;
@@ -58,12 +72,7 @@ public class Sorteo {
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
 	}
-	public List<Rifa> getRifas() {
-		return rifas;
-	}
-	public void setRifas(ArrayList<Rifa> rifas) {
-		this.rifas = rifas;
-	}
+
 	public Long getIdCreador() {
 		return idCreador;
 	}
@@ -72,6 +81,13 @@ public class Sorteo {
 		this.idCreador = id_creador;
 	}
 
+	public Premio getPremio() {
+		return premio;
+	}
+	public void setPremio(Premio premio) {
+		this.premio = premio;
+	}
+	
 	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo, Long idCreadorSorteo) {
@@ -79,11 +95,13 @@ public class Sorteo {
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
-		setIdCreador(idCreadorSorteo);
+		this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
+		cantidadRifasVendidas= 0;
+    this.idCreador = idCreadorSorteo;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(cantidadRifas, descripcion, id, nombre, precioRifa, rifas);
+		return Objects.hash(cantidadRifas, descripcion, id, nombre, precioRifa, premio);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -96,10 +114,21 @@ public class Sorteo {
 		Sorteo other = (Sorteo) obj;
 		return Objects.equals(cantidadRifas, other.cantidadRifas) && Objects.equals(descripcion, other.descripcion)
 				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(rifas, other.rifas);
-	}
-	public void addRifa(Rifa rifa) {
-		this.rifas.add(rifa);
 	}
 
+    public TipoAlgoritmo getAlgoritmo() {
+		return this.tipoAlgoritmo;
+    }
+
+	public void setAlgoritmo(TipoAlgoritmo tipo) {
+		this.tipoAlgoritmo = tipo;
+	}
+
+	public Integer getCantidadRifasVendidas() {
+		return cantidadRifasVendidas;
+	}
+
+	public void setCantidadRifasVendidas(Integer cantidadRifasVendidas) {
+		this.cantidadRifasVendidas = cantidadRifasVendidas;
+	}
 }

@@ -7,6 +7,8 @@ import static org.mockito.Mockito.*;
 
 
 import ar.edu.unlam.tallerweb1.service.SessionService;
+
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpRequest;
@@ -37,11 +39,11 @@ public class ControladorRifaTest extends SpringTest {
 		this.servicioSorteo = mock(ServicioSorteo.class);
 		this.sessionService = mock(SessionService.class);
 		this.servicioRifa = mock(ServicioRifa.class);
-		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, this.servicioRifa,this.sessionService);
+		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa, mock(SessionService.class),mock(ServicioMercadoPagoImpl.class));
 	}
 
 	@Test
-	public void queSePuedanListarRifasEnUnSorteo() {
+	public void queSePuedanListarRifasEnUnSorteo() throws Exception {
 		Sorteo sorteo = givenQueExiste1Sorteo();
 		ModelAndView mav = whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles();
 		thenMeMuestraLasRifasDisponibles(mav, "participar");

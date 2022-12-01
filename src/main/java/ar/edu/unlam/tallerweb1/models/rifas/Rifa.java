@@ -24,6 +24,8 @@ public class Rifa {
 	@OneToOne(mappedBy = "rifa")
 	private Compra compra;
 
+	private Long usuarioId;
+
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +53,11 @@ public class Rifa {
 		this.id = id;
 		this.fueVendida = fueVendida;
 	}
+
+	public Rifa(Boolean fueVendida, Sorteo sorteo) {
+		this.fueVendida = fueVendida;
+		this.sorteo = sorteo;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -69,10 +76,22 @@ public class Rifa {
 				&& Objects.equals(id, other.id) && Objects.equals(sorteo, other.sorteo);
 	}
 
+	public Sorteo getSorteo() {
+		return sorteo;
+	}
+
+	public void setSorteo(Sorteo sorteo) {
+		this.sorteo = sorteo;
+	}
+
 	public void setEsGanadora(boolean esGanadora) {
 		this.esGanadora = esGanadora;
 	}
     public boolean esRifaGanadora() {
 		return this.esGanadora;
     }
+
+	public void setUsuario(Long id) {
+		this.usuarioId = id;
+	}
 }

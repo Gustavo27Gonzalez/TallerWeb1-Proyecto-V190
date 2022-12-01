@@ -41,7 +41,7 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
 	public void modificar(Sorteo sorteo) {
-		
+		this.sorteoRepository.modificar(sorteo);
 	}
 
 	@Override
@@ -76,6 +76,10 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 	public List<Sorteo> listarMisSorteos(Long idUsuario) {
 		List<Sorteo> misSorteos = this.sorteoRepository.listarMisSorteos(idUsuario);
 		return misSorteos;
+  }
+  
+	public Sorteo getSorteo(long sorteo) {
+		return this.sorteoRepository.buscarSorteoPorId(sorteo);
 	}
 
 	@Override
