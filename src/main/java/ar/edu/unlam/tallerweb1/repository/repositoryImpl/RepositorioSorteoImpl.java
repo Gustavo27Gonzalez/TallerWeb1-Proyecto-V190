@@ -13,8 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("repositorioSorteo")
+@Transactional
 public class RepositorioSorteoImpl implements RepositorioSorteo {
 
 	@Autowired

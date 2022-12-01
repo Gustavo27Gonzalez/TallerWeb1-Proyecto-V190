@@ -33,19 +33,19 @@
 
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
-		<c:forEach var="USUARIO" items="${usuarios}">
+		<c:forEach var="rifa" items="${rifas}">
 			<div class="col-sm-4 mb-4 align-self-stretch ">
 				<div class="card shadow-lg  bg-white">
 
 					<div class="card-body border border-dark carta-sorteos">
 						<h3 class="card-title text-light"
-							style="color: #797D7F; text-align: center;">${USUARIO.nombre}</h3>
-						<p class="card-text text-light" style="color: #797D7F">Apellido:
-							${SORTEO.apellido}</p>
-						<p class="card-text text-light" style="color: #424949">ID:
-							${USUARIO.id}</p>
-						
-
+							style="color: #797D7F; text-align: center;">Id rifa: ${rifa.id}</h3>
+						<p class="card-text text-light" style="color: #797D7F">Id comprador:
+							${rifa.usuario}</p>
+						<c:if test="${preseleccionado == true}">
+							<p class="card-text text-light" style="color: #424949">Rifa ganadora:
+								${rifa.esRifaGanadora()}</p>
+						</c:if>
 					</div>
 				</div>
 			</div>

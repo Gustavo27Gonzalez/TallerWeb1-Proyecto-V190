@@ -42,10 +42,17 @@
                     <p class="card-text text-light" style="color: #797D7F">Descripcion: ${SORTEO.descripcion}</p>
                     <p class="card-text text-light" style="color: #797D7F">Precio: $${SORTEO.precioRifa}</p>
                     <p class="card-text text-light" style="color: #797D7F">Tipo algoritmo: ${SORTEO.algoritmo}</p>
-                    <div class="d-flex justify-content-end">
+                    <c:if test="${SORTEO.sorteoCerrado == false}">
+                    <div class="d-flex justify-content-between pt-2">
+                        <a class="btn btn-outline-info"
+                           href="listar-rifas?id=${SORTEO.id}" role="button">Ver rifas vendidas</a>
                         <a class="btn btn-outline-info"
                            href="sortear?id=${SORTEO.id}" role="button">Sortear ganador</a>
                     </div>
+                    </c:if>
+                    <c:if test="${SORTEO.sorteoCerrado == true}">
+                        <p class="card-text text-light" style="color: #797D7F">Ganador del sorteo: ${SORTEO.ganador}</p>
+                    </c:if>
                 </div>
             </div>
         </div>

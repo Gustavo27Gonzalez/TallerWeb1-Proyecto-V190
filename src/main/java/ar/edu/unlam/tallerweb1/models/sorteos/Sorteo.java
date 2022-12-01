@@ -38,6 +38,7 @@ public class Sorteo {
 	private Premio premio;
 
 	private TipoAlgoritmo tipoAlgoritmo;
+	private String ganador;
 
 	@Column(name = "creador_sorteo")
 	private Long idCreador;
@@ -87,7 +88,7 @@ public class Sorteo {
 	public void setPremio(Premio premio) {
 		this.premio = premio;
 	}
-	
+
 	public Sorteo() {}
     
 	public Sorteo(DatosSorteo datosSorteo, Long idCreadorSorteo) {
@@ -99,6 +100,7 @@ public class Sorteo {
 		cantidadRifasVendidas= 0;
     	this.idCreador = idCreadorSorteo;
 		this.sorteoCerrado = false;
+		this.ganador = "";
 	}
 	@Override
 	public int hashCode() {
@@ -139,5 +141,13 @@ public class Sorteo {
 
 	public void setSorteoCerrado(boolean sorteoCerrado) {
 		this.sorteoCerrado = sorteoCerrado;
+	}
+
+	public String getGanador() {
+		return ganador;
+	}
+
+	public void setGanador(String ganador) {
+		this.ganador = ganador;
 	}
 }
