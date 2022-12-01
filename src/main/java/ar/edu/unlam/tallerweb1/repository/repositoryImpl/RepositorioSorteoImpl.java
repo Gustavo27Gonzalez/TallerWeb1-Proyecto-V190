@@ -48,7 +48,7 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	public List<Sorteo> listarSorteos() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(Sorteo.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.add( Restrictions.eq("sorteoCerrado", false))
 				.list();
 	}
 
@@ -76,10 +76,8 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	}
 
 	@Override
-	public Usuario getUsuario(Rifa ganador) {
-		return (Usuario) sessionFactory.getCurrentSession()
-				.createCriteria(Usuario.class)
-				.add( Restrictions.eq("usuario_id", ganador.getUsuario()));
+	public void elimnar(Sorteo sorteo) {
+		sessionFactory.getCurrentSession().delete(sorteo);
 	}
 
 }

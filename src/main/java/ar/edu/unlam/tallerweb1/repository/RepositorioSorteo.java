@@ -15,6 +15,5 @@ public interface RepositorioSorteo {
 	List <Sorteo> buscarSorteosConRifasDisponibles();
 	List<Sorteo> listarMisSorteos(Long idCreador);
 	List<Rifa> getRifas(Sorteo sorteo);
-
-	Usuario getUsuario(Rifa ganador);
+	void elimnar(Sorteo sorteo);
 }
