@@ -18,7 +18,6 @@ public class AlgoritmoMayorCompradorStrategy implements AlgoritmoStrategy {
 
     @Override
     public Rifa execute(List<Rifa> rifas) {
-        //TODO add try catch
         try {
             Long sorteoId = rifas.get(0).getId();
             List<Compra> compras = this.servicioCompra.getComprasSorteo(sorteoId);

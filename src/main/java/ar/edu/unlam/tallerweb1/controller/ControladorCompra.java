@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.controller.dtos.CompraRifa;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosRegistro;
 import exceptions.RifaNoDisponibleException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class ControladorCompra {
 	public ModelAndView verCompras() {
 		//String email = req.getSession().getAttribute("email");
 		ModelMap model = new ModelMap();
+		model.put("compraRifa", new CompraRifa());
 		List<CompraDTO> lista = this.servicioCompra.listarMisCompras();
 		if (lista.size() > 0) {
 			model.put("compras", lista);
@@ -49,9 +51,11 @@ public class ControladorCompra {
 	}
 
 	@RequestMapping(path = "/comprar", method = RequestMethod.POST)
-	public ModelAndView comprarRifa(@ModelAttribute("id") Long id) throws RifaNoDisponibleException {
+	public ModelAndView comprarRifa(@ModelAttribute("compraRifa") CompraRifa compraRifa) throws RifaNoDisponibleException {
+		ModelMap model = new ModelMap();
 		Usuario usuario = new Usuario(1L, "Agustin", "admin@admin.com", Boolean.FALSE);
-		this.servicioCompra.comprar(id,usuario);
-		return new ModelAndView("ver-compras");
+		this.servicioCompra.comprar(compraRifa.getId(),usuario);
+		model.put("compraRifa", new CompraRifa());
+		return new ModelAndView("ver-compras", model);
 	}
 }

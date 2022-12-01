@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.service.SessionService;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +39,7 @@ public class ControladorSorteosTest extends SpringTest {
 	@Before
 	public void init(){
 		this.servicioSorteo = mock(ServicioSorteo.class);
-		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null);
+		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null,mock(SessionService.class),mock(ServicioMercadoPagoImpl.class));
 		this.servicioUsuario = mock(ServicioUsuario.class);
 		this.repositorioSorteo = mock(RepositorioSorteo.class);
 	}
@@ -45,10 +47,13 @@ public class ControladorSorteosTest extends SpringTest {
 	@Test
 	public void alSortearObtengoUnGanador() {
 		Sorteo sorteo = dadoQueExisteUnSorteo();
-
-		ModelAndView mav = cuandoSorteoElGanador(sorteo);
-
+		Usuario usuario = dadoQueExisteUnUsuario(1L, "q@test", "123", false);
+		ModelAndView mav = cuandoSorteoElGanador(sorteo, usuario);
 		entoncesMeLLevaALaVista(mav, "ganador");
+	}
+
+	private Usuario dadoQueExisteUnUsuario(long id, String nombre, String mail, boolean ganoAntes) {
+		return new Usuario(id, nombre, mail, ganoAntes );
 	}
 
 	@Test
@@ -78,7 +83,8 @@ public class ControladorSorteosTest extends SpringTest {
 		return controladorSorteo.listarSorteos();
 	}
 
-	private ModelAndView cuandoSorteoElGanador(Sorteo sorteo) {
+	private ModelAndView cuandoSorteoElGanador(Sorteo sorteo, Usuario usuario) {
+		when(this.servicioSorteo.obtenerUsuarioGanador(sorteo)).thenReturn(usuario);
 		return controladorSorteo.sortearGanador(sorteo);
 	}
 
@@ -88,27 +94,6 @@ public class ControladorSorteosTest extends SpringTest {
 			sorteos.add(new Sorteo());
 		when(this.servicioSorteo.listarSorteos()).thenReturn(sorteos);
 	}
-
-
-	//	    @Test
-	//	    public void alRealizarElSorteoComprueboQueElAlgoritmoGenereMasChancesDeGanarAlQueCumpleConMasRequisitos(){
-	//
-	//	    	// Factores que incrementan las chances:
-	//	    	// 1) Cantidad de Rifas compradas en este sorteo. 2) Si ya gan� un sorteo.
-	//
-	//	        // Preparacion
-	//	        dadoQueExistenSorteos(1);
-	//
-	//	        dadoQueExistenUsuarios(CANTIDAD_USUARIOS);
-	//
-	//	        // Ejecucion
-	//	        ModelAndView mav = cuandoListoUsuarios();
-	//
-	//	        // Verificacion
-	//	        entoncesEncuentroUsuarios(mav, CANTIDAD_USUARIOS);
-	//
-	//	        entoncesMeLLevaALaVista(mav, "lista-usuarios");
-	//	    }
 
 	private void dadoQueExistenUsuarios(int cantidadUsuarios) {
 		List<Usuario> usuarios = new LinkedList<>();
@@ -161,10 +146,6 @@ public class ControladorSorteosTest extends SpringTest {
 		assertThat(model.getViewName()).isEqualTo(vistaEsperada);
 	}
 
-	private ModelAndView whenGeneroLaAccionDeParticiparEnUnSorteo() {
-		return controladorSorteo.participar();
-	}
-
 	private void givenHayUnSorteoExistenteQueQuieroParticipar() {
 		Usuario usuarioExistente = new Usuario(2L, "Martin", "martin@gmail.com", Boolean.TRUE);
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
@@ -185,13 +166,7 @@ public class ControladorSorteosTest extends SpringTest {
 	}
 
 	private Sorteo dadoQueExisteUnSorteo() {
-		List<Sorteo> sorteos = new LinkedList<>();
-		for(int i = 0; i<3; i++) {
-			sorteos.add(new Sorteo());
-			this.repositorioSorteo.crear(new Sorteo());
-		}
-		when(this.repositorioSorteo.listarSorteos()).thenReturn(sorteos);
-		return sorteos.get(0);
+		return new Sorteo();
 	}
 	    
 }

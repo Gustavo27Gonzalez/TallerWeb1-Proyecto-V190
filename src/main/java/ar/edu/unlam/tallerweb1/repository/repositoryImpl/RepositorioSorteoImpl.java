@@ -30,8 +30,7 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 
 	@Override
 	public void modificar(Sorteo sorteo) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().update(sorteo);
 	}
 
 	@Override

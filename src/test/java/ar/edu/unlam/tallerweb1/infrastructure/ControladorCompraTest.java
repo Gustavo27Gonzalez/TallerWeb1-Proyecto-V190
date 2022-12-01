@@ -66,7 +66,6 @@ public class ControladorCompraTest {
 	private void dadoQueExisteUnSorteoConRifasDisponibles() {
 		dadoQueExisteUnSorteo();
 		Rifa rifa = new Rifa(1L, false);
-		this.sorteo.addRifa(rifa);
 	}
 	
 	

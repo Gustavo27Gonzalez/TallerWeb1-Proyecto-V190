@@ -11,4 +11,6 @@ public interface RepositorioRifa {
 	void comprar(Rifa rifa);
 	Compra comprar(Compra compra);
 	Rifa getRifaById(Long id);
+
+	void guardarRifa(Rifa rifa);
 }

@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
+import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpRequest;
@@ -31,16 +33,15 @@ public class ControladorRifaTest extends SpringTest {
 	private ControladorSorteo controladorSorteo;
 	private ServicioSorteo servicioSorteo;
 	private ServicioRifa servicioRifa;
-	
 
 	@Before
 	public void init() {
 		this.servicioRifa = mock(ServicioRifa.class);
-		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa);
+		this.controladorSorteo = new ControladorSorteo(null, this.servicioRifa, mock(SessionService.class),mock(ServicioMercadoPagoImpl.class));
 	}
 
 	@Test
-	public void queSePuedanListarRifasEnUnSorteo() {
+	public void queSePuedanListarRifasEnUnSorteo() throws Exception {
 		Sorteo sorteo = givenQueExiste1Sorteo();
 		ModelAndView mav = whenQuieroParticiparEnUnSorteoPuedoVerLasRifasDisponibles();
 		thenMeMuestraLasRifasDisponibles(mav, "participar");

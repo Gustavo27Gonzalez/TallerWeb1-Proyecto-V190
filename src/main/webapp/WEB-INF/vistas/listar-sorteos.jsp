@@ -51,29 +51,22 @@
 	<div class="d-flex justify-content-center flex-wrap"
 		style="margin-top: 5rem;">
 		<c:forEach var="SORTEO" items="${sorteos}">
-			<div class="col-sm-4 mb-4 align-self-stretch ">
-				<div class="card shadow-lg  bg-white">
-
-					<div class="card-body border border-dark carta-sorteos">
-						<h3 class="card-title text-light"
-							style="color: #797D7F; text-align: center;">${SORTEO.nombre}</h3>
-						<p class="card-text text-light" style="color: #424949">ID:
-							${SORTEO.id}</p>
-						<p class="card-text text-light" style="color: #797D7F">Descripcion:
-							${SORTEO.descripcion}</p>
-						<p class="card-text text-light" style="color: #797D7F">Precio:
-							$${SORTEO.precioRifa}</p>
-
-						<div class="d-flex justify-content-end">
-							<a class="btn btn-outline-info"
-							   href="sortear" role="button">Sortear ganador</a>
-							<a class="btn btn-outline-info"
-								href="participar" role="button">Participar</a>
+				<div class="col-sm-4 mb-4 align-self-stretch ">
+					<div class="card shadow-lg  bg-white">
+						<div class="card-body border border-dark carta-sorteos">
+							<h3 class="card-title text-light" style="color: #797D7F; text-align: center;">${SORTEO.nombre}</h3>
+							<p class="card-text text-light" style="color: #424949">ID: ${SORTEO.id}</p>
+							<p class="card-text text-light" style="color: #797D7F">Descripcion: ${SORTEO.descripcion}</p>
+							<p class="card-text text-light" style="color: #797D7F">Precio: $${SORTEO.precioRifa}</p>
+							<div class="d-flex justify-content-end">
+								<a class="btn btn-outline-info"
+								   href="sortear" role="button">Sortear ganador</a>
+								<a class="btn btn-outline-info"
+								   href="seleccionar-sorteo?id=${SORTEO.id}" role="button">Participar</a>
+							</div>
 						</div>
-
 					</div>
 				</div>
-			</div>
 		</c:forEach>
 	</div>
 

@@ -47,5 +47,10 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 				.add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
-	
+
+	@Override
+	public void guardarRifa(Rifa rifa) {
+		this.sessionFactory.getCurrentSession().save(rifa);
+	}
+
 }

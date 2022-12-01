@@ -41,7 +41,7 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 
 	@Override
 	public void modificar(Sorteo sorteo) {
-		
+		this.sorteoRepository.modificar(sorteo);
 	}
 
 	@Override
@@ -70,6 +70,11 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		ganador.setEmail("mock@mock.com");
 		ganador.setNombre("Test");
 		return ganador;
+	}
+
+	@Override
+	public Sorteo getSorteo(long sorteo) {
+		return this.sorteoRepository.buscarSorteoPorId(sorteo);
 	}
 
 	@Override

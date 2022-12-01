@@ -19,7 +19,7 @@
 	</div>
 	<jsp:include page="background.jsp"/>
 	<div class="container">
-		<h1>Sorteo Creado</h1>
+		<h1>Compra Exitosa</h1>
 	</div>
 	
 	

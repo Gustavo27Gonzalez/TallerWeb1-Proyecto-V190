@@ -22,7 +22,7 @@ public class ServicioAlgoritmo {
 
     public Rifa getGanador(List<Rifa> rifas) {
         context = new Context();
-        //TODO pasar esto a map
+        //TODO pasar esto a map, USAR EQUALS
         if(tipoAlgoritmo == TipoAlgoritmo.RANDOM) {
             this.context.setStrategy(new AlgoritmoRandomStrategy());
         }
