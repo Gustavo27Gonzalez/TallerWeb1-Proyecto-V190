@@ -8,12 +8,14 @@
 <div class="bg bg3"></div>
 <style>
     .card-counter{
-        box-shadow: 0px 0px 10px #DADADA;
+        box-shadow: 0px 0px 5px #DADADA;
         margin: 5px;
         padding: 20px 10px;
         background-color: #fff;
         border-radius: 5px;
         transition: .3s linear all;
+        min-height: 170px;
+        max-height: 170px;
     }
 
     .card-counter:hover{
@@ -42,8 +44,9 @@
     }
 
     .card-counter i{
-        font-size: 5em;
+        font-size: 8em;
         opacity: 0.2;
+        z-index: -10000;
     }
 
     .card-counter .count-numbers{
@@ -57,7 +60,7 @@
     .card-counter .count-name{
         position: absolute;
         right: 35px;
-        top: 65px;
+        top: 126px;
         font-style: italic;
         text-transform: capitalize;
         opacity: 0.5;
