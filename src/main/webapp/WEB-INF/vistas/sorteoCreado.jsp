@@ -22,9 +22,9 @@
 		<h1 class="text-light display-2 align-center">Sorteo Creado</h1>
 	</div>
 
-	<!--<script type="text/javascript">
+	<script type="text/javascript">
 		setTimeout("location.href = 'login-index';", 2500)
-	</script>-->
+	</script>
 	
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script

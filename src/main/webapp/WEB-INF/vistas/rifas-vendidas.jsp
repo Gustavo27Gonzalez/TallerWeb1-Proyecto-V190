@@ -13,13 +13,19 @@
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
 <!------ Include the above in your HEAD tag ---------->
-<title>Sortea2 |  Listado de usuarios</title>
+<title>Sortea2 |  Rifas vendidas</title>
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
-	<div>
-		<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+	<div class="d-flex justify-content-end navegador">
+		<nav class="navbar ">
+			<form class="form-inline">
+				<a class="btn btn-danger ml-2 d -flex justify-content-start" href="mis-sorteos" role="button">Volver</a>
+				<a class="btn btn-danger" href="login" role="button">Salir</a>
+			</form>
+		</nav>
 	</div>
+
 	<div>
 		<h1 class="font-weight-bold">SORTEA2</h1>
 	</div>
