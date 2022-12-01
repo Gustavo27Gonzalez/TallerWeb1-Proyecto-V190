@@ -15,8 +15,8 @@
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
-	<div class="d-flex justify-content-center">
-		<h1 class="text-light display-2 align-center">Sorteo Creado</h1>
+	<div class="container">
+		<h1>Sorteo Creado</h1>
 	</div>
 
 	<script type="text/javascript">

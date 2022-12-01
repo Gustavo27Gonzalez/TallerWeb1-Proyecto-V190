@@ -13,13 +13,18 @@
 <body>
 	<jsp:include page="background.jsp"/>
 	<!-------------------------------------------------------------------------->
-	<div class="d-flex justify-content-end navegador">
-		<nav class="navbar ">
-			<form class="form-inline">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #121212">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="btn btn-danger ml-2" href="login-index" role="button">Volver</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
 				<a class="btn btn-danger" href="login" role="button">Salir</a>
 			</form>
-		</nav>
-	</div>
+		</div>
+	</nav>
 	<!-------------------------------------------------------------------------->
 	<h1>Mis compras</h1>
 	
