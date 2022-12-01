@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ModelMap;
@@ -29,7 +30,7 @@ public class ControladorCompraTest {
 	private Sorteo sorteo;
 	private Usuario usuario = new Usuario();
 	private List<CompraDTO> compras;
-	
+
 	@Before
 	public void init() {
 		this.servicioCompra = mock(ServicioCompra.class);
@@ -86,8 +87,9 @@ public class ControladorCompraTest {
 	}
 	
 	private void dadoQueExisteUnSorteo() {
+		Usuario nuevo = createUser();
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
-		this.sorteo = new Sorteo(datosSorteo);	
+		this.sorteo = new Sorteo(datosSorteo, nuevo.getId());
 	}
 
 	private ModelAndView cuandoQuieroTerminarDeRealizarLaCompraObtengoUnError() throws RifaNoDisponibleException {
@@ -110,7 +112,5 @@ public class ControladorCompraTest {
 	private void entoncesLaCompraNoPuedeSerConcretadaYObtengoUnaVistaDeError(ModelAndView mav, String  expectedKey) {
 		assertThat(mav.getModel().containsKey(expectedKey));
 	}
-
-	
 
 }

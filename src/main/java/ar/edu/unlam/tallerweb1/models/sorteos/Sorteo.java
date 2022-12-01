@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.models.sorteos;
 import java.util.Objects;
+import javax.persistence.*;
+
+import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +16,12 @@ import javax.persistence.ManyToOne;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.premios.Premio;
+
 import jakarta.validation.constraints.NotNull;
 
 
 @Entity (name="sorteo")
 public class Sorteo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sorteo_id")
@@ -35,6 +39,9 @@ public class Sorteo {
 
 	private TipoAlgoritmo tipoAlgoritmo;
 
+	@Column(name = "creador_sorteo")
+	private Long idCreador;
+    
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +72,15 @@ public class Sorteo {
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
 	}
+
+	public Long getIdCreador() {
+		return idCreador;
+	}
+
+	public void setIdCreador(Long id_creador) {
+		this.idCreador = id_creador;
+	}
+
 	public Premio getPremio() {
 		return premio;
 	}
@@ -74,13 +90,14 @@ public class Sorteo {
 	
 	public Sorteo() {}
     
-	public Sorteo(DatosSorteo datosSorteo) {
+	public Sorteo(DatosSorteo datosSorteo, Long idCreadorSorteo) {
 		setNombre(datosSorteo.getNombre());
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
 		this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
 		cantidadRifasVendidas= 0;
+    this.idCreador = idCreadorSorteo;
 	}
 	@Override
 	public int hashCode() {
@@ -97,9 +114,7 @@ public class Sorteo {
 		Sorteo other = (Sorteo) obj;
 		return Objects.equals(cantidadRifas, other.cantidadRifas) && Objects.equals(descripcion, other.descripcion)
 				&& Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(precioRifa, other.precioRifa) && Objects.equals(premio, other.premio);
 	}
-
 
     public TipoAlgoritmo getAlgoritmo() {
 		return this.tipoAlgoritmo;

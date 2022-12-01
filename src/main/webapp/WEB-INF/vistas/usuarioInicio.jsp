@@ -70,7 +70,8 @@
 					<h3 class="card-title text-light"
 						style="color: #797D7F; text-align: center;">Ver Usuarios</h3>
 				</div>
-				<a class="btn btn-success" href="listado-usuarios" role="button">Ver Usuarios</a>
+				<!--TODO: SE CAMBIÓ POR VER MIS SORTEOS, ACÁ ESTABA VER USUARIOS-->
+				<a class="btn btn-success" href="mis-sorteos" role="button">Ver mis sorteos</a>
 
 			</div>
 		</div>

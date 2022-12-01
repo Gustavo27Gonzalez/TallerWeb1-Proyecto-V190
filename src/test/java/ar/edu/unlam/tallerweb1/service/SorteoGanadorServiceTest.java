@@ -29,6 +29,7 @@ public class SorteoGanadorServiceTest {
 	private ServicioRifa servicioRifa;
 	private RepositorioRifa repositorioRifa;
 	private RepositorioUsuario repositorioUsuario;
+	private Usuario usuario;
 	
 	@Before
 	public void init() {
@@ -41,7 +42,8 @@ public class SorteoGanadorServiceTest {
 	public void siendoQueExisteUnSorteoConRifasVendidasGeneroAlGanador() {
 		// Genero el Sorteo
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
-		Sorteo sorteo = new Sorteo(datosSorteo);
+		Usuario creador = createUser();
+		Sorteo sorteo = new Sorteo(datosSorteo, creador.getId());
 		
 		// Genero los Participantes
 		List<Usuario> participantes = dadoQueExistenParticipantes(CANTIDAD_PARTICIPANTES);
@@ -132,5 +134,13 @@ public class SorteoGanadorServiceTest {
 
 	private void entoncesLaCompraEsExitosa(Compra compraExitosa) {
 		assertThat(compraExitosa).isNotNull();
+	}
+
+	private Usuario createUser() {
+		this.usuario.setId(1L);
+		this.usuario.setNombre("Agustin");
+		this.usuario.setEmail("agustin@test.com");
+		this.usuario.setGanoUnSorteoYa(Boolean.FALSE);
+		return this.usuario;
 	}
 }

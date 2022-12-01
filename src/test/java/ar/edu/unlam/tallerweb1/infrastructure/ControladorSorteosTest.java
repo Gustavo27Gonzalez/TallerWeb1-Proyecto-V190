@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
+import ar.edu.unlam.tallerweb1.service.ServicioRifa;
 import ar.edu.unlam.tallerweb1.service.SessionService;
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
 import org.junit.Before;
@@ -35,10 +36,14 @@ public class ControladorSorteosTest extends SpringTest {
 	private ServicioSorteo servicioSorteo;
 	private ServicioUsuario servicioUsuario;
 	private RepositorioSorteo repositorioSorteo;
+	private ServicioRifa servicioRifa;
+	private SessionService sessionService;
 
 	@Before
 	public void init(){
 		this.servicioSorteo = mock(ServicioSorteo.class);
+		this.servicioRifa = mock(ServicioRifa.class);
+		this.sessionService = mock(SessionService.class);
 		this.controladorSorteo = new ControladorSorteo(this.servicioSorteo, null,mock(SessionService.class),mock(ServicioMercadoPagoImpl.class));
 		this.servicioUsuario = mock(ServicioUsuario.class);
 		this.repositorioSorteo = mock(RepositorioSorteo.class);
@@ -149,7 +154,7 @@ public class ControladorSorteosTest extends SpringTest {
 	private void givenHayUnSorteoExistenteQueQuieroParticipar() {
 		Usuario usuarioExistente = new Usuario(2L, "Martin", "martin@gmail.com", Boolean.TRUE);
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
-		Sorteo nuevoSorteo = new Sorteo(datosSorteo);
+		Sorteo nuevoSorteo = new Sorteo(datosSorteo, usuarioExistente.getId());
 		List rifas = comprarRifas();
 		when(servicioSorteo.participar(nuevoSorteo, usuarioExistente, rifas)).thenReturn(Boolean.TRUE);
 		//doThrow(Exception.class).when(servicioSorteo).participar(nuevoSorteo, usuarioExistente);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.SessionService;
+
 import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioMercadoPagoImpl;
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.preference.PreferenceClient;
@@ -58,13 +59,6 @@ public class ControladorSorteo {
 	public ModelAndView participarSorteo(@ModelAttribute("sorteo") DatosSorteo datosSorteo) {
 		ModelMap model = new ModelMap();
 		model.put("datosSorteo", datosSorteo);
-		ModelAndView mav = new ModelAndView("participar", model);
-		return mav;
-	}
-
-	@RequestMapping(path="/lala", method = RequestMethod.GET)
-	public ModelAndView listarRifas() {
-		ModelMap model = new ModelMap();
 		ModelAndView mav = new ModelAndView("participar", model);
 		return mav;
 	}
@@ -133,4 +127,14 @@ public class ControladorSorteo {
 		ModelAndView mav = new ModelAndView("ganador", model);
 		return mav;
     }
+
+	@RequestMapping(path="/mis-sorteos", method = RequestMethod.GET)
+	public ModelAndView listarMisSorteos() throws Exception {
+		ModelMap model = new ModelMap();
+		Usuario actual = this.sessionService.getCurrentUser();
+		List<Sorteo> sorteos = this.servicioSorteo.listarMisSorteos(actual.getId());
+		model.put("sorteos", sorteos);
+		ModelAndView mav = new ModelAndView("listar-sorteos", model);
+		return mav;
+	}
 }

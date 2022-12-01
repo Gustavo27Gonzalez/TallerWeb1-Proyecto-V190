@@ -28,10 +28,9 @@ public class CompraServiceTest {
 	@Test
 	public void siendoQueExisteUnSorteoPuedoComprarUnNumero() {
 		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
-		Sorteo sorteo = new Sorteo(datosSorteo);
-		
-		Rifa rifa = new Rifa(1L, false, sorteo);
 		Usuario usuario = new Usuario(1L, "Agustin", "Agustin@test.com", Boolean.FALSE);
+		Sorteo sorteo = new Sorteo(datosSorteo, usuario.getId());
+		Rifa rifa = new Rifa(1L, false, sorteo);
 		Compra compra = new Compra(rifa, usuario);
 		dadoQueExisteUnSorteoConUnaRifaYLaQuieroComprar(compra);
 		Compra compraExitosa = cuandoQuieroComprarUnNumeroDeUnaRifa(compra);

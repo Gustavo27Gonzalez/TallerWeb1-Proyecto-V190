@@ -25,9 +25,7 @@ public class Premio {
 	private Long id;
 	@Enumerated(value = EnumType.STRING)
 	private TipoPremio tipoPremio;
-	@OneToMany(mappedBy = "premio", cascade = CascadeType.ALL)
-	private List<Sorteo> sorteos = new ArrayList<>();
-		
+
 	public Long getId() {
 		return id;
 	}
@@ -40,13 +38,7 @@ public class Premio {
 	public void setTipoPremio(TipoPremio tipoPremio) {
 		this.tipoPremio = tipoPremio;
 	}
-	public List<Sorteo> getSorteos() {
-		return sorteos;
-	}
-	public void setSorteos(ArrayList<Sorteo> sorteos) {
-		this.sorteos = sorteos;
-	}
-	
+
 	public Premio() {};
 	
 	public Premio (TipoPremio tipoPremio) {

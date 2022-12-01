@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,13 +36,14 @@ public class ControladorUsuariosTest extends SpringTest {
 	   //private HttpServletRequest request;
 	   private ServicioLogin servicioLogin;
 	   private RepositorioUsuario repositorioUsuario;
+	   private SessionService sessionService;
 
 	    @Before
 	    public void init(){
 	        servicioUsuario = mock(ServicioUsuario.class);
 	        repositorioUsuario = mock(RepositorioUsuario.class);
 	        
-	        controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario);
+	        controladorUsuario = new ControladorUsuario(this.servicioSorteo, this.servicioUsuario, this.sessionService);
 	        
 	        servicioLogin = new ServicioLoginImpl(repositorioUsuario);
 	    }
