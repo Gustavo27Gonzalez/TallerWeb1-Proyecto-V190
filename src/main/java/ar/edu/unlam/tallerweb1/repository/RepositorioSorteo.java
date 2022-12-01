@@ -16,4 +16,5 @@ public interface RepositorioSorteo {
 	List<Sorteo> listarMisSorteos(Long idCreador);
 	List<Rifa> getRifas(Sorteo sorteo);
 	void elimnar(Sorteo sorteo);
+	List<Sorteo> listarSorteosQueParticipo(Long id);
 }

@@ -13,4 +13,5 @@ public interface RepositorioRifa {
 	Rifa getRifaById(Long id);
 
 	void guardarRifa(Rifa rifa);
+	List<Rifa> listarMisRifas(Long id);
 }

@@ -127,13 +127,26 @@ public class ControladorSorteo {
 		return mav;
     }
 
-	@RequestMapping(path="/mis-sorteos", method = RequestMethod.GET)
-	public ModelAndView listarMisSorteos() throws Exception {
+	@RequestMapping(path="/sorteos-que-participo", method = RequestMethod.GET)
+	public ModelAndView listarSorteosQueParticipo() throws Exception {
 		ModelMap model = new ModelMap();
 		Usuario actual = this.sessionService.getCurrentUser();
-		List<Sorteo> sorteos = this.servicioSorteo.listarMisSorteos(actual.getId());
+		List<Sorteo> sorteos = this.servicioSorteo.listarSorteosQueParticipo(actual.getId());
 		model.put("sorteos", sorteos);
-		ModelAndView mav = new ModelAndView("listar-mis-sorteos", model);
+		ModelAndView mav = new ModelAndView("listar-sorteos-que-participo", model);
 		return mav;
 	}
+	
+	@RequestMapping(path="/mis-rifas", method = RequestMethod.GET)
+	public ModelAndView listarMisRifas() throws Exception {
+		ModelMap model = new ModelMap();
+		Usuario actual = this.sessionService.getCurrentUser();
+		List<Rifa> rifas = this.servicioSorteo.listarMisRifas(actual.getId());
+		model.put("rifas", rifas);
+		ModelAndView mav = new ModelAndView("mis-rifas", model);
+		return mav;
+	}
+	
+	
+	
 }

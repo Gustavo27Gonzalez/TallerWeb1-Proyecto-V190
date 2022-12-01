@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repository.repositoryImpl;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import org.hibernate.Criteria;
@@ -78,6 +79,14 @@ public class RepositorioSorteoImpl implements RepositorioSorteo {
 	@Override
 	public void elimnar(Sorteo sorteo) {
 		sessionFactory.getCurrentSession().delete(sorteo);
+	}
+
+	@Override
+	public List<Sorteo> listarSorteosQueParticipo(Long id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Sorteo.class)
+				.add( Restrictions.eq("idCreador", id))
+				.list();
 	}
 
 }

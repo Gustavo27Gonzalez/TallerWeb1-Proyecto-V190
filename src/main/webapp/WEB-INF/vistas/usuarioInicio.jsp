@@ -76,6 +76,19 @@
 			</div>
 		</div>
 		
+		<div class="col-sm-4 mb-4 align-self-stretch">
+
+			<div class="card shadow-lg  bg-white">
+
+				<div class="card-body border border-dark carta-sorteos">
+					<h3 class="card-title text-light"
+						style="color: #797D7F; text-align: center;">Listar Mis Rifas</h3>
+				</div>
+				<a class="btn btn-success" href="mis-rifas" role="button">Ver Mis Rifas</a>
+
+			</div>
+		</div>
+		
 	</div>
 	<!-------------------------------------------------------------------------->
 

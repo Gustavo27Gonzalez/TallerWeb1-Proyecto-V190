@@ -13,6 +13,7 @@ import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
+import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 
@@ -21,13 +22,15 @@ import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
 public class ServicioSorteoImpl implements ServicioSorteo {
 
     RepositorioSorteo sorteoRepository;
+    RepositorioRifa rifaRepository;
     ServicioAlgoritmo servicioAlgoritmo;
 	RepositorioUsuario repositorioUsuario;
     @Autowired
-    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository, RepositorioUsuario repositorioUsuario) {
+    public ServicioSorteoImpl(RepositorioSorteo sorteoRepository, RepositorioUsuario repositorioUsuario, RepositorioRifa rifaRepository) {
         this.sorteoRepository = sorteoRepository;
 		this.servicioAlgoritmo = new ServicioAlgoritmo();
 		this.repositorioUsuario = repositorioUsuario;
+		this.rifaRepository = rifaRepository;
     }
 	
 	@Override
@@ -87,6 +90,18 @@ public class ServicioSorteoImpl implements ServicioSorteo {
 		nuevoSorteo.setCantidadRifas(nuevoSorteo.getCantidadRifas()-rifas.size());
 		//Compra compraRifa = new Compra();
 		return nuevoSorteo.getCantidadRifas().equals(7);
+	}
+
+	@Override
+	public List<Sorteo> listarSorteosQueParticipo(Long id) {
+		List<Sorteo> misSorteos = this.sorteoRepository.listarSorteosQueParticipo(id);
+		return misSorteos;
+	}
+
+	@Override
+	public List<Rifa> listarMisRifas(Long id) {
+		List<Rifa> misRifas = this.rifaRepository.listarMisRifas(id);
+		return misRifas;
 	}
 
 	

@@ -18,4 +18,6 @@ public interface ServicioSorteo {
 	List<Sorteo> listarMisSorteos(Long idUsuario);
   	Sorteo getSorteo(long id);
 	void cerrarSorteo(Sorteo sorteo);
+	List<Sorteo> listarSorteosQueParticipo(Long id);
+	List<Rifa> listarMisRifas(Long id);
 }

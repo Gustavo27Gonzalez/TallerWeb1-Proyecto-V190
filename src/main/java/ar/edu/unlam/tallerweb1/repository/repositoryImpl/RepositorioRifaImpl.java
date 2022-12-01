@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.models.compra.Compra;
 import ar.edu.unlam.tallerweb1.models.rifas.Rifa;
+import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.repository.RepositorioRifa;
 
@@ -51,6 +52,14 @@ public class RepositorioRifaImpl implements RepositorioRifa{
 	@Override
 	public void guardarRifa(Rifa rifa) {
 		this.sessionFactory.getCurrentSession().save(rifa);
+	}
+
+	@Override
+	public List<Rifa> listarMisRifas(Long id) {
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Compra.class)
+				.add( Restrictions.eq("usuario_id", id))
+				.list();
 	}
 
 }
