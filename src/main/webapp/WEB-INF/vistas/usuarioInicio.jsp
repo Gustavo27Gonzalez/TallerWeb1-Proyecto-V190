@@ -37,44 +37,35 @@
 	<div class="d-flex justify-content-center align-items-center" style="margin-top: 5rem;">
 
 		<div class="col-sm-4 mb-4 align-self-stretch ">
-
-			<div class="card shadow-lg  bg-white">
-
-				<div class="card-body border border-dark carta-sorteos">
-					<h3 class="card-title text-light"
-						style="color: #797D7F; text-align: center;">Crear Sorteo</h3>
+			<a href="crearSorteo" role="button">
+				<div class="card-counter primary">
+					<i class="fa fa-plus-circle"></i>
+					<span class="count-numbers">Nuevo Sorteo</span>
+					<span class="count-name">Crea tu sorteo</span>
 				</div>
-				<a class="btn btn-success" href="crearSorteo" role="button">Crear</a>
-
-			</div>
+			</a>
 		</div>
 
 		<div class="col-sm-4 mb-4 align-self-stretch">
-
-			<div class="card shadow-lg  bg-white">
-
-				<div class="card-body border border-dark carta-sorteos">
-					<h3 class="card-title text-light"
-						style="color: #797D7F; text-align: center;">Listar Sorteos</h3>
+			<a href="listado-sorteos" role="button">
+				<div class="card-counter primary">
+					<i class="fa fa-users"></i>
+					<span class="count-numbers">Listar Sorteos</span>
+					<span class="count-name">Ver sorteos activos</span>
 				</div>
-				<a class="btn btn-success" href="listado-sorteos" role="button">Ver Sorteos</a>
-
-			</div>
+			</a>
 		</div>
 		
 		<div class="col-sm-4 mb-4 align-self-stretch ">
-
-			<div class="card shadow-lg  bg-white">
-
-				<div class="card-body border border-dark carta-sorteos">
-					<h3 class="card-title text-light"
-						style="color: #797D7F; text-align: center;">Mis Sorteos Creados</h3>
+			<a href="mis-sorteos" role="button">
+				<div class="card-counter primary">
+					<i class="fa fa-database"></i>
+					<span class="count-numbers">Mis sorteos</span>
+					<span class="count-name">Ver sorteos creados</span>
 				</div>
-				<!--TODO: SE CAMBIÓ POR VER MIS SORTEOS, ACÁ ESTABA VER USUARIOS-->
-				<a class="btn btn-success" href="mis-sorteos" role="button">Ver mis sorteos</a>
-
-			</div>
+			</a>
 		</div>
+
 		
 	</div>
 	<!-------------------------------------------------------------------------->
