@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+on<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link href="css/styles.css" rel="stylesheet">
-<title>Sortea2 | Iniciar sesi√≥n</title>
+<title>Sortea2 | Iniciar sesion</title>
 </head>
 <body>
 	<jsp:include page="background.jsp"/>
@@ -35,8 +35,8 @@
 				</div>
 
 				<div class="form-outline mb-4">
-					<form:label class="form-label text-light" for="password" path="password">Contrase√±a</form:label>
-					<form:input path="password" type="password" id="password" placeholder="Ingrese su ContraseÔøΩa..." class="form-control" />
+					<form:label class="form-label text-light" for="password" path="password">ContraseÒa</form:label>
+					<form:input path="password" type="password" id="password" placeholder="Ingrese su ContraseÒa..." class="form-control" />
 				</div>
 				<button class="btn btn-lg btn-success btn-block add-margin-b2" Type="Submit" />Login</button>
 			</form:form>
@@ -44,7 +44,7 @@
 
 			<div class="d-flex justify-content-between pt-2">
 				<a class="btn btn-outline-info" href="registrar-usuario" role="button">Registrarme</a>
-				<a class="btn btn-outline-info" href="recuperar-contraseÔøΩa" role="button">Olvid√© mi Contrase√±a</a>
+				<a class="btn btn-outline-info" href="recuperar-contraseÔøΩa" role="button">OlvidÈ mi ContraseÒa</a>
 				<a class="btn btn-outline-info" href="compras" role="button">PROBAR</a>
 			</div>
 

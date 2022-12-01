@@ -53,8 +53,8 @@ public class ControladorRegistro {
     }
     
     
-    @RequestMapping(path="/recuperar-contraseña")
-    public ModelAndView recuperarContraseña() {
+    @RequestMapping(path="/recuperar-contrasenia")
+    public ModelAndView recuperarContrasenia() {
     	return new ModelAndView("recuperar-contraseña");
     }
     

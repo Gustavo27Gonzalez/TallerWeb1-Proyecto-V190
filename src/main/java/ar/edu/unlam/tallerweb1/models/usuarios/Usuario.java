@@ -31,6 +31,8 @@ public class Usuario {
 	private Long id;
 	private String nombre;
 	private String email;
+	private Integer dni;
+	private Double precioDeRifasTope;
 	private String password;
 	private Boolean cuentaEliminada = false;
 	private Boolean ganoUnSorteoYa = false;
@@ -49,11 +51,23 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public Integer getDni() {
+		return dni;
+	}
+	public void setDni(Integer dni) {
+		this.dni = dni;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Double getPrecioDeRifasTope() {
+		return precioDeRifasTope;
+	}
+	public void setPrecioDeRifasTope(Double precioDeRifasTope) {
+		this.precioDeRifasTope = precioDeRifasTope;
 	}
 	public String getPassword() {
 		return password;
@@ -81,13 +95,21 @@ public class Usuario {
 	}
 
 	public Usuario() {};
-
+	
+	public Usuario(DatosRegistro datosRegistro) {
+		setNombre(datosRegistro.getNombre());
+        setDni(datosRegistro.getDni());
+    	setEmail(datosRegistro.getEmail());
+        setPassword(datosRegistro.getPassword());
+        setPrecioDeRifasTope(datosRegistro.getPrecioDeRifasTope());
+	}
+	/*
 	public Usuario(DatosRegistro datosRegistro) {
 		setNombre(datosRegistro.getNombre());
 		setEmail(datosRegistro.getEmail());
 		setPassword(datosRegistro.getPassword());
 	}
-	
+	*/
 	// --> Constructor para setear los datos del login cuando se inicia sesión
 	public Usuario(DatosLogin datosLogin) {
 		setEmail(datosLogin.getEmail());

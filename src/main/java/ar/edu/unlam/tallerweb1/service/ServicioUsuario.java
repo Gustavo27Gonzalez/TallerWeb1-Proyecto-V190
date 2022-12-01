@@ -13,5 +13,5 @@ public interface ServicioUsuario {
     List<Usuario> listarUsuarios();
     Boolean comprar(DatosCompra datosCompra);
 	Usuario buscarPorEmail(String email);
-	void enviarMailRecuperacionContraseña(String email);
+	void enviarMailRecuperacionContrasenia(String email);
 }

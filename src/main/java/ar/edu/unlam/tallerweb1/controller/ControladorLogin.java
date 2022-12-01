@@ -16,6 +16,7 @@ import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioLogin;
 import ar.edu.unlam.tallerweb1.service.ServicioUsuario;
 import exceptions.UsuarioLoginException;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -93,7 +94,7 @@ public class ControladorLogin {
 	// form correspondiente y se corresponde con el modelAttribute definido en el
 	// tag form:form
 	@RequestMapping(path = "/validar-login", method = RequestMethod.POST)
-	public ModelAndView validarLogin(@ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request){
+	public ModelAndView validarLogin(@Valid @ModelAttribute("datosLogin") DatosLogin datosLogin, HttpServletRequest request){
 		ModelMap model = new ModelMap();
 		Usuario usuarioBuscado;
 		

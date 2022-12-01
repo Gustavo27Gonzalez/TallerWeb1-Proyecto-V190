@@ -65,7 +65,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	}
 
 	@Override
-	public void enviarMailRecuperacionContraseña(String email) {
+	public void enviarMailRecuperacionContrasenia (String email) {
 		
 	}
 

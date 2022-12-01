@@ -1,12 +1,33 @@
 package ar.edu.unlam.tallerweb1.controller.dtos;
 
 import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class DatosSorteo {
 	private Long idSorteo;
+	@NotNull(message = "Ingrese un nombre para el sorteo")
+	@NotEmpty(message = "Ingrese un nombre para el sorteo")
+	@Size(min = 3, max = 50, message 
+    = "El nombre del sorteo deberá tener entre 3 y 50 caracteres de longitud")
 	private String nombre;
+	@NotNull(message = "Ingrese una descripción del sorteo")
+	@NotEmpty(message = "Ingrese una descripción del sorteo")
+	@Size(min = 10, max = 200, message 
+    = "La descripción del sorteo deberá tener entre 10 y 200 caracteres de longitud")
 	private String descripcion;
+	@NotNull(message = "Ingrese el precio de las rifas")
+	@NotEmpty(message = "Ingrese el precio de las rifas")
+	@Min(value = 10, message = "El precio mínimo de las rifas es 10")
+    @Max(value = 10000, message = "El precio máximo de las rifas es 10000")
 	private Double precioRifa;
+	@NotNull(message = "Ingrese la cantidad de rifas que tendrá el sorteo")
+	@NotEmpty(message = "Ingrese la cantidad de rifas que tendrá el sorteo")
+	@Min(value = 10, message = "La cantidad mínima de rifas es 10")
+    @Max(value = 1000, message = "La cantidad máxima de rifas es 1000")
 	private Integer cantidadRifas;
 
 	private TipoAlgoritmo tipoAlgoritmo;
