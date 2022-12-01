@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.controller;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.SessionService;
 

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.service.SessionService;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,7 +89,7 @@ public class ControladorCompraTest {
 	
 	private void dadoQueExisteUnSorteo() {
 		Usuario nuevo = createUser();
-		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10, TipoAlgoritmo.RANDOM);
 		this.sorteo = new Sorteo(datosSorteo, nuevo.getId());
 	}
 

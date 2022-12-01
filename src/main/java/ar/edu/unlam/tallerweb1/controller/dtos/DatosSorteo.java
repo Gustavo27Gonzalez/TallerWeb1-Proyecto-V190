@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controller.dtos;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
+
 public class DatosSorteo {
 	private Long idSorteo;
 	private String nombre;
@@ -7,23 +9,19 @@ public class DatosSorteo {
 	private Double precioRifa;
 	private Integer cantidadRifas;
 
+	private TipoAlgoritmo tipoAlgoritmo;
+
 	// private String tipoPremio;
 	public DatosSorteo() {
 	};
 
-	public DatosSorteo(Long idSorteo, String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
+	public DatosSorteo(Long idSorteo, String nombre, String descripcion, Double precioRifa, Integer cantidadRifas, TipoAlgoritmo tipoAlgoritmo) {
 		this.idSorteo = idSorteo;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precioRifa = precioRifa;
 		this.cantidadRifas = cantidadRifas;
-	}
-
-	public DatosSorteo(String nombre, String descripcion, Double precioRifa, Integer cantidadRifas) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.precioRifa = precioRifa;
-		this.cantidadRifas = cantidadRifas;
+		this.tipoAlgoritmo =tipoAlgoritmo;
 	}
 
 	public Long getIdSorteo() {
@@ -64,6 +62,14 @@ public class DatosSorteo {
 
 	public void setCantidadRifas(Integer cantidadRifas) {
 		this.cantidadRifas = cantidadRifas;
+	}
+
+	public TipoAlgoritmo getTipoAlgoritmo() {
+		return tipoAlgoritmo;
+	}
+
+	public void setTipoAlgoritmo(TipoAlgoritmo tipoAlgoritmo) {
+		this.tipoAlgoritmo = tipoAlgoritmo;
 	}
 
 }

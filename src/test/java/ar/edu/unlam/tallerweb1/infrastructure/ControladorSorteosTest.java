@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.repository.RepositorioSorteo;
 import ar.edu.unlam.tallerweb1.service.ServicioRifa;
 import ar.edu.unlam.tallerweb1.service.SessionService;
@@ -153,7 +154,7 @@ public class ControladorSorteosTest extends SpringTest {
 
 	private void givenHayUnSorteoExistenteQueQuieroParticipar() {
 		Usuario usuarioExistente = new Usuario(2L, "Martin", "martin@gmail.com", Boolean.TRUE);
-		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10, TipoAlgoritmo.RANDOM);
 		Sorteo nuevoSorteo = new Sorteo(datosSorteo, usuarioExistente.getId());
 		List rifas = comprarRifas();
 		when(servicioSorteo.participar(nuevoSorteo, usuarioExistente, rifas)).thenReturn(Boolean.TRUE);

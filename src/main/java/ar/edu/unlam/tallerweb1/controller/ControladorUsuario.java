@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controller;
 
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosCompra;
 import ar.edu.unlam.tallerweb1.controller.dtos.DatosSorteo;
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import ar.edu.unlam.tallerweb1.models.sorteos.Sorteo;
 import ar.edu.unlam.tallerweb1.models.usuarios.Usuario;
 import ar.edu.unlam.tallerweb1.service.ServicioSorteo;
@@ -43,6 +44,7 @@ public class ControladorUsuario {
     public ModelAndView crearSorteo() {
     	ModelMap modelo = new ModelMap();
     	modelo.put("datosSorteo", new DatosSorteo());
+        modelo.put("algoritmos", TipoAlgoritmo.values());
     	return new ModelAndView("crearSorteo", modelo);
     }
     

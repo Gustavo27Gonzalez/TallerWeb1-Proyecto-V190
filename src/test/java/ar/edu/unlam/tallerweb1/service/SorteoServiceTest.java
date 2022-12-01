@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ import ar.edu.unlam.tallerweb1.service.serviceImpl.ServicioSorteoImpl;
 
 public class SorteoServiceTest extends SpringTest{
 	
-	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+	private static final DatosSorteo DATOS_SORTEO = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10, TipoAlgoritmo.RANDOM);
 	private static final Sorteo SORTEO = new Sorteo(DATOS_SORTEO, null);
 	private RepositorioSorteo sorteoRepository; /*= mock(SorteoRepository.class);*/
 	private ServicioSorteo sorteoService; /*= new SorteoServiceImpl(sorteoRepository);*/

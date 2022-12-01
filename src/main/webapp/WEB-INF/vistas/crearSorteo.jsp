@@ -51,6 +51,18 @@
 						placeholder="Cantidad de Rifas..." class="form-control" />
 				</div>
 
+				<form:select path="tipoAlgoritmo" class="form-control">
+					<form:options items="${algoritmos}" />
+				</form:select>
+
+<%--				<form:select class="text-light form-select form-select-lg mb-3" style="color: #797D7F; background-color: #3d4756" name="algoritmo">--%>
+<%--					<c:forEach items="${algoritmos}" var="algoritmo" varStatus="loop">--%>
+<%--						<form:option value="${loop.index}" class="card-text text-light" path="tipoAlgoritmo" id="tipoAlgoritmo">--%>
+<%--								${algoritmo}--%>
+<%--						</form:option>--%>
+<%--					</c:forEach>--%>
+<%--				</form:select>--%>
+
 				<button class="btn btn-lg btn-primary btn-block add-margin-b2"
 					type="Submit">Crear</button>
 

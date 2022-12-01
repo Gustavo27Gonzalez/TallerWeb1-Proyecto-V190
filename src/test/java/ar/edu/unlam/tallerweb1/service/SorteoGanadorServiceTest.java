@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class SorteoGanadorServiceTest {
 	@Test
 	public void siendoQueExisteUnSorteoConRifasVendidasGeneroAlGanador() {
 		// Genero el Sorteo
-		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10, TipoAlgoritmo.RANDOM);
 		Usuario creador = createUser();
 		Sorteo sorteo = new Sorteo(datosSorteo, creador.getId());
 		

@@ -95,9 +95,9 @@ public class Sorteo {
 		setDescripcion(datosSorteo.getDescripcion());
 		setPrecioRifa(datosSorteo.getPrecioRifa());
 		setCantidadRifas(datosSorteo.getCantidadRifas());
-		this.tipoAlgoritmo = TipoAlgoritmo.RANDOM;
+		setAlgoritmo(datosSorteo.getTipoAlgoritmo());
 		cantidadRifasVendidas= 0;
-    this.idCreador = idCreadorSorteo;
+    	this.idCreador = idCreadorSorteo;
 	}
 	@Override
 	public int hashCode() {

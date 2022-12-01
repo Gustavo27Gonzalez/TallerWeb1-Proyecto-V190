@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import ar.edu.unlam.tallerweb1.models.enums.TipoAlgoritmo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ public class CompraServiceTest {
 
 	@Test
 	public void siendoQueExisteUnSorteoPuedoComprarUnNumero() {
-		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10);
+		DatosSorteo datosSorteo = new DatosSorteo((long) 123123, "Mock","Mock-Service", 150.00, 10, TipoAlgoritmo.RANDOM);
 		Usuario usuario = new Usuario(1L, "Agustin", "Agustin@test.com", Boolean.FALSE);
 		Sorteo sorteo = new Sorteo(datosSorteo, usuario.getId());
 		Rifa rifa = new Rifa(1L, false, sorteo);
